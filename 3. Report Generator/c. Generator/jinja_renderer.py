@@ -38,7 +38,10 @@ def _parse_response(text: str) -> Dict[str, Any]:
     match = re.search(r"```json\s*(\{.*?\})\s*```", text, re.S)
     if match:
         text = match.group(1)
-    return json.loads(text)
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError as exc:  # pragma: no cover - relies on LLM
+        raise ValueError(f"Gemini response is not valid JSON: {text}") from exc
 
 
 def query_gemini(structured: Dict[str, Any], prompt: str, templates: List[str]) -> Dict[str, Any]:
