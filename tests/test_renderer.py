@@ -3,7 +3,12 @@ from pathlib import Path
 import pytest
 
 # Dynamically import jinja_renderer
-MOD_PATH = Path(__file__).resolve().parents[1] / "3. Report Generator" / "c. Generator" / "jinja_renderer.py"
+GEN_DIR = (
+    Path(__file__).resolve().parents[1]
+    / "3. Report Generator"
+    / "c. Generator"
+)
+MOD_PATH = GEN_DIR / "jinja_renderer.py"
 spec = importlib.util.spec_from_file_location("renderer", MOD_PATH)
 renderer = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(renderer)
