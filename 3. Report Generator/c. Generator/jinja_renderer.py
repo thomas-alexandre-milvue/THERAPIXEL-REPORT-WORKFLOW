@@ -40,8 +40,12 @@ def _parse_response(text: str) -> Dict[str, Any]:
         text = match.group(1)
     try:
         return json.loads(text)
-    except json.JSONDecodeError as exc:  # pragma: no cover - relies on LLM
-        raise ValueError(f"Gemini response is not valid JSON: {text}") from exc
+    except json.JSONDecodeError:  # pragma: no cover - relies on LLM
+        # Gemini sometimes replies with the final Markdown report instead of
+        # the expected JSON payload. In that case we simply return the raw text
+        # under a dedicated key so downstream code can handle it gracefully.
+        text = re.split(r"\n+Reasoning", text, 1)[0].strip()
+        return {"report": text}
 
 
 def query_gemini(structured: Dict[str, Any], prompt: str, templates: List[str]) -> Dict[str, Any]:
@@ -83,6 +87,10 @@ def generate_reports(
     prompt = prompt_path.read_text(encoding="utf-8")
     templates = [p.read_text(encoding="utf-8") for p in template_paths]
     context = query_gemini(structured, prompt, templates)
+    if "report" in context:
+        # Gemini returned a ready-to-use Markdown report. Replicate it for all
+        # templates so batch_cli still generates the expected files.
+        return {p.stem: context["report"] for p in template_paths}
     return {
         p.stem: render_template(t_text, context)
         for p, t_text in zip(template_paths, templates)

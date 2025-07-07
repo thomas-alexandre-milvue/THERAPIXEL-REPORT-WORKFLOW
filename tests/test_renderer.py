@@ -1,6 +1,5 @@
 import importlib.util
 from pathlib import Path
-import pytest
 
 # Dynamically import jinja_renderer
 GEN_DIR = (
@@ -15,5 +14,6 @@ spec.loader.exec_module(renderer)
 
 
 def test_parse_response_invalid():
-    with pytest.raises(ValueError):
-        renderer._parse_response("not json")
+    # Non-JSON input should be returned as a pre-rendered report
+    result = renderer._parse_response("not json")
+    assert result == {"report": "not json"}
