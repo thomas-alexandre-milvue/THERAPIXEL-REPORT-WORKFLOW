@@ -56,8 +56,6 @@ repo-root/
     │   ├── cli.py
     │   ├── jinja_renderer.py
     │   └── select_assets.py
-    └── d. Tests/
-        └── test_end_to_end.py
 ```
 
 ---
@@ -73,8 +71,8 @@ source .venv/bin/activate      # Windows: .venv\Scripts\activate
 # 2  Install python deps
 pip install -r requirements.txt
 
-# 3  Add your Gemini API key
-echo "GOOGLE_API_KEY=sk-XXXX" > .env
+# 3  Export your Gemini API key
+export GOOGLE_API_KEY=sk-XXXX
 
 # 4  Convert Word templates → Markdown (one‑off)
 python "3. Report Generator/b. Templates/convert_docx_to_md.py"
@@ -83,7 +81,7 @@ python "3. Report Generator/b. Templates/convert_docx_to_md.py"
 python "2. Structured Input/Structured Input Creator.py"        "1. Input/Therapixel - Case 1 Test.json"        -o "2. Structured Input/"
 
 # 6  Generate the clinical report
-python -m "3.Report Generator.c.Generator.cli"        -i "2. Structured Input/Therapixel - Case 1 Test Structured Input.json"        -o "4. Reports/Case1_report.md"
+python "3. Report Generator/c. Generator/cli.py"        -i "2. Structured Input/Therapixel - Case 1 Test Structured Input.json"        -o "4. Reports/Case1_report.md"
 ```
 
 ---
@@ -132,14 +130,14 @@ pandoc report.md -o report.docx   --reference-doc="3. Report Generator/b. Templa
 | File | Purpose |
 |------|---------|
 | **Structured_Input_scheme.json** | JSON schema enforced by step 2. |
-| **modality_map.yaml** | Maps `modality` → `{prompt, template_dir}`. |
+| **modality_map.yaml** | Maps `modality` → `{prompt, templates}`. |
 | **query_configs.yaml** | Model name, temperature, max‑tokens, etc. |
 
 Example `modality_map.yaml`
 ```yaml
 mammography:
   prompt: 3. Report Generator/a. Prompts/Templator Prompt.yaml
-  template_dir: 3. Report Generator/b. Templates/MarkDown
+  templates: 3. Report Generator/b. Templates/MarkDown
 ```
 
 ---
@@ -169,7 +167,6 @@ No pipeline code rewrite needed.
 ```bash
 pytest -q
 ```
-`d.Tests/test_end_to_end.py` verifies that the full pipeline runs and the final Markdown contains “BI‑RADS”.
 
 ---
 
