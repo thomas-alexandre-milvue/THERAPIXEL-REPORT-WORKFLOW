@@ -182,9 +182,7 @@ pytest -q
 ---
 
 ## Contributing & Licence
-* **PRs welcome** – include tests and doc updates.  
-* **Licence**: MIT (see `LICENCE.txt`).  
-* **Authors**: Therapixel R&D team & community contributors.
+* **Authors**: Milvue Product Team.
 
 ---
 
