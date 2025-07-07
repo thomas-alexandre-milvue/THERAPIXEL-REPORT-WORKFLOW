@@ -70,7 +70,14 @@ def _laterality(has_left: bool, has_right: bool) -> str:
 
 
 def _filter(d: Dict[str, Any], allowed: Set[str]) -> Dict[str, Any]:
-    return {k: d.get(k, "") for k in allowed if k in d}
+    out: Dict[str, Any] = {}
+    for k in allowed:
+        if k in d:
+            v = d.get(k, "")
+            if v is None:
+                v = ""
+            out[k] = v
+    return out
 
 
 def _dedup(list_of_dicts: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
@@ -105,11 +112,13 @@ def _convert_record(raw: Dict[str, Any]) -> Dict[str, Any]:
 
     prior_src = raw.get("prior") or {}
 
-
-    # Ensure all keys required by schema are present; use None when missing
-
-
-    prior_norm = {k: prior_src.get(k, None) for k in PRIOR_KEYS}
+    # Ensure all keys required by schema are present; replace null with ""
+    prior_norm: Dict[str, Any] = {}
+    for k in PRIOR_KEYS:
+        v = prior_src.get(k, "")
+        if v is None:
+            v = ""
+        prior_norm[k] = v
 
 
     out["prior"] = prior_norm
