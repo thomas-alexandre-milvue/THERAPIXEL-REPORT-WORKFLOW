@@ -65,9 +65,25 @@ def render_template(template_text: str, context: Dict[str, Any]) -> str:
     return Template(template_text).render(**context)
 
 
-def generate_report(structured: Dict[str, Any], prompt_path: Path, template_paths: List[Path]) -> str:
+def generate_reports(
+    structured: Dict[str, Any],
+    prompt_path: Path,
+    template_paths: List[Path],
+) -> Dict[str, str]:
+    """Return rendered reports for all templates."""
     prompt = prompt_path.read_text(encoding="utf-8")
     templates = [p.read_text(encoding="utf-8") for p in template_paths]
     context = query_gemini(structured, prompt, templates)
-    # Use first template for now
-    return render_template(templates[0], context)
+    return {
+        p.stem: render_template(t_text, context)
+        for p, t_text in zip(template_paths, templates)
+    }
+
+
+def generate_report(
+    structured: Dict[str, Any],
+    prompt_path: Path,
+    template_paths: List[Path],
+) -> str:
+    reports = generate_reports(structured, prompt_path, template_paths)
+    return reports[next(iter(reports))]
