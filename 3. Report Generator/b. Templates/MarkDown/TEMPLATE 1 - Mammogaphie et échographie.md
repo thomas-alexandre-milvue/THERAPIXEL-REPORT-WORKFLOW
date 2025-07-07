@@ -2,29 +2,29 @@
 
 **Indication :**  
 Examen systématique.  
-ATCD familiaux : \[ATCD familiaux\]  
-ATCD personnels : \[ATCD personnels\]  
-Statut hormonal : \[Statut hormonal – ménopausée / THS / non ménopausée\]  
-Examen clinique : \[Examen clinique\]
+ATCD familiaux : {{ atcd_familiaux }}
+ATCD personnels : {{ atcd_personnels }}
+Statut hormonal : {{ statut_hormonal }}
+Examen clinique : {{ examen_clinique }}
 
 **Technique :**  
-Mammographie : \[\] clichés numérisés. Clichés réalisés avec un mammographe numérique plein champ haute définition « PLANMED NUANCE » mis en service en juillet 2013.  
+Mammographie : {{ nb_cliches }} clichés numérisés. Clichés réalisés avec un mammographe numérique plein champ haute définition « PLANMED NUANCE » mis en service en juillet 2013.
 Échographie : Examen réalisé avec une sonde multifréquence de 5 à 13 MHz, échographe HITACHI AVIUS mis en service en juin 2013.
 
 **Résultats :**  
-\[Comparativement au bilan sénologique réalisé le \[\] / Pas d’antécédents\]
+{{ comparatif }}
 
 **Mammographie :**  
-Densité mammaire ACR : \[ACR densité\]  
-\[Description mammographique complète\]
+Densité mammaire ACR : {{ acr_densite }}
+{{ description_mammo }}
 
-Sein droit : \[\] mGy. Sein gauche : \[\] mGy.
+Sein droit : {{ dose_droite }} mGy. Sein gauche : {{ dose_gauche }} mGy.
 
 **Échographie :**  
-\[Description échographique complète\]
+{{ description_echo }}
 
 **CONCLUSION :**
 
-\[Conclusion synthétique\]  
-ACR \[\] à droite.  
-ACR \[\] à gauche.
+{{ conclusion }}
+ACR {{ acr_droite }} à droite.
+ACR {{ acr_gauche }} à gauche.

@@ -1,14 +1,14 @@
 **<u>MAMMOGRAPHIE</u>**
 
-Contexte clinique : \[Contexte clinique\]  
-Examen clinique : \[Examen clinique\]
+Contexte clinique : {{ contexte_clinique }}
+Examen clinique : {{ examen_clinique }}
 
 **Résultat :**  
-\[Description globale : densité, opacités, calcifications, peau, etc.\]
+{{ description_globale }}
 
 **CONCLUSION :**
 
-\[Conclusion\]  
-ACR \[\] à droite.  
-ACR \[\] à gauche.  
-Comparaison à l’examen de \[Année\] : \[stable / modifié\]
+{{ conclusion }}
+ACR {{ acr_droite }} à droite.
+ACR {{ acr_gauche }} à gauche.
+Comparaison à l’examen de {{ annee }} : {{ comparaison }}

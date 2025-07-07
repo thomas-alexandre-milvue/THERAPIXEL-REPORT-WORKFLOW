@@ -1,7 +1,7 @@
 **BILAN SENOLOGIQUE  **
-Examen de contrôle chez une patiente âgée de \[\] ans.  
+Examen de contrôle chez une patiente âgée de {{ age }} ans.
 Examen clinique : seins granuleux.  
-Exérèse d’adénofibromes bilatéraux en \[\].
+Exérèse d’adénofibromes bilatéraux en {{ exereses_annee }}.
 
 **MAMMOGRAPHIE NUMERIQUE BILATERALE AVEC TOMOSYNHESE 3D  **
 Seins à la fois lipomateux et mastosiques.  
@@ -11,8 +11,8 @@ SEIN DROIT :
 Pas de lésion décelable.  
 SEIN GAUCHE :  
 Présence, dans le quadrant inféro-interne d’un large foyer de microcalcifications, punctiformes et  
-poussiéreuses (type \[\]).  
-Les clichés localisés en agrandissement à ce niveau montrent une topographie segmentaire de ce foyer, s’étendant sur environ \[\] cm.
+poussiéreuses (type {{ type_calcifications }}).
+Les clichés localisés en agrandissement à ce niveau montrent une topographie segmentaire de ce foyer, s’étendant sur environ {{ taille_segment }} cm.
 
 **ECHOGRAPHIE MAMMAIRE**  
 TOSHIBA XARIO200 - 2015 DESINFECTION PAR ANTIGERMIX S1 : RAYONNEMENT UVC (GERMITEC)  
@@ -20,13 +20,13 @@ SONDE SUPERFICIELLE A FOCALISATION ELECTRONIQUE & MODE HARMONIQUE, DE 5 A 12 MHZ
 Pas nodules hypoéchogènes homogènes, aux contours nets, anciennement connus, correspondant aux surcroits d’opacité observes en mammographie, mesurant :  
 A droite :
 
-\[\]
+{{ mesure_droite }}
 
-A gauche :  
-\[\]
+A gauche :
+{{ mesure_gauche }}
 
 **CONCLUSION**  
 Aucun foyer détectable.
 
-Droit ACR \[\] Gauche ACR \[\]  
-Densité glandulaire BIRADS \[\]
+Droit ACR {{ acr_droit }} Gauche ACR {{ acr_gauche }}
+Densité glandulaire BIRADS {{ birads }}

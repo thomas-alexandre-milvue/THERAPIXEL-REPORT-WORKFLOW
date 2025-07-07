@@ -122,9 +122,9 @@ pandoc report.md -o report.docx   --reference-doc="3. Report Generator/b. Templa
 
 **Add a new template**
 
-1. Drop a DOCX in *DOCX Source*.  
-2. Run `convert_docx_to_md.py`.  
-3. Open the generated `.md`, insert `{{ }}` placeholders, commit.
+1. Drop a DOCX in *DOCX Source*.
+2. Run `convert_docx_to_md.py` – this converts `[PLACEHOLDER]` tags to `{{ placeholder }}`.
+3. Review the generated `.md`, tweak placeholder names if needed, commit.
 
 ---
 

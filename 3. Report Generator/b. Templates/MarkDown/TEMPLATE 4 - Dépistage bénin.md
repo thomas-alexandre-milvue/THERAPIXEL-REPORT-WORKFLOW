@@ -1,19 +1,19 @@
 **<u>BILAN DE DÉPISTAGE INDIVIDUEL</u>**
 
-Patiente âgée de \[\] ans
+Patiente âgée de {{ age }} ans
 
-Antécédents personnels : \[ATCD pers\]  
-Antécédents familiaux : \[ATCD fam\]
+Antécédents personnels : {{ atcd_pers }}
+Antécédents familiaux : {{ atcd_fam }}
 
 **Examen clinique :**  
-\[Seins souples / pas de nodule palpable / autre\]
+{{ examen_clinique }}
 
 Mammographie bilatérale (face + oblique)  
-Seins de densité ACR : \[ACR densité\]  
-\[Description complète : nodules, calcifications, peau, axillaires, comparatif\]
+Seins de densité ACR : {{ acr_densite }}
+{{ description_complete }}
 
-Échographie (si réalisée) : \[Description écho / « Non réalisée »\]
+Échographie (si réalisée) : {{ description_echo }}
 
 **CONCLUSION :**  
-Bilan satisfaisant, sans élément suspect, classé ACR \[\] bilatéral.  
-En l’absence d’évènement clinique, prochain contrôle recommandé dans \[\] ans.
+Bilan satisfaisant, sans élément suspect, classé ACR {{ acr_bilat }} bilatéral.
+En l’absence d’évènement clinique, prochain contrôle recommandé dans {{ controle_intervalle }} ans.

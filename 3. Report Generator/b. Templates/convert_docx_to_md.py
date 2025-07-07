@@ -9,6 +9,7 @@ into UTF-8 Markdown files in
 """
 
 from __future__ import annotations
+import re
 import subprocess, sys, shutil, textwrap
 from pathlib import Path
 
@@ -53,6 +54,25 @@ def supports_atx_headers() -> bool:
 
 USE_ATX = supports_atx_headers()
 
+# ── Placeholder helpers ───────────────────────────────────────────────────────
+PLACEHOLDER_RE = re.compile(r"\[([^\]|\n]+)\]")
+
+
+def _slugify(text: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "_", text.lower()).strip("_")
+
+
+def _convert_placeholders(text: str) -> str:
+    """Replace [PLACEHOLDER] tags with Jinja {{ placeholder }}."""
+
+    def repl(match: re.Match) -> str:
+        label = match.group(1).strip()
+        if any(sep in label for sep in ("/", "|", ";")):
+            return match.group(0)
+        return f"{{{{ {_slugify(label)} }}}}"
+
+    return PLACEHOLDER_RE.sub(repl, text)
+
 # ── Conversion ────────────────────────────────────────────────────────────────
 def convert(docx: Path, md: Path) -> None:
     md.parent.mkdir(parents=True, exist_ok=True)
@@ -60,8 +80,10 @@ def convert(docx: Path, md: Path) -> None:
     cmd = [
         PANDOC,
         str(docx),
-        "-t", "markdown" if USE_ATX else "gfm",
-        "-o", str(md),
+        "-t",
+        "markdown" if USE_ATX else "gfm",
+        "-o",
+        "-",
         "--wrap=none",
         "--columns=120",
     ]
@@ -69,7 +91,9 @@ def convert(docx: Path, md: Path) -> None:
         cmd.insert(-2, "--atx-headers")
 
     try:
-        subprocess.run(cmd, check=True)
+        result = subprocess.run(cmd, check=True, capture_output=True, text=True)
+        text = _convert_placeholders(result.stdout)
+        md.write_text(text, encoding="utf-8")
         print(f"✓  {docx.name} → {md.relative_to(ROOT)}")
     except subprocess.CalledProcessError:
         print(f"✗  Pandoc failed on {docx.name}", file=sys.stderr)
