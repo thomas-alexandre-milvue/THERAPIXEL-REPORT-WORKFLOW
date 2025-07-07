@@ -55,7 +55,7 @@ def query_gemini(structured: Dict[str, Any], prompt: str, templates: List[str]) 
     api_key = os.environ.get("GOOGLE_API_KEY", DEFAULT_API_KEY)
     genai.configure(api_key=api_key)
     model = genai.GenerativeModel(
-        "models/gemini-1.5-pro-latest",
+        cfg.get("model_name", "models/gemini-1.5-pro-latest"),
         system_instruction=prompt,
     )
     user_payload = json.dumps(
@@ -65,6 +65,7 @@ def query_gemini(structured: Dict[str, Any], prompt: str, templates: List[str]) 
     resp = model.generate_content(
         user_payload,
         generation_config={
+            "temperature": cfg.get("temperature", 0.4),
             "top_p": cfg.get("top_p", 0.8),
             "max_output_tokens": cfg.get("max_output_tokens", 2048),
         },
@@ -80,10 +81,13 @@ def render_template(template_text: str, context: Dict[str, Any]) -> str:
 
 def generate_reports(
     structured: Dict[str, Any],
-    prompt_path: Path,
+    prompt_path: Path | None,
     template_paths: List[Path],
 ) -> Dict[str, str]:
     """Return rendered reports for all templates."""
+    cfg = _load_config()
+    if prompt_path is None:
+        prompt_path = ROOT / cfg.get("prompt_file", "")
     prompt = prompt_path.read_text(encoding="utf-8")
     templates = [p.read_text(encoding="utf-8") for p in template_paths]
     context = query_gemini(structured, prompt, templates)
@@ -99,7 +103,7 @@ def generate_reports(
 
 def generate_report(
     structured: Dict[str, Any],
-    prompt_path: Path,
+    prompt_path: Path | None,
     template_paths: List[Path],
 ) -> str:
     reports = generate_reports(structured, prompt_path, template_paths)
