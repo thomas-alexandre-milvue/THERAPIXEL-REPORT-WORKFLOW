@@ -1,6 +1,5 @@
 import importlib.util
 from pathlib import Path
-import pytest
 
 # Dynamically import jinja_renderer
 GEN_DIR = (
