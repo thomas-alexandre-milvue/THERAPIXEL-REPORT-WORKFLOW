@@ -11,6 +11,8 @@ import google.generativeai as genai
 import yaml
 from jinja2 import Template
 
+DEFAULT_API_KEY = "AIzaSyDZ6Z6xaRLpQDY-lucjfp8f8Z45mEbn1cs"
+
 ROOT = Path(__file__).resolve().parents[2]
 CONFIG = ROOT / "0. Config" / "query_configs.yaml"
 
@@ -30,7 +32,8 @@ def _parse_response(text: str) -> Dict[str, Any]:
 
 def query_gemini(structured: Dict[str, Any], prompt: str, templates: List[str]) -> Dict[str, Any]:
     cfg = _load_config()
-    genai.configure(api_key=os.environ.get("GOOGLE_API_KEY", ""))
+    api_key = os.environ.get("GOOGLE_API_KEY", DEFAULT_API_KEY)
+    genai.configure(api_key=api_key)
     model = genai.GenerativeModel("models/gemini-1.5-pro-latest")
     user_payload = json.dumps({"pre_report": structured, "templates": templates}, ensure_ascii=False)
     resp = model.generate_content([
