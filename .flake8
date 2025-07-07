@@ -1,0 +1,3 @@
+[flake8]
+max-line-length = 79
+exclude = */pandoc-3.7.0.2-windows-x86_64.msi,0.*,*1.*,*3.*
