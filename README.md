@@ -72,7 +72,7 @@ source .venv/bin/activate      # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 
 # 3  Export your Gemini API key
-export GOOGLE_API_KEY=sk-XXXX
+export GOOGLE_API_KEY=AIzaSyDZ6Z6xaRLpQDY-lucjfp8f8Z45mEbn1cs
 
 # 4  Convert Word templates → Markdown (one‑off)
 python "3. Report Generator/b. Templates/convert_docx_to_md.py"
@@ -151,7 +151,7 @@ mammography:
 ### Secrets
 `.env` (git‑ignored):
 ```env
-GOOGLE_API_KEY=sk-xxxxxxxxxxxxxxxx
+GOOGLE_API_KEY=AIzaSyDZ6Z6xaRLpQDY-lucjfp8f8Z45mEbn1cs
 ```
 
 ### Add a new modality
