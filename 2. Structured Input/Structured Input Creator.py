@@ -45,7 +45,7 @@ def _collect_keys(schema: Dict[str, Any], chain: Tuple[str, ...] = ()) -> Dict[s
 
 # Base paths
 SCRIPT_DIR = Path(__file__).resolve().parent
-ROOT = SCRIPT_DIR.parent          # project root two levels up
+ROOT = SCRIPT_DIR.parent          # project root one level up
 SCHEMA_PATH = ROOT / "0. Config" / SCHEMA_FILE
 
 schema = _load_schema(SCHEMA_PATH)
