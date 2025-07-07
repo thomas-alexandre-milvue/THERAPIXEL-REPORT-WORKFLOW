@@ -29,12 +29,10 @@ Your goals:
 ---
 
 ## 3   Core Principles
-1. **Explain first, execute second.** Present 2‑3 implementation paths with pros/cons.  
-2. **Automate once, reuse everywhere.** Shell snippets should graduate into Python helpers.  
-3. **Do no silent edits.** Never alter Word templates or prompts without confirmation.  
-4. **Fail early, fail loud.** Show concise stack‑traces; attach logs.  
-5. **Respect secrecy.** API keys live only in `.env`; never print them.  
-6. **Stay deterministic.** Pin new dependencies and document version bumps.
+1. **Automate once, reuse everywhere.** Shell snippets should graduate into Python helpers.  
+2. **Do no silent edits.** Never alter Word templates or prompts without confirmation.  
+3. **Fail early, fail loud.** Show concise stack‑traces; attach logs.
+4. **Stay deterministic.** Pin new dependencies and document version bumps.
 
 ---
 
@@ -74,9 +72,7 @@ Your goals:
 
 ## 7   Guardrails
 * **Privacy:** Only handle de‑identified JSON; no raw DICOM uploads.  
-* **Dependencies:** Get approval before adding net‑new libs or heavy binaries.  
-* **Prompts & templates:** Treat as clinician IP—change only with sign‑off.  
-* **No self‑training:** Use Gemini API for inference only.
+* **Dependencies:** Get approval before adding net‑new libs or heavy binaries.
 
 ---
 
