@@ -7,15 +7,26 @@ import re
 from pathlib import Path
 from typing import Dict, List, Any
 
-import google.generativeai as genai
-import yaml
-from jinja2 import Template
+try:  # Optional dependencies when only CLI help is required
+    import google.generativeai as genai
+except ModuleNotFoundError:  # pragma: no cover - handled at runtime
+    genai = None
+try:
+    import yaml
+except ModuleNotFoundError:  # pragma: no cover - handled at runtime
+    yaml = None
+try:
+    from jinja2 import Template
+except ModuleNotFoundError:  # pragma: no cover - handled at runtime
+    Template = None
 
 ROOT = Path(__file__).resolve().parents[2]
 CONFIG = ROOT / "0. Config" / "query_configs.yaml"
 
 
 def _load_config() -> Dict[str, Any]:
+    if yaml is None:
+        raise ImportError("PyYAML is required for this operation")
     if CONFIG.exists():
         return yaml.safe_load(CONFIG.read_text())
     return {}
@@ -29,6 +40,8 @@ def _parse_response(text: str) -> Dict[str, Any]:
 
 
 def query_gemini(structured: Dict[str, Any], prompt: str, templates: List[str]) -> Dict[str, Any]:
+    if genai is None:
+        raise ImportError("google-generativeai package is required")
     cfg = _load_config()
     genai.configure(api_key=os.environ.get("GOOGLE_API_KEY", ""))
     model = genai.GenerativeModel("models/gemini-1.5-pro-latest")
@@ -44,6 +57,8 @@ def query_gemini(structured: Dict[str, Any], prompt: str, templates: List[str]) 
 
 
 def render_template(template_text: str, context: Dict[str, Any]) -> str:
+    if Template is None:
+        raise ImportError("Jinja2 is required for this operation")
     return Template(template_text).render(**context)
 
 
