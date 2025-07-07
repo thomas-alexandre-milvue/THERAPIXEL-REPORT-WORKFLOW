@@ -4,7 +4,10 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Dict, Tuple, List, Any
 
-import yaml
+try:  # Optional dependency when only CLI help is required
+    import yaml
+except ModuleNotFoundError:  # pragma: no cover - handled at runtime
+    yaml = None
 
 ROOT = Path(__file__).resolve().parents[2]
 MAP_FILE = ROOT / "0. Config" / "modality_map.yaml"
@@ -12,6 +15,8 @@ MAP_FILE = ROOT / "0. Config" / "modality_map.yaml"
 
 def load_mapping(path: Path = MAP_FILE) -> Dict[str, Dict[str, str]]:
     """Return modality mapping from yaml."""
+    if yaml is None:
+        raise ImportError("PyYAML is required for this operation")
     return yaml.safe_load(path.read_text())
 
 
