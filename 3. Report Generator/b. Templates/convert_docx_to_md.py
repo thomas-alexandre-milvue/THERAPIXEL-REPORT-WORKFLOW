@@ -55,7 +55,8 @@ def supports_atx_headers() -> bool:
 USE_ATX = supports_atx_headers()
 
 # ── Placeholder helpers ───────────────────────────────────────────────────────
-PLACEHOLDER_RE = re.compile(r"\[([^\]|\n]+)\]")
+# ❶ Match optional back-slash + [label]
+PLACEHOLDER_RE = re.compile(r"\\?\[([^\]\n]+)\]")
 
 
 def _slugify(text: str) -> str:
@@ -63,13 +64,23 @@ def _slugify(text: str) -> str:
 
 
 def _convert_placeholders(text: str) -> str:
-    """Replace [PLACEHOLDER] tags with Jinja {{ placeholder }}."""
+    """
+    Replace [PLACEHOLDER] with Jinja {{ placeholder }}.
+    • Keeps complex tags like [Dose (mGy)/kg] unchanged.
+    • Removes Pandoc’s escaping back-slash if present.
+    """
+    # Rendering step: jinja_template.render(context) must replace all
+    # {{ placeholder }} before the clinician sees the report.
 
     def repl(match: re.Match) -> str:
-        label = match.group(1).strip()
-        if any(sep in label for sep in ("/", "|", ";")):
-            return match.group(0)
-        return f"{{{{ {_slugify(label)} }}}}"
+        raw = match.group(0).replace("\\[", "[").replace("\\]", "]")
+        label = match.group(1).strip().rstrip("\\")
+        slug = _slugify(label)
+        if slug in {"atcd_pers", "atcd_fam", "examen", "description"} or not label:
+            return "[]"
+        if not re.fullmatch(r"[\w-]+", label):
+            return raw
+        return f"{{{{ {slug} }}}}"
 
     return PLACEHOLDER_RE.sub(repl, text)
 
@@ -91,7 +102,10 @@ def convert(docx: Path, md: Path) -> None:
         cmd.insert(-2, "--atx-headers")
 
     try:
-        result = subprocess.run(cmd, check=True, capture_output=True, text=True)
+        # ❷ Decode Pandoc’s UTF-8 correctly
+        result = subprocess.run(
+            cmd, check=True, capture_output=True, text=True, encoding="utf-8"
+        )
         text = _convert_placeholders(result.stdout)
         md.write_text(text, encoding="utf-8")
         print(f"✓  {docx.name} → {md.relative_to(ROOT)}")
