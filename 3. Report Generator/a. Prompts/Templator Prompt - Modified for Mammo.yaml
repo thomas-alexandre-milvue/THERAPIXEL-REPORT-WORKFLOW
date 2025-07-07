@@ -112,4 +112,6 @@ prompt: |-
 
   - Include the sentence containing the options in the final report, even if you do not choose any of the options.
 
+  - Infer the ACR/BIRADS classification from numeric scores (e.g. `mammoscreen_score`) and suspicion levels in the preliminary report. Do not merely copy these numeric values.
+
   Return the final report as a JSON object with keys like `title`, `views`, `findings`, `conclusion`, and `birads`. Wrap the JSON in a fenced ```json block.
