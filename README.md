@@ -134,13 +134,22 @@ pandoc report.md -o report.docx   --reference-doc="3. Report Generator/b. Templa
 |------|---------|
 | **Structured_Input_scheme.json** | JSON schema enforced by step 2. |
 | **modality_map.yaml** | Maps `modality` → `{prompt, templates}`. |
-| **query_configs.yaml** | Model name, temperature, max‑tokens, etc. |
+| **query_configs.yaml** | Model, temperature, prompt file, max‑tokens, etc. |
 
 Example `modality_map.yaml`
 ```yaml
 mammography:
-  prompt: 3. Report Generator/a. Prompts/Templator Prompt.yaml
+  prompt: 3. Report Generator/a. Prompts/Templator Prompt.yaml  # overridden by query_configs.yaml
   templates: 3. Report Generator/b. Templates/MarkDown
+```
+
+Example `query_configs.yaml`
+```yaml
+model_name: models/gemini-1.5-pro-latest
+temperature: 0.4
+top_p: 0.1
+max_output_tokens: 6000
+prompt_file: 3. Report Generator/a. Prompts/Templator Prompt - Modified for Mammo.yaml
 ```
 
 ---
