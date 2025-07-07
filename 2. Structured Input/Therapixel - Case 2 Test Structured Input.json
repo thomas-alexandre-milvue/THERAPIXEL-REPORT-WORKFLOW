@@ -1,0 +1,155 @@
+{
+  "laterality": "B",
+  "patient_gender": "",
+  "study_id": "",
+  "patient_id": "Case4",
+  "patient_name": "Case4",
+  "accession_number": "",
+  "left_mammoscreen_score": 4,
+  "study_description": "MAMMOGRAM DIGITAL SCR BILAT",
+  "study_mammoscreen_score": 6,
+  "right_mammoscreen_score": 6,
+  "patient_dob": "",
+  "study_date": "20071218",
+  "manufacturer": "hologic",
+  "study_time": "093012",
+  "prior": {
+    "study_date": null
+  },
+  "views": [
+    {
+      "direction": [
+        "H",
+        "F"
+      ],
+      "laterality": "LEFT",
+      "number_of_frames": 69,
+      "image_modality": "mammography",
+      "flip_h": false,
+      "flip_v": false,
+      "breast_side": "L",
+      "flip_slice": false,
+      "view_position": "CC",
+      "patient_orientation_x": "A",
+      "patient_orientation_y": "R"
+    },
+    {
+      "direction": [
+        "M",
+        "L"
+      ],
+      "laterality": "LEFT",
+      "number_of_frames": 70,
+      "image_modality": "mammography",
+      "flip_h": false,
+      "flip_v": false,
+      "breast_side": "L",
+      "flip_slice": false,
+      "view_position": "MLO",
+      "patient_orientation_x": "A",
+      "patient_orientation_y": "FR"
+    },
+    {
+      "direction": [
+        "H",
+        "F"
+      ],
+      "laterality": "RIGHT",
+      "number_of_frames": 73,
+      "image_modality": "mammography",
+      "flip_h": false,
+      "flip_v": false,
+      "breast_side": "R",
+      "flip_slice": false,
+      "view_position": "CC",
+      "patient_orientation_x": "P",
+      "patient_orientation_y": "L"
+    },
+    {
+      "direction": [
+        "M",
+        "L"
+      ],
+      "laterality": "RIGHT",
+      "number_of_frames": 67,
+      "image_modality": "mammography",
+      "flip_h": false,
+      "flip_v": false,
+      "breast_side": "R",
+      "flip_slice": false,
+      "view_position": "MLO",
+      "patient_orientation_x": "P",
+      "patient_orientation_y": "FL"
+    }
+  ],
+  "findings": [
+    {
+      "type": "mass",
+      "laterality": "LEFT",
+      "rendering_positions": [
+        {
+          "projected_distance_to_nipple_mm": 114,
+          "euclidean_distance_to_nipple_mm": 153,
+          "finding_size_mm": 15
+        }
+      ],
+      "mammoscreen_score": 4,
+      "quadrant": "inner_upper",
+      "evolution": "unspecified",
+      "suspicion_level": "low_suspicious",
+      "with_calcis": false,
+      "depth": "posterior"
+    },
+    {
+      "type": "mass",
+      "laterality": "RIGHT",
+      "rendering_positions": [
+        {
+          "projected_distance_to_nipple_mm": 90,
+          "euclidean_distance_to_nipple_mm": 98,
+          "finding_size_mm": 15
+        }
+      ],
+      "mammoscreen_score": 2,
+      "quadrant": "outer",
+      "evolution": "unspecified",
+      "suspicion_level": "benign",
+      "with_calcis": true,
+      "depth": "posterior"
+    },
+    {
+      "type": "mass",
+      "laterality": "LEFT",
+      "rendering_positions": [
+        {
+          "projected_distance_to_nipple_mm": 97,
+          "euclidean_distance_to_nipple_mm": 121,
+          "finding_size_mm": 22
+        }
+      ],
+      "mammoscreen_score": 2,
+      "quadrant": "outer_upper",
+      "evolution": "unspecified",
+      "suspicion_level": "benign",
+      "with_calcis": false,
+      "depth": "posterior"
+    },
+    {
+      "type": "mass",
+      "laterality": "RIGHT",
+      "rendering_positions": [
+        {
+          "projected_distance_to_nipple_mm": 60,
+          "euclidean_distance_to_nipple_mm": 73,
+          "finding_size_mm": 25
+        }
+      ],
+      "mammoscreen_score": 6,
+      "quadrant": "outer",
+      "evolution": "unspecified",
+      "suspicion_level": "indeterminate",
+      "with_calcis": false,
+      "depth": "middle"
+    }
+  ]
+}

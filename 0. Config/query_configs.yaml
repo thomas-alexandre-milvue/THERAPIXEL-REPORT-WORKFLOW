@@ -1,0 +1,5 @@
+include_thoughts: true
+max_output_tokens: 6000
+seed: 0
+thinking_budget: 3000
+top_p: 0.1

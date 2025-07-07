@@ -1,0 +1,126 @@
+{
+  "laterality": "B",
+  "patient_gender": "",
+  "study_id": "",
+  "patient_id": "Case9",
+  "patient_name": "Case9",
+  "accession_number": "",
+  "left_mammoscreen_score": 2,
+  "study_description": "SCREEN MAMMO BILATERAL",
+  "study_mammoscreen_score": 9,
+  "right_mammoscreen_score": 9,
+  "patient_dob": "",
+  "study_date": "20080610",
+  "manufacturer": "hologic",
+  "study_time": "084041",
+  "prior": {
+    "study_date": null
+  },
+  "views": [
+    {
+      "direction": null,
+      "laterality": "LEFT",
+      "number_of_frames": 1,
+      "image_modality": "mammography",
+      "flip_h": false,
+      "flip_v": false,
+      "breast_side": "L",
+      "flip_slice": null,
+      "view_position": "CC",
+      "patient_orientation_x": "A",
+      "patient_orientation_y": "R"
+    },
+    {
+      "direction": null,
+      "laterality": "LEFT",
+      "number_of_frames": 1,
+      "image_modality": "mammography",
+      "flip_h": false,
+      "flip_v": false,
+      "breast_side": "L",
+      "flip_slice": null,
+      "view_position": "MLO",
+      "patient_orientation_x": "A",
+      "patient_orientation_y": "FR"
+    },
+    {
+      "direction": null,
+      "laterality": "RIGHT",
+      "number_of_frames": 1,
+      "image_modality": "mammography",
+      "flip_h": false,
+      "flip_v": false,
+      "breast_side": "R",
+      "flip_slice": null,
+      "view_position": "CC",
+      "patient_orientation_x": "P",
+      "patient_orientation_y": "L"
+    },
+    {
+      "direction": null,
+      "laterality": "RIGHT",
+      "number_of_frames": 1,
+      "image_modality": "mammography",
+      "flip_h": false,
+      "flip_v": false,
+      "breast_side": "R",
+      "flip_slice": null,
+      "view_position": "MLO",
+      "patient_orientation_x": "P",
+      "patient_orientation_y": "FL"
+    }
+  ],
+  "findings": [
+    {
+      "type": "mass",
+      "laterality": "LEFT",
+      "rendering_positions": [
+        {
+          "projected_distance_to_nipple_mm": 49,
+          "euclidean_distance_to_nipple_mm": 59,
+          "finding_size_mm": 30
+        }
+      ],
+      "mammoscreen_score": 2,
+      "quadrant": "outer_upper",
+      "evolution": "unspecified",
+      "suspicion_level": "benign",
+      "with_calcis": false,
+      "depth": "middle"
+    },
+    {
+      "type": "mass",
+      "laterality": "RIGHT",
+      "rendering_positions": [
+        {
+          "projected_distance_to_nipple_mm": 65,
+          "euclidean_distance_to_nipple_mm": 77,
+          "finding_size_mm": 21
+        }
+      ],
+      "mammoscreen_score": 9,
+      "quadrant": "outer_upper",
+      "evolution": "unspecified",
+      "suspicion_level": "highly_suspicious",
+      "with_calcis": false,
+      "depth": "middle"
+    },
+    {
+      "type": "mass",
+      "laterality": "RIGHT",
+      "rendering_positions": [
+        {
+          "projected_distance_to_nipple_mm": 99,
+          "euclidean_distance_to_nipple_mm": 103,
+          "finding_size_mm": 23
+        }
+      ],
+      "mammoscreen_score": 2,
+      "quadrant": "upper",
+      "evolution": "unspecified",
+      "suspicion_level": "benign",
+      "with_calcis": false,
+      "depth": "posterior"
+    }
+  ]
+}

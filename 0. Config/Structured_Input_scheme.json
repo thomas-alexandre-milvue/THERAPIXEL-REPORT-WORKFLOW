@@ -1,0 +1,53 @@
+{
+  "patient_name": "<string>",
+  "patient_dob": "<string YYYYMMDD | empty>",
+  "patient_id": "<string>",
+  "patient_gender": "<string M | F | Other | empty>",
+  "study_date": "<string YYYYMMDD>",
+  "study_time": "<string HHMMSS | empty>",
+  "study_id": "<string | empty>",
+  "study_description": "<string>",
+  "manufacturer": "<string>",
+  "prior": {
+    "study_date": "<string YYYYMMDD | null>"
+  },
+  "accession_number": "<string | empty>",
+  "laterality": "<string 'B' (bilateral) | 'L' | 'R'>",
+  "left_mammoscreen_score": "<integer 0-10>",
+  "right_mammoscreen_score": "<integer 0-10>",
+  "study_mammoscreen_score": "<integer 0-10>",
+  "views": [
+    {
+      "laterality": "<string LEFT | RIGHT>",
+      "breast_side": "<string L | R>",
+      "patient_orientation_x": "<string>",
+      "patient_orientation_y": "<string>",
+      "flip_h": "<boolean>",
+      "flip_v": "<boolean>",
+      "flip_slice": "<integer | null>",
+      "view_position": "<string CC | MLO | etc.>",
+      "number_of_frames": "<integer>",
+      "direction": "<string | null>",
+      "image_modality": "<string e.g. 'mammography'>"
+    }
+  ],
+  "findings": [
+    {
+      "mammoscreen_score": "<integer 0-10>",
+      "laterality": "<string LEFT | RIGHT>",
+      "rendering_positions": [
+        {
+          "projected_distance_to_nipple_mm": "<number>",
+          "euclidean_distance_to_nipple_mm": "<number>",
+          "finding_size_mm": "<number>"
+        }
+      ],
+      "depth": "<string anterior | middle | posterior | unknown>",
+      "suspicion_level": "<string>",
+      "quadrant": "<string upper | lower | inner | outer | etc.>",
+      "evolution": "<string>",
+      "type": "<string mass | calcification | etc.>",
+      "with_calcis": "<boolean>"
+    }
+  ]
+}
