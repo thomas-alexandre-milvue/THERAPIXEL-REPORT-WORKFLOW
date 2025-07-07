@@ -98,7 +98,11 @@ def _convert_record(raw: Dict[str, Any]) -> Dict[str, Any]:
     out.setdefault("manufacturer", ALGO_NAME)
     out["left_mammoscreen_score"] = left_score
     out["right_mammoscreen_score"] = right_score
-    out["laterality"] = _laterality(bool(left_score), bool(right_score))
+    comp_lat = _laterality(bool(left_score), bool(right_score))
+    if comp_lat:
+        out["laterality"] = comp_lat
+    else:
+        out["laterality"] = raw.get("laterality", "")
 
     # prior
 
