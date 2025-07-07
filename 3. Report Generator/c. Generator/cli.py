@@ -19,6 +19,7 @@ def main() -> None:
     case = json.loads(args.inp.read_text(encoding="utf-8"))
     prompt_path, templates = select_for_case(case)
     report = generate_report(case, prompt_path, templates)
+    args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(report, encoding="utf-8")
     print(f"✔ Saved report → {args.out}")
 
