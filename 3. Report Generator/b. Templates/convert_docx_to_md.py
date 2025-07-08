@@ -79,6 +79,22 @@ def _convert_placeholders(text: str) -> str:
 
     return PLACEHOLDER_RE.sub(repl, text)
 
+# ── Promote ad-hoc bold headings (e.g. '**CONCLUSION**') ─────────────
+BOLD_HEADING_RE = re.compile(r'^\*\*(.+?)\*\*(?:\\)?\s*$')
+
+
+def _promote_bold_headings(text: str) -> str:
+    """Turn lines that consist solely of bold text into level-2 Markdown headings."""
+
+    out = []
+    for ln in text.splitlines():
+        m = BOLD_HEADING_RE.match(ln.strip())
+        if m:
+            out.append('## ' + m.group(1).strip())
+        else:
+            out.append(ln)
+    return '\n'.join(out)
+
 # ── Keep heading spacing tidy ────────────────────────────────────────────────
 HEADING_RE = re.compile(r"^#{1,6}\s")
 
@@ -128,6 +144,7 @@ def convert(docx: Path, md: Path) -> None:
             cmd, check=True, capture_output=True, text=True, encoding="utf-8"
         )
         text = _convert_placeholders(result.stdout)
+        text = _promote_bold_headings(text)
         text = _cleanup_blank_lines(text)
         text = _normalize_headings(text)
         text = re.sub(r"\n{3,}", "\n\n", text)
