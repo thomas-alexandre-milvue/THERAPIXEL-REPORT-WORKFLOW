@@ -44,7 +44,7 @@ def select_for_case(case: Dict[str, Any]) -> Tuple[Path, List[Path]]:
         raise KeyError("Prompt path not specified in config or mapping")
     prompt = ROOT / prompt_path
     templates_dir = ROOT / info["templates"]
-    templates = sorted(p for p in templates_dir.rglob("*.md"))
+    templates = sorted(p for p in templates_dir.rglob("*.txt"))
     if not templates:
         raise FileNotFoundError(f"No templates under {templates_dir}")
     return prompt, templates

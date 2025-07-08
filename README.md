@@ -23,7 +23,7 @@
 | **Step 0 – Config** | Central location for schema & tuning knobs | Single‑source YAML files |
 | **Step 1 – Input** | Stores raw vendor dumps for audit | Zero mutation of originals |
 | **Step 2 – Structured Input** | Normalises diverse vendor JSON into a strict schema | `Structured Input Creator.py` auto‑fills mandatory keys |
-| **Step 3 – Report Generator** | <ul><li>Selects the right prompt + template</li><li>Calls Gemini (Google Generative AI)</li><li>Renders Jinja → Markdown (or DOCX)</li></ul> | • Hot‑swappable prompts  <br>• Clinician‑editable templates |
+| **Step 3 – Report Generator** | <ul><li>Selects the right prompt + template</li><li>Calls Gemini (Google Generative AI)</li><li>Renders Jinja → plain text (or DOCX)</li></ul> | • Hot‑swappable prompts  <br>• Clinician‑editable templates |
 | **Cross‑cutting** | Tests, helper CLIs, Pandoc utilities | Works on Windows / macOS / Linux |
 
 ---
@@ -46,11 +46,11 @@ repo-root/
     ├── a. Prompts/
     │   └── Templator Prompt.yaml
     ├── b. Templates/
-    │   ├── convert_docx_to_md.py
+    │   ├── convert_docx_to_txt.py
     │   ├── DOCX Source/
     │   │   └── TEMPLATE *.docx
-    │   └── MarkDown/
-    │       └── TEMPLATE *.md
+    │   └── Text/
+    │       └── TEMPLATE *.txt
     ├── c. Generator/
     │   ├── __init__.py
     │   ├── cli.py
@@ -74,8 +74,8 @@ pip install -r requirements.txt
 # 3  Export your Gemini API key
 export GOOGLE_API_KEY=AIzaSyDZ6Z6xaRLpQDY-lucjfp8f8Z45mEbn1cs
 
-# 4  Convert Word templates → Markdown (one‑off)
-python "3. Report Generator/b. Templates/convert_docx_to_md.py"
+# 4  Convert Word templates → plain text (one‑off)
+python "3. Report Generator/b. Templates/convert_docx_to_txt.py"
 
 # 5  Create structured input from raw case
 python "2. Structured Input/Structured Input Creator.py"        "1. Input/Therapixel - Case 1 Test.json"        -o "2. Structured Input/"
@@ -97,14 +97,14 @@ python "3. Report Generator/c. Generator/batch_cli.py"        -o "3. Report Gene
 ### 2️⃣  Select assets  
 `select_assets.py` looks up **modality_map.yaml** to pair each case with:
 * a system prompt (`a. Prompts/…`)
-* a Markdown template (`b. Templates/MarkDown/…`)
+* a text template (`b. Templates/Text/…`)
 
 ### 3️⃣  Call Gemini  
 `jinja_renderer.py` sends the full structured JSON as *user* content, with the modality‑specific prompt as *system* instruction.  
 The prompt tells Gemini to reply with a compact JSON payload (`patient_name`, `birads`, etc.).
 
 ### 4️⃣  Render via Jinja  
-Jinja2 merges the LLM payload into the chosen template → Markdown.  
+Jinja2 merges the LLM payload into the chosen template → plain text.
 Need DOCX? Simply run Pandoc:
 
 ```bash
@@ -117,14 +117,14 @@ pandoc report.md -o report.docx   --reference-doc="3. Report Generator/b. Templa
 | Asset | Edited by | Location |
 |-------|-----------|----------|
 | **Word master templates** | Radiologists | `b. Templates/DOCX Source/*.docx` |
-| **Markdown templates** | Devs + radiologists familiar with Git | `b. Templates/MarkDown/*.md` |
+| **Text templates** | Devs + radiologists familiar with Git | `b. Templates/Text/*.txt` |
 | **System prompts** | Prompt‑engineer | `a. Prompts/*.yaml` |
 
 **Add a new template**
 
 1. Drop a DOCX in *DOCX Source*.
-2. Run `convert_docx_to_md.py` – this converts `[PLACEHOLDER]` tags to `{{ placeholder }}`.
-3. Review the generated `.md`, tweak placeholder names if needed, commit.
+2. Run `convert_docx_to_txt.py` – this converts `[PLACEHOLDER]` tags to `{{ placeholder }}`.
+3. Review the generated `.txt`, tweak placeholder names if needed, commit.
 
 ---
 
@@ -140,7 +140,7 @@ Example `modality_map.yaml`
 ```yaml
 mammography:
   prompt: 3. Report Generator/a. Prompts/Templator Prompt.yaml  # overridden by query_configs.yaml
-  templates: 3. Report Generator/b. Templates/MarkDown
+  templates: 3. Report Generator/b. Templates/Text
 ```
 
 Example `query_configs.yaml`

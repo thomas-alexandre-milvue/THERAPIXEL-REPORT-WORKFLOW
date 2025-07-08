@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-convert_docx_to_md.py
+convert_docx_to_txt.py
 ---------------------
 Batch-convert every Word template under
   3. Report Generator/b. Templates/DOCX Source/
-into UTF-8 Markdown files in
-  3. Report Generator/b. Templates/MarkDown/
+into UTF-8 plain-text files in
+  3. Report Generator/b. Templates/Text/
 """
 
 from __future__ import annotations
@@ -16,7 +16,7 @@ from pathlib import Path
 # ── Locate folders ────────────────────────────────────────────────────────────
 ROOT     = Path(__file__).resolve().parent
 DOCX_DIR = ROOT / "DOCX Source"
-MD_DIR   = ROOT / "MarkDown"
+TXT_DIR  = ROOT / "Text"
 
 # ── Find or download Pandoc ───────────────────────────────────────────────────
 def ensure_pandoc() -> str:
@@ -82,21 +82,20 @@ def _convert_placeholders(text: str) -> str:
     return PLACEHOLDER_RE.sub(repl, text)
 
 # ── Conversion ────────────────────────────────────────────────────────────────
-def convert(docx: Path, md: Path) -> None:
-    md.parent.mkdir(parents=True, exist_ok=True)
+def convert(docx: Path, txt: Path) -> None:
+    txt.parent.mkdir(parents=True, exist_ok=True)
 
     cmd = [
         PANDOC,
         str(docx),
         "-t",
-        "markdown" if USE_ATX else "gfm",
+        "plain",
         "-o",
         "-",
         "--wrap=none",
         "--columns=120",
     ]
-    if USE_ATX:
-        cmd.insert(-2, "--atx-headers")
+
 
     try:
         # ❷ Decode Pandoc’s UTF-8 correctly
@@ -104,8 +103,8 @@ def convert(docx: Path, md: Path) -> None:
             cmd, check=True, capture_output=True, text=True, encoding="utf-8"
         )
         text = _convert_placeholders(result.stdout)
-        md.write_text(text, encoding="utf-8")
-        print(f"✓  {docx.name} → {md.relative_to(ROOT)}")
+        txt.write_text(text, encoding="utf-8")
+        print(f"✓  {docx.name} → {txt.relative_to(ROOT)}")
     except subprocess.CalledProcessError:
         print(f"✗  Pandoc failed on {docx.name}", file=sys.stderr)
         raise
@@ -119,9 +118,9 @@ def main() -> None:
     if not files:
         sys.exit("No DOCX templates found.")
 
-    print(f"Converting {len(files)} template(s)…  (ATX headings: {'yes' if USE_ATX else 'no'})\n")
+    print(f"Converting {len(files)} template(s)…\n")
     for docx in files:
-        convert(docx, MD_DIR / f"{docx.stem}.md")
+        convert(docx, TXT_DIR / f"{docx.stem}.txt")
     print("\nDone.")
 
 if __name__ == "__main__":
