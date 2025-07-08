@@ -62,6 +62,54 @@ def render_json_to_md(data: Dict[str, Any]) -> str:
             if isinstance(value, str):
                 return value.strip() + ("\n" if not value.endswith("\n") else "")
 
+    # Handle typical sectioned structures
+    sections = []
+    for key in (
+        "title",
+        "views",
+        "technique",
+        "findings",
+        "conclusion",
+        "birads",
+        "impression",
+    ):
+        if key in data:
+            value = data[key]
+            if isinstance(value, list):
+                value = "\n".join(str(v).strip() for v in value)
+            elif isinstance(value, dict):
+                try:
+                    value = render_json_to_md(value).strip()
+                except ValueError:
+                    continue
+            elif not isinstance(value, str):
+                continue
+            sections.append(str(value).strip())
+    if sections:
+        return "\n".join(s for s in sections if s).strip() + "\n"
+
+    # Nested sections container
+    for key in ("sections", "section", "parts"):
+        if key in data:
+            value = data[key]
+            if isinstance(value, dict):
+                try:
+                    return render_json_to_md(value)
+                except ValueError:
+                    pass
+            if isinstance(value, list):
+                out = []
+                for item in value:
+                    if isinstance(item, dict):
+                        try:
+                            out.append(render_json_to_md(item).strip())
+                        except ValueError:
+                            continue
+                    else:
+                        out.append(str(item).strip())
+                if out:
+                    return "\n".join(out).strip() + "\n"
+
     # Fallback: first string value in dict
     for value in data.values():
         if isinstance(value, str):
