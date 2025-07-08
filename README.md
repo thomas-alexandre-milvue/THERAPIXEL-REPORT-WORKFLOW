@@ -51,11 +51,11 @@ repo-root/
     ├── a. Prompts/
     │   └── Templator Prompt.yaml
     ├── b. Templates/
-    │   ├── convert_docx_to_txt.py
+    │   ├── convert_docx_to_md.py
     │   ├── DOCX Source/
     │   │   └── TEMPLATE *.docx
     │   └── Text/
-    │       └── TEMPLATE *.txt
+    │       └── TEMPLATE *.md
     ├── c. Generator/
     │   ├── __init__.py
     │   ├── cli.py
@@ -80,7 +80,7 @@ pip install -r project_meta/requirements.txt
 export GOOGLE_API_KEY=AIzaSyDZ6Z6xaRLpQDY-lucjfp8f8Z45mEbn1cs
 
 # 4  Convert Word templates → plain text (one‑off)
-python "3. Report Generator/b. Templates/convert_docx_to_txt.py"
+python "3. Report Generator/b. Templates/convert_docx_to_md.py"
 
 # 5  Create structured input from raw case
 python "2. Structured Input/Structured Input Creator.py"        "1. Input/Therapixel - Case 1 Test.json"        -o "2. Structured Input/"
@@ -136,14 +136,14 @@ pandoc report.md -o report.docx   --reference-doc="3. Report Generator/b. Templa
 | Asset | Edited by | Location |
 |-------|-----------|----------|
 | **Word master templates** | Radiologists | `b. Templates/DOCX Source/*.docx` |
-| **Text templates** | Devs + radiologists familiar with Git | `b. Templates/Text/*.txt` |
+| **Text templates** | Devs + radiologists familiar with Git | `b. Templates/Text/*.md` |
 | **System prompts** | Prompt‑engineer | `a. Prompts/*.yaml` |
 
 **Add a new template**
 
 1. Drop a DOCX in *DOCX Source*.
-2. Run `convert_docx_to_txt.py` – this converts `[PLACEHOLDER]` tags to `{{ placeholder }}`.
-3. Review the generated `.txt`, tweak placeholder names if needed, commit.
+2. Run `convert_docx_to_md.py` – this converts `[PLACEHOLDER]` tags to `{{ placeholder }}`.
+3. Review the generated `.md`, tweak placeholder names if needed, commit.
 
 ---
 

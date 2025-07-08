@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-convert_docx_to_txt.py
----------------------
+convert_docx_to_md.py
+--------------------
 Batch-convert every Word template under
   3. Report Generator/b. Templates/DOCX Source/
-into UTF-8 plain-text files in
+into UTF-8 Markdown files in
   3. Report Generator/b. Templates/Text/
 """
 
@@ -16,7 +16,7 @@ from pathlib import Path
 # ── Locate folders ────────────────────────────────────────────────────────────
 ROOT     = Path(__file__).resolve().parent
 DOCX_DIR = ROOT / "DOCX Source"
-TXT_DIR  = ROOT / "Text"
+MD_DIR  = ROOT / "Text"
 
 # ── Find or download Pandoc ───────────────────────────────────────────────────
 def ensure_pandoc() -> str:
@@ -60,14 +60,14 @@ def _convert_placeholders(text: str) -> str:
     return PLACEHOLDER_RE.sub(repl, text)
 
 # ── Conversion ────────────────────────────────────────────────────────────────
-def convert(docx: Path, txt: Path) -> None:
-    txt.parent.mkdir(parents=True, exist_ok=True)
+def convert(docx: Path, md: Path) -> None:
+    md.parent.mkdir(parents=True, exist_ok=True)
 
     cmd = [
         PANDOC,
         str(docx),
         "-t",
-        "plain",
+        "markdown",
         "-o",
         "-",
         "--wrap=none",
@@ -81,8 +81,8 @@ def convert(docx: Path, txt: Path) -> None:
             cmd, check=True, capture_output=True, text=True, encoding="utf-8"
         )
         text = _convert_placeholders(result.stdout)
-        txt.write_text(text, encoding="utf-8")
-        print(f"✓  {docx.name} → {txt.relative_to(ROOT)}")
+        md.write_text(text, encoding="utf-8")
+        print(f"✓  {docx.name} → {md.relative_to(ROOT)}")
     except subprocess.CalledProcessError:
         print(f"✗  Pandoc failed on {docx.name}", file=sys.stderr)
         raise
@@ -98,7 +98,7 @@ def main() -> None:
 
     print(f"Converting {len(files)} template(s)…\n")
     for docx in files:
-        convert(docx, TXT_DIR / f"{docx.stem}.txt")
+        convert(docx, MD_DIR / f"{docx.stem}.md")
     print("\nDone.")
 
 if __name__ == "__main__":

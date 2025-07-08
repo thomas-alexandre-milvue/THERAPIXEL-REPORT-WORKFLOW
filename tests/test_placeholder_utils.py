@@ -5,7 +5,7 @@ MODULE = (
     Path(__file__).resolve().parents[1]
     / "3. Report Generator"
     / "b. Templates"
-    / "convert_docx_to_txt.py"
+    / "convert_docx_to_md.py"
 )
 source = MODULE.read_text(encoding="utf-8")
 

@@ -29,7 +29,7 @@ def test_prompt_override(monkeypatch, tmp_path):
     )
     tmpl_dir = root / "templates"
     tmpl_dir.mkdir()
-    t = tmpl_dir / "t.txt"
+    t = tmpl_dir / "t.md"
     t.write_text("T", encoding="utf-8")
 
     monkeypatch.setattr(sel, "ROOT", root)
