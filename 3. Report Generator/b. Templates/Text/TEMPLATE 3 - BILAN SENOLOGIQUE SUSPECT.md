@@ -14,22 +14,14 @@ ATCD familiaux : [\]
 
 Mammographie bilatérale numérisée\
 Sein droit :
-
 [\]
-
 Sein gauche :
-
 [\]
-
 Échographie mammaire\
 Sein droit :
-
 [\]
-
 Sein gauche :
-
 [\]
-
 Axillaires : [\]
 
 **CONCLUSION :**

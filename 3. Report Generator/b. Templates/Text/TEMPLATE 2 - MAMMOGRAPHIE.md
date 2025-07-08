@@ -5,7 +5,6 @@ Examen clinique : [\]
 
 **Résultat :**\
 [Description globale : densité, opacités, localisation, calcifications, etc.\]
-
 **CONCLUSION :**
 
 [Conclusion\]\

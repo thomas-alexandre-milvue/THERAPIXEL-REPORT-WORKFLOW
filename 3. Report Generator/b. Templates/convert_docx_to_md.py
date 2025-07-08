@@ -49,6 +49,26 @@ PANDOC = ensure_pandoc()
 PLACEHOLDER_RE = re.compile(r"\\?\[([^\]\n]+)\]")
 
 
+def _cleanup_blank_lines(text: str) -> str:
+    """Collapse extra blank lines around placeholder-only paragraphs."""
+    lines = text.splitlines()
+    out: list[str] = []
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        # Skip blank lines before a placeholder
+        if not line.strip() and i + 1 < len(lines) and PLACEHOLDER_RE.fullmatch(lines[i + 1].strip()):
+            i += 1
+            continue
+        out.append(line)
+        # Skip blank line right after a placeholder
+        if PLACEHOLDER_RE.fullmatch(line.strip()) and i + 1 < len(lines) and not lines[i + 1].strip():
+            i += 2
+        else:
+            i += 1
+    return "\n".join(out) + "\n"
+
+
 
 
 def _convert_placeholders(text: str) -> str:
@@ -81,6 +101,7 @@ def convert(docx: Path, md: Path) -> None:
             cmd, check=True, capture_output=True, text=True, encoding="utf-8"
         )
         text = _convert_placeholders(result.stdout)
+        text = _cleanup_blank_lines(text)
         md.write_text(text, encoding="utf-8")
         print(f"✓  {docx.name} → {md.relative_to(ROOT)}")
     except subprocess.CalledProcessError:

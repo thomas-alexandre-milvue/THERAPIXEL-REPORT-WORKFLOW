@@ -17,12 +17,10 @@ Mammographie : [\] clichés numérisés. Clichés réalisés avec un mammographe
 **Mammographie :**\
 Densité mammaire ACR : [\]\
 [Description mammographique complète\]
-
 Sein droit : [\] mGy. Sein gauche : [\] mGy.
 
 **Échographie :**\
 [Description échographique complète\]
-
 **CONCLUSION :**
 
 [Conclusion synthétique\]\
