@@ -101,7 +101,9 @@ python "3. Report Generator/c. Generator/batch_cli.py"        -o "3. Report Gene
 
 ### 3️⃣  Call Gemini
 `gemini_reporter.py` sends the structured JSON and template snippets to Gemini.
-The model replies with a complete Markdown report ready for clinicians.
+The model replies with a JSON block containing a list of Markdown lines:
+`{"lines": ["..."]}`.
+`gemini_reporter.py` joins these lines into the final Markdown report ready for clinicians.
 
 ### 4️⃣  (Optional) Convert to DOCX
 If needed, Jinja or Pandoc can reformat the Markdown into a DOCX report:
