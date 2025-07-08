@@ -1,6 +1,29 @@
-MAMMOGRAPHIE ET ÉCHOGRAPHIE MAMMAIRE BILATÉRALE
-Mammographie : Clichés numérisés.
-Échographie : Examen réalisé avec une sonde multifréquence de 5 à 13 MHz
-Masse de 15 mm dans le quadrant externe, contenant des calcifications, classée bénigne (score 2).
-Masse de 25 mm dans le quadrant externe, de profondeur moyenne, classée indéterminée (score 6).
-ACR 4 à droite.
+MAMMOGRAPHIE ET ÉCHOGRAPHIE MAMMAIRE BILATÉRALE :
+
+Indication :
+Examen systématique.
+ATCD familiaux : []
+ATCD personnels : []
+Statut hormonal : [ménopausée / THS / non ménopausée]
+Examen clinique : []
+
+Technique :
+Mammographie : [] clichés numérisés. Clichés réalisés avec un mammographe numérique plein champ haute définition « PLANMED NUANCE » mis en service en juillet 2013.
+Échographie : Examen réalisé avec une sonde multifréquence de 5 à 13 MHz, échographe HITACHI AVIUS mis en service en juin 2013.
+
+Résultats :
+Pas d’antécédents
+
+Mammographie :
+Densité mammaire ACR : []
+Sein droit : Masse de 25 mm de diamètre moyen, de localisation rétro-aréolaire externe, se projetant sur les clichés de face en regard du quadrant supéro-externe.  Sein gauche : Deux masses, l'une de 22 mm de diamètre moyen de localisation supéro-externe et l'autre de 15 mm de localisation supéro-interne.
+
+Sein droit : [] mGy. Sein gauche : [] mGy.
+
+Échographie :
+[Description échographique complète]
+
+CONCLUSION :
+
+ACR 0 à droite.
+ACR 4 à gauche.

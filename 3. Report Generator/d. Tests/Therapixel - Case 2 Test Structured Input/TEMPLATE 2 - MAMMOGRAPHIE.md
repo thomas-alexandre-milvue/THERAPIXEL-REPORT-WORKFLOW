@@ -1,6 +1,14 @@
 MAMMOGRAPHIE
-Description globale : Sein gauche : Masse de 15 mm de diamètre au niveau du quadrant supéro-interne, classée ACR 4. Masse de 22 mm de diamètre au niveau du quadrant supéro-externe, classée ACR 2. Sein droit : Masse de 15 mm de diamètre au niveau du quadrant externe, contenant des calcifications et classée ACR 2. Masse de 25 mm de diamètre au niveau du quadrant externe, classée ACR 6.
+
+Contexte clinique : []
+Examen clinique : []
+
+Résultat :
+Sein droit : Masse de 25 mm de diamètre, de siège rétro-aréolaire externe, se projetant en regard du quadrant supéro-externe. Présence de calcifications associées à la masse. Masse de 15 mm de diamètre au niveau du quadrant supéro-externe, associée à des calcifications.
+Sein gauche : Masse de 22 mm de diamètre au niveau du quadrant supéro-externe. Masse de 15 mm de diamètre au niveau du quadrant supéro-interne.
+
+CONCLUSION :
+
 ACR 4 à droite.
 ACR 4 à gauche.
-Comparaison à l’examen de  : []
-4
+Comparaison à l’examen de [] : []

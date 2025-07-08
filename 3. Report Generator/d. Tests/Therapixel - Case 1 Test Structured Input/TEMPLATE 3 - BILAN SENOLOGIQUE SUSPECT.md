@@ -1,5 +1,37 @@
 BILAN SÉNOLOGIQUE
+
+Compte rendu avant 2ᵉ lecture du dépistage organisé
+
+Indication :
+Patiente de [] ans adressée pour [motif].
+Parité : []
+
+Allaitement : [Oui / Non]
+ATCD personnels : []
+ATCD familiaux : []
+Examen clinique : []
+
 Mammographie bilatérale numérisée
-{'location': 'Quadrant supéro-externe', 'size': '21 mm', 'depth': 'moyenne', 'suspicion_level': 'Hautement suspect'}
-{'location': 'région supérieure', 'size': '23 mm', 'depth': 'postérieure', 'suspicion_level': 'Bénin'}
+Sein droit :
+
+Masse de 21 mm de diamètre en quadrant supéro-externe, classée ACR 5.
+Masse de 23 mm de diamètre en quadrant supérieur, classée ACR 2.
+Sein gauche :
+
+Masse de 30 mm de diamètre en quadrant supéro-externe, classée ACR 2.
+
+Échographie mammaire
+Sein droit :
+
+[]
+Sein gauche :
+
+[]
+Axillaires : []
+
+CONCLUSION :
+
 [Conclusion détaillée]
+ACR 5 à droite.
+ACR 2 à gauche.
+Recommandation : [biopsie / contrôle / autre]

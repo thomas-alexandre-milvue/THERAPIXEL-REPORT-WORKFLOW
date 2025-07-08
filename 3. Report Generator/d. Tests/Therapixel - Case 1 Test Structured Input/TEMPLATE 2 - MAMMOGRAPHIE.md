@@ -1,15 +1,15 @@
 MAMMOGRAPHIE
-CC gauche
-MLO gauche
-CC droite
-MLO droite
-Sein gauche :
-Masse bénigne de 30 mm de diamètre dans le quadrant supéro-externe, en profondeur moyenne.
 
-Sein droit :
-Masse très suspecte de 21 mm de diamètre dans le quadrant supéro-externe, en profondeur moyenne.
-Masse bénigne de 23 mm de diamètre dans le quadrant supérieur, en profondeur postérieure.
-ACR 2 à gauche.
+Contexte clinique : []
+Examen clinique : []
+
+Résultat :
+Sein droit : Masse suspecte du quadrant supéro-externe mesurant 21 mm.
+Sein droit : Masse bénigne du quadrant supérieur mesurant 23 mm en posteriorité.
+Sein gauche : Masse bénigne du quadrant supéro-externe mesurant 30 mm.
+
+CONCLUSION :
+
 ACR 5 à droite.
-Comparaison à l’examen de [Année] : [stable / modifié]
-2
+ACR 2 à gauche.
+Comparaison à l’examen de [] : []

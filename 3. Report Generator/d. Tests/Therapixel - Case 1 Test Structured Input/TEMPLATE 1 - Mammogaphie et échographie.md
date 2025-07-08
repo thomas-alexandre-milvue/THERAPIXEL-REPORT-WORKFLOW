@@ -1,5 +1,29 @@
 MAMMOGRAPHIE ET ÉCHOGRAPHIE MAMMAIRE BILATÉRALE :
-Clichés réalisés avec un mammographe numérique plein champ haute définition « PLANMED NUANCE » mis en service en juillet 2013.
-{'finding': 'Masse', 'localisation': 'Quadrant supéro-externe', 'size': '21 mm', 'suspicion_level': 'Hautement suspecte (ACR 9)'}
-{'finding': 'Masse', 'localisation': 'Quadrant supérieur', 'size': '23 mm', 'suspicion_level': 'Bénigne (ACR 2)'}
-9
+
+Indication :
+Examen systématique.
+ATCD familiaux : []
+ATCD personnels : []
+Statut hormonal : [ménopausée / THS / non ménopausée]
+Examen clinique : []
+
+Technique :
+Mammographie : [] clichés numérisés. Clichés réalisés avec un mammographe numérique plein champ haute définition « PLANMED NUANCE » mis en service en juillet 2013.
+Échographie : Examen réalisé avec une sonde multifréquence de 5 à 13 MHz, échographe HITACHI AVIUS mis en service en juin 2013.
+
+Résultats :
+Pas d’antécédents
+
+Mammographie :
+Densité mammaire ACR : []
+Sein droit : Masse de 21 mm de diamètre maximal en quadrant supéro-externe, classée ACR 5. Masse de 23 mm de diamètre maximal en quadrant supérieur, classée ACR 2.
+Sein gauche : Masse de 30 mm de diamètre maximal en quadrant supéro-externe, classée ACR 2.
+Sein droit : [] mGy. Sein gauche : [] mGy.
+
+Échographie :
+[Description échographique complète]
+
+CONCLUSION :
+
+ACR 5 à droite.
+ACR 2 à gauche.
