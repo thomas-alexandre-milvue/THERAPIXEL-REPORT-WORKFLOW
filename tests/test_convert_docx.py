@@ -52,4 +52,5 @@ def test_collapse_colon_placeholder(monkeypatch, tmp_path):
     docx.write_text("dummy")
     txt = tmp_path / "out.txt"
     convert(docx, txt)
-    assert txt.read_text(encoding="utf-8") == "A droite :\n[]\nA gauche :\n[]\n"
+    expected = "A droite :\n[]\nA gauche :\n[]\n"
+    assert txt.read_text(encoding="utf-8") == expected
