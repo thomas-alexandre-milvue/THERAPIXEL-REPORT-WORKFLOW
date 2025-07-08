@@ -1,19 +1,22 @@
-BILAN DE DÉPISTAGE INDIVIDUEL
+**[BILAN DE DÉPISTAGE INDIVIDUEL]{.underline}**
 
-Patiente âgée de [] ans
+Patiente âgée de [\] ans
 
-Antécédents personnels : []
-Antécédents familiaux : []
+Antécédents personnels : [\]
 
-Examen clinique :
-[Seins souples / pas de nodule palpable / autre]
+Antécédents familiaux : [\]
 
-Mammographie bilatérale (face + oblique)
-Seins de densité ACR : [ACR densité]
-[Description complète : nodules, calcifications, peau, axillaires, comparatif]
+**Examen clinique :**\
+[Seins souples / pas de nodule palpable / autre\]
 
-Échographie : [Description écho / « Non réalisée »]
+[Incidences\]
 
-CONCLUSION :
-Bilan satisfaisant, sans élément suspect, classé ACR [] bilatéral.
-En l’absence d’évènement clinique, prochain contrôle recommandé dans [] ans.
+Seins de densité ACR : [ACR densité\]
+
+[Description complète : nodules, calcifications, peau, axillaires, comparatif\]
+
+Échographie : [Description écho / « Non réalisée »\]
+
+**CONCLUSION :**\
+Bilan satisfaisant, sans élément suspect, classé ACR [\] bilatéral.\
+En l'absence d'évènement clinique, prochain contrôle recommandé dans [\] ans.

@@ -1,14 +1,14 @@
-MAMMOGRAPHIE
+**[MAMMOGRAPHIE]{.underline}**
 
-Contexte clinique : []
-Examen clinique : []
+Contexte clinique : [\]\
+Examen clinique : [\]
 
-Résultat :
-[Description globale : densité, opacités, localisation, calcifications, etc.]
+**Résultat :**\
+[Description globale : densité, opacités, localisation, calcifications, etc.\]
 
-CONCLUSION :
+**CONCLUSION :**
 
-[Conclusion]
-ACR [] à droite.
-ACR [] à gauche.
-Comparaison à l’examen de [Année] : [stable / modifié]
+[Conclusion\]\
+ACR [\] à droite.\
+ACR [\] à gauche.\
+Comparaison à l'examen de [Année\] : [stable / modifié\]
