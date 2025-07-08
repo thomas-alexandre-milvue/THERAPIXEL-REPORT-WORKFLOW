@@ -13,7 +13,9 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install dependencies
-        run: pip install flake8 pytest
+        run: |
+          pip install -r project_meta/requirements.txt
+          pip install flake8 pytest
       - name: Lint
         run: flake8
       - name: Test
