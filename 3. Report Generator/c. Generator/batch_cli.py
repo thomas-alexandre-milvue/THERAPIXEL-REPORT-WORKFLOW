@@ -8,14 +8,14 @@ from pathlib import Path
 
 try:  # When executed as part of a package
     from .select_assets import select_for_case
-    from .jinja_renderer import generate_reports
+    from .gemini_reporter import generate_reports
 except ImportError:  # Fallback when run as a standalone script
     from pathlib import Path
     import sys
 
     sys.path.append(str(Path(__file__).resolve().parent))
     from select_assets import select_for_case
-    from jinja_renderer import generate_reports
+    from gemini_reporter import generate_reports
 
 ROOT = Path(__file__).resolve().parents[2]
 

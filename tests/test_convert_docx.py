@@ -40,4 +40,4 @@ def test_convert_writes_file(monkeypatch, tmp_path):
     txt = tmp_path / "out.txt"
     convert(docx, txt)
     assert txt.exists()
-    assert txt.read_text(encoding="utf-8") == "Age: {{ age }}\n"
+    assert txt.read_text(encoding="utf-8") == "Age: [Age]\n"

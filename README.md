@@ -23,7 +23,7 @@
 | **Step 0 – Config** | Central location for schema & tuning knobs | Single‑source YAML files |
 | **Step 1 – Input** | Stores raw vendor dumps for audit | Zero mutation of originals |
 | **Step 2 – Structured Input** | Normalises diverse vendor JSON into a strict schema | `Structured Input Creator.py` auto‑fills mandatory keys |
-| **Step 3 – Report Generator** | <ul><li>Selects the right prompt + template</li><li>Calls Gemini (Google Generative AI)</li><li>Renders Jinja → plain text (or DOCX)</li></ul> | • Hot‑swappable prompts  <br>• Clinician‑editable templates |
+| **Step 3 – Report Generator** | <ul><li>Selects the right prompt + template</li><li>Calls Gemini (Google Generative AI)</li><li>Outputs Markdown reports</li></ul> | • Hot‑swappable prompts  <br>• Clinician‑editable templates |
 | **Cross‑cutting** | Tests, helper CLIs, Pandoc utilities | Works on Windows / macOS / Linux |
 
 ---
@@ -54,7 +54,7 @@ repo-root/
     ├── c. Generator/
     │   ├── __init__.py
     │   ├── cli.py
-    │   ├── jinja_renderer.py
+    │   ├── gemini_reporter.py
     │   └── select_assets.py
 ```
 
@@ -99,13 +99,12 @@ python "3. Report Generator/c. Generator/batch_cli.py"        -o "3. Report Gene
 * a system prompt (`a. Prompts/…`)
 * a text template (`b. Templates/Text/…`)
 
-### 3️⃣  Call Gemini  
-`jinja_renderer.py` sends the full structured JSON as *user* content, with the modality‑specific prompt as *system* instruction.  
-The prompt tells Gemini to reply with a compact JSON payload (`patient_name`, `birads`, etc.).
+### 3️⃣  Call Gemini
+`gemini_reporter.py` sends the structured JSON and template snippets to Gemini.
+The model replies with a complete Markdown report ready for clinicians.
 
-### 4️⃣  Render via Jinja  
-Jinja2 merges the LLM payload into the chosen template → plain text.
-Need DOCX? Simply run Pandoc:
+### 4️⃣  (Optional) Convert to DOCX
+If needed, Jinja or Pandoc can reformat the Markdown into a DOCX report:
 
 ```bash
 pandoc report.md -o report.docx   --reference-doc="3. Report Generator/b. Templates/DOCX Source/reference.docx"

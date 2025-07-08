@@ -1,7 +1,6 @@
-"""Gemini caller and Jinja template renderer."""
+"""Gemini client returning Markdown reports."""
 from __future__ import annotations
 
-import json
 import os
 import re
 from pathlib import Path
@@ -15,10 +14,6 @@ try:
     import yaml
 except ModuleNotFoundError:  # pragma: no cover - handled at runtime
     yaml = None
-try:
-    from jinja2 import Template
-except ModuleNotFoundError:  # pragma: no cover - handled at runtime
-    Template = None
 
 DEFAULT_API_KEY = "AIzaSyDZ6Z6xaRLpQDY-lucjfp8f8Z45mEbn1cs"
 
@@ -34,18 +29,10 @@ def _load_config() -> Dict[str, Any]:
     return {}
 
 
-def _parse_response(text: str) -> Dict[str, Any]:
-    match = re.search(r"```json\s*(\{.*?\})\s*```", text, re.S)
-    if match:
-        text = match.group(1)
-    try:
-        return json.loads(text)
-    except json.JSONDecodeError:  # pragma: no cover - relies on LLM
-        # Gemini sometimes replies with the final Markdown report instead of
-        # the expected JSON payload. In that case we simply return the raw text
-        # under a dedicated key so downstream code can handle it gracefully.
-        text = re.split(r"\n+Reasoning", text, 1)[0].strip()
-        return {"report": text}
+def _parse_response(text: str) -> str:
+    """Return Gemini output without the optional reasoning section."""
+    text = re.split(r"\n+Reasoning", text, 1)[0]
+    return text.strip()
 
 
 def query_gemini(structured: Dict[str, Any], prompt: str, templates: List[str]) -> Dict[str, Any]:
@@ -73,12 +60,6 @@ def query_gemini(structured: Dict[str, Any], prompt: str, templates: List[str]) 
     return _parse_response(resp.text)
 
 
-def render_template(template_text: str, context: Dict[str, Any]) -> str:
-    if Template is None:
-        raise ImportError("Jinja2 is required for this operation")
-    return Template(template_text).render(**context)
-
-
 def generate_reports(
     structured: Dict[str, Any],
     prompt_path: Path | None,
@@ -90,15 +71,8 @@ def generate_reports(
         prompt_path = ROOT / cfg.get("prompt_file", "")
     prompt = prompt_path.read_text(encoding="utf-8")
     templates = [p.read_text(encoding="utf-8") for p in template_paths]
-    context = query_gemini(structured, prompt, templates)
-    if "report" in context:
-        # Gemini returned a ready-to-use Markdown report. Replicate it for all
-        # templates so batch_cli still generates the expected files.
-        return {p.stem: context["report"] for p in template_paths}
-    return {
-        p.stem: render_template(t_text, context)
-        for p, t_text in zip(template_paths, templates)
-    }
+    report = query_gemini(structured, prompt, templates)
+    return {p.stem: report for p in template_paths}
 
 
 def generate_report(

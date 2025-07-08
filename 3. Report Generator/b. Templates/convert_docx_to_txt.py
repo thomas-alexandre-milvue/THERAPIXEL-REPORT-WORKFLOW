@@ -59,25 +59,13 @@ USE_ATX = supports_atx_headers()
 PLACEHOLDER_RE = re.compile(r"\\?\[([^\]\n]+)\]")
 
 
-def _slugify(text: str) -> str:
-    return re.sub(r"[^a-z0-9]+", "_", text.lower()).strip("_")
 
 
 def _convert_placeholders(text: str) -> str:
-    """
-    Replace [PLACEHOLDER] with Jinja {{ placeholder }}.
-    • Keeps complex tags like [Dose (mGy)/kg] unchanged.
-    • Removes Pandoc’s escaping back-slash if present.
-    """
-    # Rendering step: jinja_template.render(context) must replace all
-    # {{ placeholder }} before the clinician sees the report.
+    """Return text with placeholders untouched (remove escape backslashes)."""
 
     def repl(match: re.Match) -> str:
-        raw = match.group(0).lstrip("\\")          # kill leading back-slash
-        label = match.group(1).strip()
-        if any(sep in label for sep in ("/", "|", ";")):
-            return raw                              # leave complex labels verbatim
-        return f"{{{{ {_slugify(label)} }}}}"       # simple → Jinja
+        return match.group(0).lstrip("\\")
 
     return PLACEHOLDER_RE.sub(repl, text)
 
