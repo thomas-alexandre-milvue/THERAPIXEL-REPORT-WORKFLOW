@@ -26,7 +26,7 @@ def test_render_json_to_md():
 def test_render_json_to_md_string():
     md = renderer.render_json_to_md({"text": "foo\nbar"})
     assert md == "foo\nbar\n"
-
+    
 
 def test_render_json_to_md_nested():
     md = renderer.render_json_to_md({"markdown": {"lines": ["x", "y"]}})
