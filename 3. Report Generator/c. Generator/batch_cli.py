@@ -38,8 +38,16 @@ def main() -> None:
         "--out",
         dest="out",
         type=Path,
-        default=ROOT / "3. Report Generator" / "d. Tests",
-        help="Destination folder for generated reports",
+        default=ROOT / "3. Report Generator" / "e. Final Report",
+        help="Destination folder for generated Markdown reports",
+    )
+    p.add_argument(
+        "-j",
+        "--json-dir",
+        dest="json_dir",
+        type=Path,
+        default=ROOT / "3. Report Generator" / "d. Gemini Output JSON",
+        help="Folder to store raw Gemini JSON responses",
     )
     p.add_argument(
         "-j",
