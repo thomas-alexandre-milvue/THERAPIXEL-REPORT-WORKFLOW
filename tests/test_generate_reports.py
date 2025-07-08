@@ -19,7 +19,10 @@ def common_setup(monkeypatch):
 
 def test_generate_reports(monkeypatch, tmp_path):
     common_setup(monkeypatch)
-    outputs = iter(["out1", "out2"])
+    outputs = iter([
+        {"lines": ["one"]},
+        {"lines": ["two"]},
+    ])
     calls = []
 
     def fake_query(structured, prompt, templates):
@@ -27,6 +30,11 @@ def test_generate_reports(monkeypatch, tmp_path):
         return next(outputs)
 
     monkeypatch.setattr(renderer, "query_gemini", fake_query)
+    monkeypatch.setattr(
+        renderer,
+        "render_json_to_md",
+        lambda d: " ".join(d["lines"]),
+    )
     prompt = tmp_path / "p.txt"
     prompt.write_text("prompt")
     t1 = tmp_path / "a.txt"
@@ -35,5 +43,5 @@ def test_generate_reports(monkeypatch, tmp_path):
     t2.write_text("B {name}")
 
     result = renderer.generate_reports({}, prompt, [t1, t2])
-    assert result == {"a": "out1", "b": "out2"}
+    assert result == {"a": "one", "b": "two"}
     assert calls == [["A {name}"], ["B {name}"]]
