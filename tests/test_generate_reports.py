@@ -19,11 +19,14 @@ def common_setup(monkeypatch):
 
 def test_generate_reports(monkeypatch, tmp_path):
     common_setup(monkeypatch)
-    monkeypatch.setattr(
-        renderer,
-        "query_gemini",
-        lambda *a, **k: "final",
-    )
+    outputs = iter(["out1", "out2"])
+    calls = []
+
+    def fake_query(structured, prompt, templates):
+        calls.append(templates)
+        return next(outputs)
+
+    monkeypatch.setattr(renderer, "query_gemini", fake_query)
     prompt = tmp_path / "p.txt"
     prompt.write_text("prompt")
     t1 = tmp_path / "a.txt"
@@ -32,4 +35,5 @@ def test_generate_reports(monkeypatch, tmp_path):
     t2.write_text("B {name}")
 
     result = renderer.generate_reports({}, prompt, [t1, t2])
-    assert result == {"a": "final", "b": "final"}
+    assert result == {"a": "out1", "b": "out2"}
+    assert calls == [["A {name}"], ["B {name}"]]

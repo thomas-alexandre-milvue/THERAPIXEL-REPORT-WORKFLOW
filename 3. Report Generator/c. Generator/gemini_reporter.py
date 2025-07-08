@@ -71,9 +71,14 @@ def generate_reports(
     if prompt_path is None:
         prompt_path = ROOT / cfg.get("prompt_file", "")
     prompt = prompt_path.read_text(encoding="utf-8")
-    templates = [p.read_text(encoding="utf-8") for p in template_paths]
-    report = query_gemini(structured, prompt, templates)
-    return {p.stem: report for p in template_paths}
+
+    reports: Dict[str, str] = {}
+    for path in template_paths:
+        template_text = path.read_text(encoding="utf-8")
+        result = query_gemini(structured, prompt, [template_text])
+        reports[path.stem] = result
+
+    return reports
 
 
 def generate_report(
