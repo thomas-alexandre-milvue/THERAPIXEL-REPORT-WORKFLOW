@@ -6,6 +6,8 @@ import argparse
 import json
 from pathlib import Path
 
+ROOT = Path(__file__).resolve().parents[2]
+
 try:  # When executed as part of a package
     from .select_assets import select_for_case
     from .gemini_reporter import generate_report
@@ -43,12 +45,18 @@ def main() -> None:
         type=Path,
         help="Template text file",
     )
+    p.add_argument(
+        "-j",
+        "--json-dir",
+        dest="json_dir",
+        type=Path,
+        default=ROOT / "3. Report Generator" / "d. Gemini Output JSON",
+        help="Folder to store raw Gemini JSON response",
+    )
     args = p.parse_args()
 
-    root = Path(__file__).resolve().parents[2]
-
     if args.inp is None:
-        default_dir = root / "2. Structured Input"
+        default_dir = ROOT / "2. Structured Input"
         files = sorted(default_dir.glob("*.json"))
         if not files:
             p.error(f"No .json files found in {default_dir}")
@@ -80,17 +88,23 @@ def main() -> None:
 
     if args.out is None:
         out_dir = (
-            root
+            ROOT
             / "3. Report Generator"
             / "e. Final Report"
             / args.inp.stem
         )
         args.out = out_dir / f"{Path(args.template).stem}.md"
 
-    report = generate_report(case, prompt_path, [args.template])
+    json_dir = args.json_dir / args.inp.stem if args.json_dir else None
+    report = generate_report(
+        case, prompt_path, [args.template], json_dir=json_dir
+    )
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(report, encoding="utf-8")
     print(f"✔ Saved report → {args.out}")
+    if json_dir:
+        json_path = json_dir / f"{Path(args.template).stem}.json"
+        print(f"✔ Saved JSON   → {json_path}")
 
 
 if __name__ == "__main__":

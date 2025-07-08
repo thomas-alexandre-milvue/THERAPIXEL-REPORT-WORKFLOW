@@ -86,11 +86,18 @@ python "3. Report Generator/b. Templates/convert_docx_to_txt.py"
 python "2. Structured Input/Structured Input Creator.py"        "1. Input/Therapixel - Case 1 Test.json"        -o "2. Structured Input/"
 
 # 6  Generate the clinical report
+# choose structured input and template interactively
+python "3. Report Generator/c. Generator/cli.py"
+# or specify paths directly
 python "3. Report Generator/c. Generator/cli.py"        -i "2. Structured Input/Therapixel - Case 1 Test Structured Input.json"        -o "4. Reports/Case1_report.md"
+#   Raw Gemini JSON is saved automatically under `3. Report Generator/d. Gemini Output JSON`
+#   Use -j to choose a different folder
+python "3. Report Generator/c. Generator/cli.py"        -i "2. Structured Input/Therapixel - Case 1 Test Structured Input.json"        -o "4. Reports/Case1_report.md"        -j "3. Report Generator/d. Gemini Output JSON"
 
 # 7  Generate reports for all test cases
 python "3. Report Generator/c. Generator/batch_cli.py"        -o "3. Report Generator/e. Final Report"
-#   JSON replies will also be stored in `3. Report Generator/d. Gemini Output JSON`
+#   JSON replies are stored in `3. Report Generator/d. Gemini Output JSON` by default
+#   Use -j to choose a different folder
 python "3. Report Generator/c. Generator/batch_cli.py"        -o "3. Report Generator/e. Final Report"        -j "3. Report Generator/d. Gemini Output JSON"
 # Windows users: run each line separately (don't paste two commands on one line).
 ```
