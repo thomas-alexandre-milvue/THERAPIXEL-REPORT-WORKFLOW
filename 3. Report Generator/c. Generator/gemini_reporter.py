@@ -44,6 +44,14 @@ def render_json_to_md(data: Dict[str, Any]) -> str:
     lines = data.get("lines")
     if isinstance(lines, list):
         return "\n".join(lines).strip() + "\n"
+
+    # Some Gemini responses may return a single text field instead of a
+    # list of lines. Accept a few common key names for robustness.
+    for key in ("markdown", "text", "report"):
+        value = data.get(key)
+        if isinstance(value, str):
+            return value.strip() + ("\n" if not value.endswith("\n") else "")
+
     raise ValueError("Unsupported JSON structure")
 
 
