@@ -49,13 +49,6 @@ def main() -> None:
         default=ROOT / "3. Report Generator" / "d. Gemini Output JSON",
         help="Folder to store raw Gemini JSON responses",
     )
-    p.add_argument(
-        "-j",
-        "--json-dir",
-        dest="json_dir",
-        type=Path,
-        help="Optional folder to store raw Gemini JSON responses",
-    )
     args = p.parse_args()
 
     files = sorted(args.inp.glob("*.json"))
