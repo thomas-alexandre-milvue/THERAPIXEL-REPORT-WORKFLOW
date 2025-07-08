@@ -79,6 +79,33 @@ def _convert_placeholders(text: str) -> str:
 
     return PLACEHOLDER_RE.sub(repl, text)
 
+# ── Keep heading spacing tidy ────────────────────────────────────────────────
+HEADING_RE = re.compile(r"^#{1,6}\s")
+
+
+def _normalize_headings(text: str) -> str:
+    """Normalize blank lines around headings."""
+
+    out: list[str] = []
+    lines = text.splitlines()
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        if HEADING_RE.match(line):
+            while out and out[-1].strip() == "":
+                out.pop()
+            if out:
+                out.append("")
+            out.append(line)
+            j = i + 1
+            while j < len(lines) and lines[j].strip() == "":
+                j += 1
+            i = j
+            continue
+        out.append(line)
+        i += 1
+    return "\n".join(out) + "\n"
+
 # ── Conversion ────────────────────────────────────────────────────────────────
 def convert(docx: Path, md: Path) -> None:
     md.parent.mkdir(parents=True, exist_ok=True)
@@ -102,6 +129,8 @@ def convert(docx: Path, md: Path) -> None:
         )
         text = _convert_placeholders(result.stdout)
         text = _cleanup_blank_lines(text)
+        text = _normalize_headings(text)
+        text = re.sub(r"\n{3,}", "\n\n", text)
         md.write_text(text, encoding="utf-8")
         print(f"✓  {docx.name} → {md.relative_to(ROOT)}")
     except subprocess.CalledProcessError:
