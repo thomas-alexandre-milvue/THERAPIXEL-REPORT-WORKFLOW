@@ -34,7 +34,6 @@ def test_render_json_to_md_nested():
     md = renderer.render_json_to_md({"markdown": {"lines": ["x", "y"]}})
     assert md == "x\ny\n"
 
-
 def test_render_json_to_md_sections():
     data = {
         "title": "T",
