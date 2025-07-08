@@ -12,9 +12,11 @@ spec = importlib.util.spec_from_file_location("renderer", MOD_PATH)
 renderer = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(renderer)
 
+
 class DummyTemplate:
     def __init__(self, text):
         self.text = text
+
     def render(self, **ctx):
         return self.text.format(**ctx)
 

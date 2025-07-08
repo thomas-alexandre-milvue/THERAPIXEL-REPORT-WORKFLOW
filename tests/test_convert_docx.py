@@ -3,7 +3,6 @@ import subprocess
 import sys
 from pathlib import Path
 
-import pytest
 
 MODULE = (
     Path(__file__).resolve().parents[1]
