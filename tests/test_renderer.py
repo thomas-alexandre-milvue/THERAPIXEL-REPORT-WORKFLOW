@@ -13,6 +13,11 @@ renderer = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(renderer)
 
 
-def test_parse_response_strips_reasoning():
-    text = "final\nReasoning: bla"
-    assert renderer._parse_response(text) == "final"
+def test_parse_response_json():
+    text = "```json\n{\n  \"lines\": [\"a\", \"b\"]\n}\n```\nReasoning: bla"
+    assert renderer._parse_response(text) == {"lines": ["a", "b"]}
+
+
+def test_render_json_to_md():
+    md = renderer.render_json_to_md({"lines": ["a", "b"]})
+    assert md == "a\nb\n"

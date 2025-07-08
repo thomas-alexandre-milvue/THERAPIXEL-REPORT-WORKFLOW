@@ -30,10 +30,21 @@ def _load_config() -> Dict[str, Any]:
     return {}
 
 
-def _parse_response(text: str) -> str:
-    """Return Gemini output without the optional reasoning section."""
+def _parse_response(text: str) -> Dict[str, Any]:
+    """Return JSON payload extracted from Gemini output."""
     text = re.split(r"\n+Reasoning", text, 1)[0]
-    return text.strip()
+    match = re.search(r"\{.*\}", text, re.S)
+    if not match:
+        raise ValueError("No JSON object found in response")
+    return json.loads(match.group(0))
+
+
+def render_json_to_md(data: Dict[str, Any]) -> str:
+    """Return Markdown string from Gemini JSON output."""
+    lines = data.get("lines")
+    if isinstance(lines, list):
+        return "\n".join(lines).strip() + "\n"
+    raise ValueError("Unsupported JSON structure")
 
 
 def query_gemini(structured: Dict[str, Any], prompt: str, templates: List[str]) -> Dict[str, Any]:
@@ -75,8 +86,8 @@ def generate_reports(
     reports: Dict[str, str] = {}
     for path in template_paths:
         template_text = path.read_text(encoding="utf-8")
-        result = query_gemini(structured, prompt, [template_text])
-        reports[path.stem] = result
+        data = query_gemini(structured, prompt, [template_text])
+        reports[path.stem] = render_json_to_md(data)
 
     return reports
 
