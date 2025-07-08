@@ -154,8 +154,23 @@ def generate_reports(
     structured: Dict[str, Any],
     prompt_path: Path | None,
     template_paths: List[Path],
+    *,
+    json_dir: Path | None = None,
 ) -> Dict[str, str]:
-    """Return rendered reports for all templates."""
+    """Return rendered reports for all templates.
+
+    Parameters
+    ----------
+    structured : Dict[str, Any]
+        Normalised input data.
+    prompt_path : Path | None
+        Path to the system prompt text.
+    template_paths : List[Path]
+        Report templates to feed Gemini.
+    json_dir : Path | None, optional
+        If provided, raw JSON responses from Gemini are written here with one
+        file per template name.
+    """
     cfg = _load_config()
     if prompt_path is None:
         prompt_path = ROOT / cfg.get("prompt_file", "")
@@ -165,6 +180,10 @@ def generate_reports(
     for path in template_paths:
         template_text = path.read_text(encoding="utf-8")
         data = query_gemini(structured, prompt, [template_text])
+        if json_dir is not None:
+            json_dir.mkdir(parents=True, exist_ok=True)
+            out = json.dumps(data, ensure_ascii=False, indent=2)
+            (json_dir / f"{path.stem}.json").write_text(out, encoding="utf-8")
         reports[path.stem] = render_json_to_md(data)
 
     return reports
@@ -174,6 +193,10 @@ def generate_report(
     structured: Dict[str, Any],
     prompt_path: Path | None,
     template_paths: List[Path],
+    *,
+    json_dir: Path | None = None,
 ) -> str:
-    reports = generate_reports(structured, prompt_path, template_paths)
+    reports = generate_reports(
+        structured, prompt_path, template_paths, json_dir=json_dir
+    )
     return reports[next(iter(reports))]
