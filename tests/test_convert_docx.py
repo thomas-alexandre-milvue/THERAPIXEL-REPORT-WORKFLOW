@@ -41,3 +41,16 @@ def test_convert_writes_file(monkeypatch, tmp_path):
     convert(docx, txt)
     assert txt.exists()
     assert txt.read_text(encoding="utf-8") == "Age: [Age]\n"
+
+
+def test_collapse_colon_placeholder(monkeypatch, tmp_path):
+    stdout = "A droite :\n\n[]\n\nA gauche :\n[]\n"
+    cp = subprocess.CompletedProcess(["pandoc"], 0, stdout=stdout)
+    monkeypatch.setattr(subprocess, "run", lambda *a, **k: cp)
+    namespace["ROOT"] = tmp_path
+    docx = tmp_path / "input.docx"
+    docx.write_text("dummy")
+    txt = tmp_path / "out.txt"
+    convert(docx, txt)
+    expected = "A droite :\n[]\nA gauche :\n[]\n"
+    assert txt.read_text(encoding="utf-8") == expected

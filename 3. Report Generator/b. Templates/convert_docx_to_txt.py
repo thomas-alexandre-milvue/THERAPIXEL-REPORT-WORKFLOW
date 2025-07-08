@@ -59,6 +59,30 @@ def _convert_placeholders(text: str) -> str:
 
     return PLACEHOLDER_RE.sub(repl, text)
 
+
+def _collapse_colon_placeholders(text: str) -> str:
+    """Join paragraph split between a colon line and its placeholder."""
+    lines = text.splitlines()
+    out: list[str] = []
+    i = 0
+    while i < len(lines):
+        if (
+            i + 2 < len(lines)
+            and lines[i].rstrip().endswith(":")
+            and lines[i + 1].strip() == ""
+            and re.match(r"\[[^\n\]]*\]$", lines[i + 2].strip())
+        ):
+            out.append(lines[i].rstrip())
+            out.append(lines[i + 2].rstrip())
+            i += 3
+            while i < len(lines) and lines[i].strip() == "":
+                i += 1
+            continue
+        out.append(lines[i].rstrip())
+        i += 1
+    trailing = "\n" if text.endswith("\n") else ""
+    return "\n".join(out) + trailing
+
 # ── Conversion ────────────────────────────────────────────────────────────────
 def convert(docx: Path, txt: Path) -> None:
     txt.parent.mkdir(parents=True, exist_ok=True)
@@ -81,6 +105,7 @@ def convert(docx: Path, txt: Path) -> None:
             cmd, check=True, capture_output=True, text=True, encoding="utf-8"
         )
         text = _convert_placeholders(result.stdout)
+        text = _collapse_colon_placeholders(text)
         txt.write_text(text, encoding="utf-8")
         print(f"✓  {docx.name} → {txt.relative_to(ROOT)}")
     except subprocess.CalledProcessError:
