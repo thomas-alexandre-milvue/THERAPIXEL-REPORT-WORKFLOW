@@ -41,16 +41,38 @@ def _parse_response(text: str) -> Dict[str, Any]:
 
 def render_json_to_md(data: Dict[str, Any]) -> str:
     """Return Markdown string from Gemini JSON output."""
+    # Direct Markdown via list of lines
     lines = data.get("lines")
     if isinstance(lines, list):
-        return "\n".join(lines).strip() + "\n"
+        return "\n".join(str(l).strip() for l in lines).strip() + "\n"
+    if isinstance(lines, str):
+        return lines.strip() + ("\n" if not lines.endswith("\n") else "")
 
-    # Some Gemini responses may return a single text field instead of a
-    # list of lines. Accept a few common key names for robustness.
-    for key in ("markdown", "text", "report"):
-        value = data.get(key)
+    # Support alternate key names or nested dicts
+    for key in ("markdown", "text", "report", "final_report", "content"):
+        if key in data:
+            value = data[key]
+            if isinstance(value, dict):
+                try:
+                    return render_json_to_md(value)
+                except ValueError:
+                    pass
+            if isinstance(value, list):
+                return "\n".join(str(v).strip() for v in value).strip() + "\n"
+            if isinstance(value, str):
+                return value.strip() + ("\n" if not value.endswith("\n") else "")
+
+    # Fallback: first string value in dict
+    for value in data.values():
         if isinstance(value, str):
             return value.strip() + ("\n" if not value.endswith("\n") else "")
+        if isinstance(value, list):
+            return "\n".join(str(v).strip() for v in value).strip() + "\n"
+        if isinstance(value, dict):
+            try:
+                return render_json_to_md(value)
+            except ValueError:
+                continue
 
     raise ValueError("Unsupported JSON structure")
 
