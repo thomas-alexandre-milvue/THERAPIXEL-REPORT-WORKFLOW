@@ -32,7 +32,12 @@
 ```
 repo-root/
 │ README.md
-│ pandoc-3.7.0.2-windows-x86_64.msi
+├── project_meta/
+│   ├── AGENTS.md
+│   ├── requirements.txt
+│   ├── .flake8
+│   ├── .gitignore
+│   └── pandoc-3.7.0.2-windows-x86_64.msi
 ├── 0. Config/
 │   ├── Structured_Input_scheme.json
 │   ├── modality_map.yaml
@@ -69,7 +74,7 @@ python -m venv .venv
 source .venv/bin/activate      # Windows: .venv\Scripts\activate
 
 # 2  Install python deps
-pip install -r requirements.txt
+pip install -r project_meta/requirements.txt
 
 # 3  Export your Gemini API key
 export GOOGLE_API_KEY=AIzaSyDZ6Z6xaRLpQDY-lucjfp8f8Z45mEbn1cs
