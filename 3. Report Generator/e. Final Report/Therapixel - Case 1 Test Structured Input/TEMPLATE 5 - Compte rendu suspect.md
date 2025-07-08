@@ -8,9 +8,9 @@ Seins à la fois lipomateux et mastosiques.
 Les éléments sécrétoires, nombreux, de moyennes dimensions, et altérés par la fibrose, confèrent aux aires mammaires une forte densité hétérogène à prédominance externe.
 Présence épars dans les aires mammaires, de quelques surcroits d’opacité ovalaires, homogènes, aux contours pour la plupart nets et réguliers.
 SEIN DROIT :
-Masse de 21 mm de diamètre dans le quadrant supéro-externe, classée ACR 5 compte tenu de sa forme ronde, de ses contours spiculés et de sa densité élevée. Deux autres masses bénignes sont également présentes, mesurant respectivement 23 mm dans le quadrant supérieur et [] mm dans le quadrant [].
+Masse de 21 mm de diamètre au niveau du quadrant supéro-externe, classée ACR 5 compte tenu de sa forme ronde, de contours spiculés et de sa densité élevée. Deux autres masses bénignes au niveau du quadrant supéro-externe et supérieur, mesurant respectivement 30 mm et 23 mm.
 SEIN GAUCHE :
-Masse bénigne de 30 mm de diamètre dans le quadrant supéro-externe.
+Masse bénigne de 30 mm de diamètre au niveau du quadrant supéro-externe.
 
 ECHOGRAPHIE MAMMAIRE
 TOSHIBA XARIO200 - 2015 DESINFECTION PAR ANTIGERMIX S1 : RAYONNEMENT UVC (GERMITEC)
@@ -24,7 +24,7 @@ A gauche :
 []
 
 CONCLUSION
-A droite, une lésion suspecte est présente. Biopsie recommandée.
+A droite, une masse suspecte est présente. A gauche, pas de masse suspecte.
 
 Droit ACR 5 Gauche ACR 2
 Densité glandulaire BIRADS []

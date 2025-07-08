@@ -4,8 +4,8 @@ Contexte clinique : []
 Examen clinique : []
 
 Résultat :
-Sein droit : Masse de 25 mm de diamètre, de siège rétro-aréolaire externe, se projetant en regard du quadrant supéro-externe. Présence de calcifications associées à la masse. Masse de 15 mm de diamètre au niveau du quadrant supéro-externe, associée à des calcifications.
-Sein gauche : Masse de 22 mm de diamètre au niveau du quadrant supéro-externe. Masse de 15 mm de diamètre au niveau du quadrant supéro-interne.
+Sein droit : Masse de 25 mm de diamètre moyen, de siège rétro-aréolaire externe, sans calcifications associées. Masse de 15 mm de diamètre moyen, de siège externe, avec calcifications associées.
+Sein gauche : Masse de 22 mm de diamètre moyen, de siège supéro-externe, sans calcifications associées. Masse de 15 mm de diamètre moyen de siège supéro-interne, sans calcifications associées.
 
 CONCLUSION :
 

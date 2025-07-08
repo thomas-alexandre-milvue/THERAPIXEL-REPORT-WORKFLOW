@@ -14,8 +14,8 @@ Examen clinique : []
 Mammographie bilatérale numérisée
 Sein droit :
 
-Masse de 25 mm de diamètre moyen, de siège rétro-aréolaire externe, d'échostructure [échostructure] associée à des micro-calcifications en regard.
-Masse de 15 mm de diamètre moyen de siège externe, d'échostructure [échostructure] associée à des micro-calcifications en regard.
+Masse de 25 mm de diamètre moyen, de siège rétro-aréolaire externe, d'échostructure [échostructure] associée à des micro-calcifications en nombre [nombre].
+Masse de 15 mm de diamètre moyen de siège externe, d'échostructure [échostructure] associée à des micro-calcifications en nombre [nombre].
 Sein gauche :
 
 Masse de 22 mm de diamètre moyen de siège supéro-externe, d'échostructure [échostructure].

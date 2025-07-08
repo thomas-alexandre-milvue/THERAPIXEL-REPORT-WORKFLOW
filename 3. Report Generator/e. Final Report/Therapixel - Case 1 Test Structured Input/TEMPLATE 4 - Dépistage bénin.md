@@ -15,5 +15,5 @@ Description complète : Nodule au sein gauche, quadrant supéro-externe, bénin.
 Échographie : Non réalisée
 
 CONCLUSION :
-Bilan non satisfaisant, classé ACR 5 bilatéral compte tenu d'un nodule suspect au sein droit.
+Bilan non satisfaisant, classé ACR 4 bilatéral.
 En l’absence d’évènement clinique, prochain contrôle recommandé dans [] ans.

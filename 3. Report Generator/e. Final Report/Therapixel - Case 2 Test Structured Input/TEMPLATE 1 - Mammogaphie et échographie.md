@@ -16,8 +16,7 @@ Pas d’antécédents
 
 Mammographie :
 Densité mammaire ACR : []
-Sein droit : Masse de 25 mm de diamètre moyen, de localisation rétro-aréolaire externe, se projetant sur les clichés de face en regard du quadrant supéro-externe.  Sein gauche : Deux masses, l'une de 22 mm de diamètre moyen de localisation supéro-externe et l'autre de 15 mm de localisation supéro-interne.
-
+Sein droit : Masse de 25 mm de diamètre moyen, de localisation rétro-aréolaire externe, se projetant sur les clichés de face en regard du quadrant supéro-externe.  Masse de 15 mm de diamètre moyen, calcifiée, de localisation supéro-externe. Sein gauche : Masse de 22 mm de diamètre moyen de localisation supéro-externe. Masse de 15 mm de diamètre moyen de localisation supéro-interne.
 Sein droit : [] mGy. Sein gauche : [] mGy.
 
 Échographie :
@@ -26,4 +25,4 @@ Sein droit : [] mGy. Sein gauche : [] mGy.
 CONCLUSION :
 
 ACR 0 à droite.
-ACR 4 à gauche.
+ACR 0 à gauche.

@@ -4,9 +4,8 @@ Contexte clinique : []
 Examen clinique : []
 
 Résultat :
-Sein droit : Masse suspecte du quadrant supéro-externe mesurant 21 mm.
-Sein droit : Masse bénigne du quadrant supérieur mesurant 23 mm en posteriorité.
-Sein gauche : Masse bénigne du quadrant supéro-externe mesurant 30 mm.
+Sein droit : Masse de 21 mm de diamètre dans le quadrant supéro-externe, classée ACR 5. Masse de 23 mm de diamètre dans le quadrant supérieur, classée ACR 2.
+Sein gauche : Masse de 30 mm de diamètre dans le quadrant supéro-externe, classée ACR 2.
 
 CONCLUSION :
 
