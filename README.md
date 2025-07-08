@@ -84,6 +84,8 @@ python "2. Structured Input/Structured Input Creator.py"        "1. Input/Therap
 python "3. Report Generator/c. Generator/cli.py"        -i "2. Structured Input/Therapixel - Case 1 Test Structured Input.json"        -o "4. Reports/Case1_report.md"
 # 7  Generate reports for all test cases
 python "3. Report Generator/c. Generator/batch_cli.py"        -o "3. Report Generator/d. Tests"
+#   (optional) store raw JSON replies
+python "3. Report Generator/c. Generator/batch_cli.py"        -o "3. Report Generator/d. Tests"        -j "3. Report Generator/d. Tests/json"
 # Windows users: run each line separately (don't paste two commands on one line).
 ```
 

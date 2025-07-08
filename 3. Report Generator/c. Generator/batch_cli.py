@@ -41,6 +41,13 @@ def main() -> None:
         default=ROOT / "3. Report Generator" / "d. Tests",
         help="Destination folder for generated reports",
     )
+    p.add_argument(
+        "-j",
+        "--json-dir",
+        dest="json_dir",
+        type=Path,
+        help="Optional folder to store raw Gemini JSON responses",
+    )
     args = p.parse_args()
 
     files = sorted(args.inp.glob("*.json"))
@@ -50,9 +57,12 @@ def main() -> None:
     for src in files:
         case = json.loads(src.read_text(encoding="utf-8"))
         prompt_path, templates = select_for_case(case)
-        reports = generate_reports(case, prompt_path, templates)
         case_dir = args.out / src.stem
         case_dir.mkdir(parents=True, exist_ok=True)
+        json_dir = args.json_dir / src.stem if args.json_dir else None
+        reports = generate_reports(
+            case, prompt_path, templates, json_dir=json_dir
+        )
         for t in templates:
             out_path = case_dir / f"{t.stem}.md"
             out_path.write_text(reports[t.stem], encoding="utf-8")
