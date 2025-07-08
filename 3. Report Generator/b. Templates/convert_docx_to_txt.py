@@ -44,16 +44,6 @@ def ensure_pandoc() -> str:
 
 PANDOC = ensure_pandoc()
 
-# ── Helper: does this pandoc accept --atx-headers? ────────────────────────────
-def supports_atx_headers() -> bool:
-    result = subprocess.run(
-        [PANDOC, "--atx-headers", "-t", "markdown", "-o", "-"],
-        input="Test", text=True, capture_output=True
-    )
-    return result.returncode == 0
-
-USE_ATX = supports_atx_headers()
-
 # ── Placeholder helpers ───────────────────────────────────────────────────────
 # ❶ Match optional back-slash + [label]
 PLACEHOLDER_RE = re.compile(r"\\?\[([^\]\n]+)\]")
