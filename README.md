@@ -107,6 +107,9 @@ python "3. Report Generator/c. Generator/batch_cli.py"        -o "3. Report Gene
 * a system prompt (`a. Prompts/…`)
 * a text template (`b. Templates/Text/…`)
 
+This mapping file is required by the batch CLI; removing it will result in
+errors when generating reports.
+
 ### 3️⃣  Call Gemini
 `gemini_reporter.py` sends the structured JSON and template snippets to Gemini.
 The model replies with a JSON block containing a list of Markdown lines:
@@ -160,6 +163,8 @@ top_p: 0.1
 max_output_tokens: 6000
 prompt_file: 3. Report Generator/a. Prompts/Templator Prompt - Modified for Mammo.yaml
 ```
+Only the fields shown above are currently consumed by the code. Other keys like
+`include_thoughts`, `thinking_budget` and `seed` are legacy and can be ignored.
 
 ---
 
