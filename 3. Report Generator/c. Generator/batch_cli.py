@@ -10,7 +10,6 @@ try:  # When executed as part of a package
     from .select_assets import select_for_case
     from .gemini_reporter import generate_reports
 except ImportError:  # Fallback when run as a standalone script
-    from pathlib import Path
     import sys
 
     sys.path.append(str(Path(__file__).resolve().parent))
@@ -56,6 +55,7 @@ def main() -> None:
         p.error(f"No .json files found in {args.inp}")
 
     for src in files:
+        print(f"\nProcessing {src.name}…")
         case = json.loads(src.read_text(encoding="utf-8"))
         prompt_path, templates = select_for_case(case)
         case_dir = args.out / src.stem
@@ -67,7 +67,8 @@ def main() -> None:
         for t in templates:
             out_path = case_dir / f"{t.stem}.md"
             out_path.write_text(reports[t.stem], encoding="utf-8")
-        print(f"✔ {src.name} → {case_dir.relative_to(args.out)}")
+            print(f"  ✔ saved {out_path.relative_to(args.out)}")
+        print(f"✔ Completed {src.name}\n")
 
 
 if __name__ == "__main__":
