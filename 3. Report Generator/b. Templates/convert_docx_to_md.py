@@ -48,6 +48,47 @@ PANDOC = ensure_pandoc()
 # ❶ Match optional back-slash + [label]
 PLACEHOLDER_RE = re.compile(r"\\?\[([^\]\n]+)\]")
 
+# ── Promote ad-hoc bold headings ('**CONCLUSION**') ──────────────────────────
+BOLD_HEADING_RE = re.compile(r"^\*\*(.+?)\*\*(?:\\)?\s*$")
+
+
+def _promote_bold_headings(text: str) -> str:
+    """Turn full-line bold text into level-2 Markdown headings."""
+    return "\n".join(
+        ("## " + m.group(1).strip()) if (m := BOLD_HEADING_RE.match(ln.strip())) else ln
+        for ln in text.splitlines()
+    )
+
+# ── Drop stray blank lines *inside* a section block ──────────────────────────
+LIST_BULLET_RE = re.compile(r"^(?:[-*+] |\d+[.)] )")
+PLACEHOLDER_ONLY_RE = re.compile(r"^\\?\[[^\]\n]+\]$")
+
+
+def _collapse_inner_blanks(text: str) -> str:
+    """Remove a single blank line that sits between two ordinary paragraphs."""
+
+    lines, out, i = text.splitlines(), [], 0
+    while i < len(lines):
+        ln = lines[i]
+        if (
+            ln.strip() == ""  # this line is blank
+            and i > 0
+            and i + 1 < len(lines)
+            and lines[i - 1].strip()
+            and lines[i + 1].strip()
+            and not lines[i - 1].lstrip().startswith("#")
+            and not lines[i + 1].lstrip().startswith("#")
+            and not LIST_BULLET_RE.match(lines[i - 1])
+            and not LIST_BULLET_RE.match(lines[i + 1])
+            and not PLACEHOLDER_ONLY_RE.match(lines[i - 1])
+            and not PLACEHOLDER_ONLY_RE.match(lines[i + 1])
+        ):
+            i += 1
+            continue
+        out.append(ln)
+        i += 1
+    return "\n".join(out) + "\n"
+
 
 def _cleanup_blank_lines(text: str) -> str:
     """Collapse extra blank lines around placeholder-only paragraphs."""
@@ -78,22 +119,6 @@ def _convert_placeholders(text: str) -> str:
         return match.group(0).lstrip("\\")
 
     return PLACEHOLDER_RE.sub(repl, text)
-
-# ── Promote ad-hoc bold headings (e.g. '**CONCLUSION**') ─────────────
-BOLD_HEADING_RE = re.compile(r'^\*\*(.+?)\*\*(?:\\)?\s*$')
-
-
-def _promote_bold_headings(text: str) -> str:
-    """Turn lines that consist solely of bold text into level-2 Markdown headings."""
-
-    out = []
-    for ln in text.splitlines():
-        m = BOLD_HEADING_RE.match(ln.strip())
-        if m:
-            out.append('## ' + m.group(1).strip())
-        else:
-            out.append(ln)
-    return '\n'.join(out)
 
 # ── Keep heading spacing tidy ────────────────────────────────────────────────
 HEADING_RE = re.compile(r"^#{1,6}\s")
@@ -144,10 +169,11 @@ def convert(docx: Path, md: Path) -> None:
             cmd, check=True, capture_output=True, text=True, encoding="utf-8"
         )
         text = _convert_placeholders(result.stdout)
-        text = _promote_bold_headings(text)
+        text = _promote_bold_headings(text)      # ① fake→real headings
         text = _cleanup_blank_lines(text)
-        text = _normalize_headings(text)
-        text = re.sub(r"\n{3,}", "\n\n", text)
+        text = _normalize_headings(text)         # ② heading spacing
+        text = _collapse_inner_blanks(text)      # ③ no gaps inside block
+        text = re.sub(r"\n{3,}", "\n\n", text)   # squeeze 3+ blank lines
         md.write_text(text, encoding="utf-8")
         print(f"✓  {docx.name} → {md.relative_to(ROOT)}")
     except subprocess.CalledProcessError:
