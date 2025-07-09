@@ -159,6 +159,10 @@ def query_gemini(structured: Dict[str, Any], prompt: str, templates: List[str]) 
             gcfg.get("max_output_tokens", cfg.get("max_output_tokens", defaults["max_output_tokens"])),
         ),
     }
+    gen_cfg["response_mime_type"] = gcfg.get(
+        "response_mime_type",
+        cfg.get("response_mime_type", "application/json"),
+    )
 
     for attempt in range(retries + 1):
         resp = model.generate_content(

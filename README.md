@@ -133,7 +133,7 @@ pandoc report.md -o report.docx   --reference-doc="3. Report Generator/b. Templa
 |------|---------|
 | **Structured_Input_scheme.json** | JSON schema enforced by step 2. |
 | **modality_map.yaml** | Maps `modality` → `{prompt, templates}`. |
-| **query_configs.yaml** | Model, temperature, prompt file, max‑tokens, etc. |
+| **query_configs.yaml** | Model, temperature, prompt file, max‑tokens, response type, etc. |
 
 Example `modality_map.yaml`
 ```yaml
@@ -149,6 +149,7 @@ generationConfig:
   temperature: 0.4
   topP: 0.1
   maxOutputTokens: 6000
+  response_mime_type: application/json
 prompt_file: 3. Report Generator/a. Prompts/Templator Prompt - Modified for Mammo.yaml
 thinkingConfig:
   thinkingBudget: 3000  # cap hidden reasoning tokens

@@ -141,6 +141,7 @@ def test_generation_config(monkeypatch):
         "temperature": 0.4,
         "top_p": 0.8,
         "max_output_tokens": 2048,
+        "response_mime_type": "application/json",
     }
 
 
@@ -179,4 +180,5 @@ def test_generation_config_nested(monkeypatch):
         "temperature": 0.7,
         "top_p": 0.3,
         "max_output_tokens": 999,
+        "response_mime_type": "application/json",
     }
