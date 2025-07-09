@@ -20,6 +20,13 @@ def test_parse_response_json():
     assert renderer._parse_response(text) == {"lines": ["a", "b"]}
 
 
+def test_parse_response_last_json_block():
+    text = (
+        "prefix {\"lines\": [\"x\"]} middle {\"lines\": [\"y\"]}\nReasoning"
+    )
+    assert renderer._parse_response(text) == {"lines": ["y"]}
+
+
 def test_render_json_to_md():
     md = renderer.render_json_to_md({"lines": ["a", "b"]})
     assert md == "a\nb\n"
