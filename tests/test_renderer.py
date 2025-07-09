@@ -17,9 +17,9 @@ spec.loader.exec_module(renderer)
 
 def test_parse_response_json():
     text = (
-        "```json\n{\n  \"report\": [\"a\", \"b\"]\n}\n```\nReasoning: bla"
+        "```json\n{\n  \"lines\": [\"a\", \"b\"]\n}\n```\nReasoning: bla"
     )
-    assert renderer._parse_response(text) == {"report": ["a", "b"]}
+    assert renderer._parse_response(text) == {"lines": ["a", "b"]}
 
 
 def test_parse_response_no_json_logs(caplog):
@@ -30,7 +30,7 @@ def test_parse_response_no_json_logs(caplog):
 
 
 def test_render_json_to_md():
-    md = renderer.render_json_to_md({"report": ["a", "b"]})
+    md = renderer.render_json_to_md({"lines": ["a", "b"]})
     assert md == "a\nb\n"
 
 
@@ -40,7 +40,7 @@ def test_render_json_to_md_string():
 
 
 def test_render_json_to_md_nested():
-    md = renderer.render_json_to_md({"markdown": {"report": ["x", "y"]}})
+    md = renderer.render_json_to_md({"markdown": {"lines": ["x", "y"]}})
     assert md == "x\ny\n"
 
 
