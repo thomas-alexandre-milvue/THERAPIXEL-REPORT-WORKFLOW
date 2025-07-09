@@ -33,10 +33,22 @@ def _load_config() -> Dict[str, Any]:
 def _parse_response(text: str) -> Dict[str, Any]:
     """Return JSON payload extracted from Gemini output."""
     text = re.split(r"\n+Reasoning", text, 1)[0]
-    match = re.search(r"\{.*\}", text, re.S)
-    if not match:
+    decoder = json.JSONDecoder()
+    idx = 0
+    last_obj = None
+    while True:
+        try:
+            start = text.index("{", idx)
+        except ValueError:
+            break
+        try:
+            last_obj, end = decoder.raw_decode(text, start)
+            idx = end
+        except json.JSONDecodeError:
+            idx = start + 1
+    if last_obj is None:
         raise ValueError("No JSON object found in response")
-    return json.loads(match.group(0))
+    return last_obj
 
 
 def render_json_to_md(data: Dict[str, Any]) -> str:
