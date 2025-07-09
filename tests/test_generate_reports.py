@@ -21,8 +21,8 @@ def common_setup(monkeypatch):
 def test_generate_reports(monkeypatch, tmp_path):
     common_setup(monkeypatch)
     outputs = iter([
-        {"lines": ["one"]},
-        {"lines": ["two"]},
+        {"report": ["one"]},
+        {"report": ["two"]},
     ])
     calls = []
 
@@ -34,7 +34,7 @@ def test_generate_reports(monkeypatch, tmp_path):
     monkeypatch.setattr(
         renderer,
         "render_json_to_md",
-        lambda d: " ".join(d["lines"]),
+        lambda d: " ".join(d.get("report", d.get("lines"))),
     )
     prompt = tmp_path / "p.txt"
     prompt.write_text("prompt")
@@ -50,7 +50,7 @@ def test_generate_reports(monkeypatch, tmp_path):
 
 def test_generate_reports_json_dir(monkeypatch, tmp_path):
     common_setup(monkeypatch)
-    output = {"lines": ["x"]}
+    output = {"report": ["x"]}
 
     monkeypatch.setattr(renderer, "query_gemini", lambda *a: output)
     monkeypatch.setattr(renderer, "render_json_to_md", lambda d: "res")

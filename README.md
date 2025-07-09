@@ -78,6 +78,7 @@ pip install -r project_meta/requirements.txt
 
 # 3  Export your Gemini API key
 export GOOGLE_API_KEY=AIzaSyDZ6Z6xaRLpQDY-lucjfp8f8Z45mEbn1cs
+# or put this line in a `.env` file and `pip install python-dotenv` (or `set -a; source .env`) so the key loads automatically
 
 # 4  Convert Word templates → plain text (one‑off)
 python "3. Report Generator/b. Templates/convert_docx_to_txt.py"
@@ -119,9 +120,10 @@ errors when generating reports.
 
 ### 3️⃣  Call Gemini
 `gemini_reporter.py` sends the structured JSON and template snippets to Gemini.
-The model replies with a JSON block containing a list of Markdown lines:
-`{"lines": ["..."]}`.
-`gemini_reporter.py` joins these lines into the final Markdown report ready for clinicians.
+The model replies with a JSON block such as:
+`{"report": ["## MAMMOGRAPHIE…", "…", "ACR 2 à gauche."]}`.
+Both `"report"` and the legacy key `"lines"` are accepted. The helper raises “No JSON object found in response” if Gemini returns malformed text.
+`gemini_reporter.py` joins the lines into the final Markdown report ready for clinicians.
 
 ### 4️⃣  (Optional) Convert to DOCX
 If needed, Jinja or Pandoc can reformat the Markdown into a DOCX report:
