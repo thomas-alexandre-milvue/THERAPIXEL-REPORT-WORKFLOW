@@ -2,7 +2,7 @@
 Compte rendu avant 2ᵉ lecture du dépistage organisé
 
 ## Indication :
-Patiente de [] ans adressée pour [].
+Patiente de [] ans adressée pour dépistage.
 Parité : []
 Allaitement : [Oui / Non]
 ATCD personnels : []
@@ -10,10 +10,9 @@ ATCD familiaux : []
 **Examen clinique** : []
 Mammographie bilatérale numérisée
 Sein droit :
-Masse de 25 mm de diamètre au niveau du quadrant externe, de profondeur moyenne, sans calcifications associées. ACR 4
+Présence d'une masse de 25 mm dans le quadrant externe, de caractère indéterminé. On note également une masse de 15 mm dans le quadrant externe d'aspect bénin avec calcifications.
 Sein gauche :
-Masse de 15 mm de diamètre au niveau du quadrant supéro-interne, de profondeur postérieure, sans calcifications associées. ACR 4
-Masse de 22 mm de diamètre au niveau du quadrant supéro-externe, de profondeur postérieure, sans calcifications associées.
+Présence d'une masse de 15 mm dans le quadrant supéro-interne, de faible suspicion. On note également une masse de 22 mm dans le quadrant supéro-externe d'aspect bénin.
 Échographie mammaire
 Sein droit :
 []
@@ -22,7 +21,7 @@ Sein gauche :
 Axillaires : []
 
 ## CONCLUSION :
-[Conclusion détaillée]
-ACR 4 à droite.
+Masse indéterminée du sein droit et masse de faible suspicion du sein gauche. Un complément par échographie mammaire est indispensable.
+ACR 0 à droite.
 ACR 4 à gauche.
-Recommandation : [biopsie / contrôle / autre]
+Recommandation : autre

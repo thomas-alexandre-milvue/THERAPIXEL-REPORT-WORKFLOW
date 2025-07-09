@@ -1,15 +1,19 @@
-## BILAN DE DÉPISTAGE INDIVIDUEL
+BILAN DE DÉPISTAGE INDIVIDUEL
+
 Patiente âgée de [] ans
 Antécédents personnels : []
 Antécédents familiaux : []
 
-## Examen clinique :
-Seins souples / pas de nodule palpable / autre
-Incidences CC et MLO bilatérales
-Seins de densité ACR : []
-Sein gauche : Présence de deux nodules, l'un en quadrant supero-interne mesurant 15 mm, classé ACR 4, et l'autre en quadrant supero-externe mesurant 22 mm, classé ACR 2.
-Sein droit : Présence de deux nodules, l'un périphérique mesurant 15 mm, contenant des calcifications et classé ACR 2, et l'autre périphérique mesurant 25 mm, classé ACR 3.
-Échographie : « Non réalisée »
+Examen clinique :
+[Seins souples / pas de nodule palpable / autre]
+Incidences de face et obliques externes réalisées sur les deux seins.
+Seins de densité ACR : [ACR densité]
+Au niveau du sein droit, présence d'un nodule de 25 mm dans les quadrants externes en profondeur moyenne, d'aspect indéterminé. On note par ailleurs un autre nodule de 15 mm dans les quadrants externes, d'allure bénigne, contenant des calcifications.
+Au niveau du sein gauche, présence d'un nodule de 15 mm dans le quadrant supéro-interne, de faible suspicion. On note également un nodule d'allure bénigne de 22 mm dans le quadrant supéro-externe.
+Pas d'anomalie cutanée ou axillaire notable.
+Pas d'examen antérieur disponible pour comparaison.
+Échographie : Non réalisée
 
-## CONCLUSION :
-Bilan non satisfaisant compte tenu d'un nodule classé ACR 4 à gauche et d'un nodule classé ACR 3 à droite. En l'absence d'évènement clinique, prochain contrôle recommandé dans [] ans.
+CONCLUSION :
+Présence d'un nodule d'aspect indéterminé dans le sein droit et d'un nodule de faible suspicion dans le sein gauche.
+Bilan classé ACR 0. Un complément par échographie mammaire est indispensable.
