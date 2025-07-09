@@ -51,13 +51,18 @@ def main() -> None:
         description="Copy pipeline artifacts to Downloads for traceability"
     )
     parser.add_argument(
-        "-o", "--output", type=Path, help="Output directory (default: Downloads)"
+        "-o",
+        "--output",
+        type=Path,
+        help="Output directory (default: Downloads)",
     )
     args = parser.parse_args()
 
     model = _load_model_name()
     ts = dt.datetime.now().strftime("%Y-%m-%d_%H-%M")
-    root_dir = (args.output or _downloads_dir()) / f"Therapixel Workflow_{model}_{ts}"
+    root_dir = (
+        args.output or _downloads_dir()
+    ) / f"Therapixel Workflow_{model}_{ts}"
     export(root_dir)
     print(f"Artifacts copied to {root_dir}")
 

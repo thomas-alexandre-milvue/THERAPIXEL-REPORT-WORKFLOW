@@ -13,11 +13,17 @@ def setup_tmp(tmp_path):
     root.mkdir()
     cfg_dir = root / "0. Config"
     cfg_dir.mkdir()
-    (cfg_dir / "query_configs.yaml").write_text("model_name: test-model", encoding="utf-8")
+    (cfg_dir / "query_configs.yaml").write_text(
+        "model_name: test-model",
+        encoding="utf-8",
+    )
     (root / "1. Input").mkdir()
     (root / "1. Input" / "raw.json").write_text("{}", encoding="utf-8")
     (root / "2. Structured Input").mkdir()
-    (root / "2. Structured Input" / "struct.json").write_text("{}", encoding="utf-8")
+    (root / "2. Structured Input" / "struct.json").write_text(
+        "{}",
+        encoding="utf-8",
+    )
     tmpl_dir = root / "3. Report Generator" / "b. Templates" / "Text"
     tmpl_dir.mkdir(parents=True)
     (tmpl_dir / "t.md").write_text("T", encoding="utf-8")
