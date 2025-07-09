@@ -194,6 +194,7 @@ pytest -q
 | `couldn't unpack docx container` | Source file isn’t real `.docx` – re‑save from Word or run the converter helper. |
 | Gemini `PermissionDenied` | Check API key and billing quota. |
 | Missing variables in output | Ensure prompt JSON names match Jinja placeholders. |
+| Gemini returns plain text instead of JSON | Add `response_mime_type: application/json` under `generationConfig` in `0. Config/query_configs.yaml`. |
 
 ---
 
