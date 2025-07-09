@@ -1,19 +1,15 @@
-BILAN DE DÉPISTAGE INDIVIDUEL
-
+## BILAN DE DÉPISTAGE INDIVIDUEL
 Patiente âgée de [] ans
-
 Antécédents personnels : []
 Antécédents familiaux : []
 
-Examen clinique :
-[]
-
-Mammographie bilatérale (face + oblique)
+## Examen clinique :
+Seins souples
+Incidences : CC et MLO bilatérales
 Seins de densité ACR : []
-Description complète : Nodule au sein gauche, quadrant supéro-externe, bénin. Nodule au sein droit, quadrant supéro-externe, suspect. Nodule au sein droit, quadrant supérieur, bénin.
-
+Description complète : A gauche, une masse bénigne est identifiée dans le quadrant supéro-externe, mesurant 30 mm. A droite, deux masses sont identifiées. La première est située dans le quadrant supéro-externe, mesure 21 mm et est hautement suspecte. La seconde est située dans le quadrant supérieur, mesure 23 mm et est bénigne.
 Échographie : Non réalisée
 
-CONCLUSION :
-Bilan non satisfaisant, classé ACR 4 bilatéral.
-En l’absence d’évènement clinique, prochain contrôle recommandé dans [] ans.
+## CONCLUSION :
+Masse suspecte à droite classée ACR 5. Masse bénigne à gauche classée ACR 2.
+Biopsie et/ou imagerie complémentaire recommandées à droite.

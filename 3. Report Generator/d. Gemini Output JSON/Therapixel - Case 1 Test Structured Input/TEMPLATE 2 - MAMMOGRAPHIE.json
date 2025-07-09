@@ -1,18 +1,16 @@
 {
   "report": [
-    "MAMMOGRAPHIE",
-    "",
+    "## MAMMOGRAPHIE",
     "Contexte clinique : []",
     "Examen clinique : []",
     "",
-    "Résultat :",
-    "Sein droit : Masse de 21 mm de diamètre dans le quadrant supéro-externe, classée ACR 5. Masse de 23 mm de diamètre dans le quadrant supérieur, classée ACR 2.",
-    "Sein gauche : Masse de 30 mm de diamètre dans le quadrant supéro-externe, classée ACR 2.",
+    "## Résultat :",
+    "Sein droit : Masse de 21 mm de diamètre dans le quadrant supéro-externe, classée ACR 5.",
+    "Sein gauche : Deux masses, l'une de 30 mm de diamètre dans le quadrant supéro-externe et l'autre de 23 mm de diamètre dans le quadrant supérieur, classées ACR 2.",
     "",
-    "CONCLUSION :",
-    "",
+    "## CONCLUSION :",
     "ACR 5 à droite.",
     "ACR 2 à gauche.",
-    "Comparaison à l’examen de [] : []"
+    "Comparaison à l'examen de [Année] : [stable / modifié]"
   ]
 }

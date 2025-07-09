@@ -1,18 +1,15 @@
-BILAN DE DÉPISTAGE INDIVIDUEL
-
+## BILAN DE DÉPISTAGE INDIVIDUEL
 Patiente âgée de [] ans
-
 Antécédents personnels : []
 Antécédents familiaux : []
 
-Examen clinique :
+## Examen clinique :
 Seins souples / pas de nodule palpable / autre
-
-Mammographie bilatérale (face + oblique)
+Incidences
 Seins de densité ACR : [ACR densité]
-Description complète : Nodule de 15 mm au sein gauche en quadrant supéro-interne, classé ACR 4. Nodule de 15 mm au sein droit en quadrant externe, contenant des calcifications, classé ACR 2. Nodule de 22 mm au sein gauche en quadrant supéro-externe classé ACR 2. Nodule de 25 mm au sein droit en quadrant externe classé ACR 6.
-
+Description complète : Nodule au sein gauche, quadrant supéro-interne, mesurant 15 mm. Nodule au sein droit, quadrant externe, mesurant 25 mm. Nodule au sein gauche, quadrant supéro-externe, mesurant 22 mm. Nodule au sein droit, quadrant externe, mesurant 15 mm et contenant des calcifications.
 Échographie : « Non réalisée »
 
-CONCLUSION :
-Bilan non satisfaisant, classé ACR 6 au sein droit. En l’absence d’évènement clinique, prochain contrôle recommandé dans [] ans.
+## CONCLUSION :
+Bilan non satisfaisant, classé ACR 4 à gauche et ACR 5 à droite.
+En l'absence d'évènement clinique, prochain contrôle recommandé dans [] ans.

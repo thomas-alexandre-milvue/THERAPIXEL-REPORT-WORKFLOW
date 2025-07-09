@@ -31,36 +31,16 @@
 ## Folder Layout
 ```
 repo-root/
-│ README.md
-├── project_meta/
-│   ├── AGENTS.md
-│   ├── requirements.txt
-│   ├── .flake8
-│   ├── .gitignore
-│   └── pandoc-3.7.0.2-windows-x86_64.msi
+├── .github/
+├── .flake8
+├── .gitignore
 ├── 0. Config/
-│   ├── Structured_Input_scheme.json
-│   ├── modality_map.yaml
-│   └── query_configs.yaml
 ├── 1. Input/
-│   └── <vendor>.json
 ├── 2. Structured Input/
-│   ├── Structured Input Creator.py
-│   └── *.json
-└── 3. Report Generator/
-    ├── a. Prompts/
-    │   └── Templator Prompt.yaml
-    ├── b. Templates/
-    │   ├── convert_docx_to_md.py
-    │   ├── DOCX Source/
-    │   │   └── TEMPLATE *.docx
-    │   └── Text/
-    │       └── TEMPLATE *.md
-    ├── c. Generator/
-    │   ├── __init__.py
-    │   ├── cli.py
-    │   ├── gemini_reporter.py
-    │   └── select_assets.py
+├── 3. Report Generator/
+├── project_meta/
+├── tests/
+└── README.md
 ```
 
 ---
