@@ -1,5 +1,7 @@
 import importlib.util
+import logging
 from pathlib import Path
+import pytest
 
 # Dynamically import gemini_reporter
 GEN_DIR = (
@@ -18,6 +20,13 @@ def test_parse_response_json():
         "```json\n{\n  \"lines\": [\"a\", \"b\"]\n}\n```\nReasoning: bla"
     )
     assert renderer._parse_response(text) == {"lines": ["a", "b"]}
+
+
+def test_parse_response_no_json_logs(caplog):
+    with caplog.at_level(logging.WARNING):
+        with pytest.raises(ValueError):
+            renderer._parse_response("error message")
+    assert "error message" in caplog.text
 
 
 def test_render_json_to_md():
