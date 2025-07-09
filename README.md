@@ -144,14 +144,16 @@ mammography:
 
 Example `query_configs.yaml`
 ```yaml
-model_name: models/gemini-1.5-pro-latest
+model_name: models/gemini-2.5-pro
 temperature: 0.4
 top_p: 0.1
 max_output_tokens: 6000
 prompt_file: 3. Report Generator/a. Prompts/Templator Prompt - Modified for Mammo.yaml
+seed: 0                # reproducible tokens
+thinking_budget: 3000  # cap hidden reasoning tokens
+include_thoughts: true # add a reasoning block after the JSON
 ```
-Only the fields shown above are currently consumed by the code. Other keys like
-`include_thoughts`, `thinking_budget` and `seed` are legacy and can be ignored.
+The optional fields `seed` and `thinking_budget` are forwarded to Gemini's `generation_config`.
 
 ---
 

@@ -139,24 +139,35 @@ def query_gemini(structured: Dict[str, Any], prompt: str, templates: List[str]) 
         {"pre_report": structured, "templates": templates},
         ensure_ascii=False,
     )
-    resp = model.generate_content(
-        user_payload,
-        generation_config={
-            "temperature": cfg.get("temperature", 0.4),
-            "top_p": cfg.get("top_p", 0.8),
-            "max_output_tokens": cfg.get("max_output_tokens", 2048),
-        },
-    )
-    # `.text` can raise an exception when Gemini returns an empty candidate.
-    # Build the response text manually to handle safety blocks or other errors.
-    candidate = resp.candidates[0]
-    parts = getattr(candidate.content, "parts", [])
-    if not parts:
-        raise RuntimeError(
-            f"Gemini returned no content (finish_reason={candidate.finish_reason})"
+    retries = cfg.get("retries", 2)
+    last_reason = None
+    gen_cfg = {
+        "temperature": cfg.get("temperature", 0.4),
+        "top_p": cfg.get("top_p", 0.8),
+        "max_output_tokens": cfg.get("max_output_tokens", 2048),
+    }
+    if "seed" in cfg:
+        gen_cfg["seed"] = cfg["seed"]
+    if "thinking_budget" in cfg:
+        gen_cfg["thinkingBudget"] = cfg["thinking_budget"]
+
+    for attempt in range(retries + 1):
+        resp = model.generate_content(
+            user_payload,
+            generation_config=gen_cfg,
         )
-    text = "".join(getattr(p, "text", str(p)) for p in parts)
-    return _parse_response(text)
+        candidate = resp.candidates[0]
+        parts = getattr(candidate.content, "parts", [])
+        if parts:
+            text = "".join(getattr(p, "text", str(p)) for p in parts)
+            return _parse_response(text)
+        last_reason = candidate.finish_reason
+        print(
+            f"[query_gemini] Empty response (finish_reason={last_reason}), retrying {attempt + 1}/{retries}",
+            flush=True,
+        )
+
+    raise RuntimeError(f"Gemini returned no content (finish_reason={last_reason})")
 
 
 def generate_reports(
