@@ -48,7 +48,7 @@ def _parse_response(text: str) -> Dict[str, Any]:
 
 def render_json_to_md(data: Dict[str, Any]) -> str:
     """Return Markdown string from Gemini JSON output."""
-    # Direct Markdown via list of lines or the newer "report" key
+    # Direct Markdown via list of lines
     lines = data.get("lines")
     if isinstance(lines, list):
         return "\n".join(str(l).strip() for l in lines).strip() + "\n"
