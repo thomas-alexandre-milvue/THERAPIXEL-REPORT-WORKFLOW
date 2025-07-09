@@ -4,6 +4,7 @@ from __future__ import annotations
 import os
 import re
 import json
+import logging
 from pathlib import Path
 from typing import Dict, List, Any
 
@@ -17,6 +18,8 @@ except ModuleNotFoundError:  # pragma: no cover - handled at runtime
     yaml = None
 
 DEFAULT_API_KEY = "AIzaSyDZ6Z6xaRLpQDY-lucjfp8f8Z45mEbn1cs"
+
+LOGGER = logging.getLogger(__name__)
 
 ROOT = Path(__file__).resolve().parents[2]
 CONFIG = ROOT / "0. Config" / "query_configs.yaml"
@@ -33,8 +36,12 @@ def _load_config() -> Dict[str, Any]:
 def _parse_response(text: str) -> Dict[str, Any]:
     """Return JSON payload extracted from Gemini output."""
     text = re.split(r"\n+Reasoning", text, 1)[0]
+    fence = re.search(r"```(?:json)?\s*(.*?)```", text, re.S | re.I)
+    if fence:
+        text = fence.group(1)
     match = re.search(r"\{.*\}", text, re.S)
     if not match:
+        LOGGER.warning("Could not find JSON in response: %s", text)
         raise ValueError("No JSON object found in response")
     return json.loads(match.group(0))
 
