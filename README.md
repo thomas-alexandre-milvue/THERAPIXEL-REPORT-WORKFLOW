@@ -145,12 +145,14 @@ mammography:
 Example `query_configs.yaml`
 ```yaml
 model_name: models/gemini-2.5-pro
-temperature: 0.4
-top_p: 0.1
-max_output_tokens: 6000
+generationConfig:
+  temperature: 0.4
+  topP: 0.1
+  maxOutputTokens: 6000
 prompt_file: 3. Report Generator/a. Prompts/Templator Prompt - Modified for Mammo.yaml
-thinking_budget: 3000  # cap hidden reasoning tokens
-include_thoughts: true # add a reasoning block after the JSON
+thinkingConfig:
+  thinkingBudget: 3000  # cap hidden reasoning tokens
+  includeThoughts: true # add a reasoning block after the JSON
 ```
 
 
