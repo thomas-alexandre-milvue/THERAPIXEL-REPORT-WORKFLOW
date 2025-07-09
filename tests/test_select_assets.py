@@ -36,17 +36,12 @@ def test_prompt_override(monkeypatch, tmp_path):
     monkeypatch.setattr(sel, "MAP_FILE", map_file)
     monkeypatch.setattr(sel, "CONFIG_FILE", cfg_file)
     monkeypatch.setattr(
-        sel,
-        "load_mapping",
-        lambda path=map_file: {
-            "mammography": {"prompt": "a.yaml", "templates": "templates"}
-        },
+    sel,
+    "load_mapping",
+    lambda path=map_file: sel.yaml.safe_load(
+        map_file.read_text()
     )
-    monkeypatch.setattr(
-        sel,
-        "_load_config",
-        lambda: {"prompt_file": "override.yaml"},
-    )
+)
 
     case = {"views": [{"image_modality": "mammography"}]}
     prompt, templates = sel.select_for_case(case)
