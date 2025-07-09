@@ -196,7 +196,14 @@ def query_gemini(structured: Dict[str, Any], prompt: str, templates: List[str]) 
         parts = getattr(candidate.content, "parts", [])
         if parts:
             text = "".join(getattr(p, "text", str(p)) for p in parts)
-            return _parse_response(text)
+            try:
+                return _parse_response(text)
+            except ValueError:
+                print(
+                    "[query_gemini] Unparsable response from Gemini:\n" + text,
+                    flush=True,
+                )
+                raise
         last_reason = candidate.finish_reason
         print(
             f"[query_gemini] Empty response (finish_reason={last_reason}), retrying {attempt + 1}/{retries}",
