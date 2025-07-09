@@ -147,7 +147,17 @@ def query_gemini(structured: Dict[str, Any], prompt: str, templates: List[str]) 
             "max_output_tokens": cfg.get("max_output_tokens", 2048),
         },
     )
-    return _parse_response(resp.text)
+
+    feedback = getattr(resp, "prompt_feedback", None)
+    if feedback and getattr(feedback, "block_reason", 0):
+        raise RuntimeError(str(feedback))
+
+    try:
+        text = resp.text
+    except Exception as exc:  # pragma: no cover - network errors
+        raise RuntimeError(str(exc))
+
+    return _parse_response(text)
 
 
 def generate_reports(
