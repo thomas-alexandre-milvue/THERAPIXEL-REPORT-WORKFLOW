@@ -147,7 +147,16 @@ def query_gemini(structured: Dict[str, Any], prompt: str, templates: List[str]) 
             "max_output_tokens": cfg.get("max_output_tokens", 2048),
         },
     )
-    return _parse_response(resp.text)
+    # `.text` can raise an exception when Gemini returns an empty candidate.
+    # Build the response text manually to handle safety blocks or other errors.
+    candidate = resp.candidates[0]
+    parts = getattr(candidate.content, "parts", [])
+    if not parts:
+        raise RuntimeError(
+            f"Gemini returned no content (finish_reason={candidate.finish_reason})"
+        )
+    text = "".join(getattr(p, "text", str(p)) for p in parts)
+    return _parse_response(text)
 
 
 def generate_reports(
