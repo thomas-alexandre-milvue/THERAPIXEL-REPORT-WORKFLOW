@@ -198,7 +198,6 @@ No pipeline code rewrite needed.
 
 ## Testing
 ```bash
-pip install -r project_meta/requirements-dev.txt
 pytest -q
 ```
 
