@@ -10,7 +10,10 @@ MODULE = (
 source = MODULE.read_text(encoding="utf-8")
 
 snippet = re.search(
-    r"BOLD_HEADING_RE.*?def _promote_bold_headings.*?for ln in text\.splitlines\(\).*?\)",
+    (
+        r"BOLD_HEADING_RE.*?def _promote_bold_headings.*?"
+        r"for ln in text\.splitlines\(\).*?\)"
+    ),
     source,
     re.S,
 ).group()
