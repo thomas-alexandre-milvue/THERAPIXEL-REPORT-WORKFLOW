@@ -16,16 +16,12 @@ Pas d'antécédents
 
 ## Mammographie :
 Densité mammaire ACR : []
+Sein droit : Masse de 25 mm de diamètre au niveau du quadrant externe, de profondeur moyenne, se projetant à 60 mm du mamelon. Présence de microcalcifications au sein d'une masse de 15 mm de diamètre au niveau du quadrant externe, se projetant à 90 mm du mamelon. Sein gauche : Masse de 22 mm de diamètre au niveau du quadrant supéro-externe, de profondeur postérieure, se projetant à 97 mm du mamelon. Masse de 15 mm de diamètre au niveau du quadrant supéro-interne, de profondeur postérieure, se projetant à 114 mm du mamelon.
 Sein droit : [] mGy. Sein gauche : [] mGy.
-Masse de 15 mm au sein droit en position externe, associée à des calcifications, d'allure bénigne (score 2).
-Masse de 25 mm au sein droit en position externe, de profondeur moyenne, d'allure indéterminée (score 6).
-Masse de 22 mm au sein gauche en position supéro-externe, d'allure bénigne (score 2).
-Masse de 15 mm au sein gauche en position supéro-interne, suspecte (score 4).
 
 ## Échographie :
 [Description échographique complète]
 
 ## CONCLUSION :
-[Conclusion synthétique]
-ACR 0 à droite.
-ACR 0 à gauche.
+ACR 4 à droite.
+ACR 4 à gauche.

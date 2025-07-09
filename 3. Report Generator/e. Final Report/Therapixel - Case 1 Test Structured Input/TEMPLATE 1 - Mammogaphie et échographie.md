@@ -16,10 +16,13 @@ Pas d'antécédents
 
 ## Mammographie :
 Densité mammaire ACR : []
+Sein droit : Masse de 21 mm de diamètre au niveau du quadrant supéro-externe. Masse de 23 mm de diamètre au niveau du quadrant supérieur. Sein gauche : Masse de 30 mm de diamètre au niveau du quadrant supéro-externe.
 Sein droit : [] mGy. Sein gauche : [] mGy.
 
 ## Échographie :
+[Description échographique complète]
 
 ## CONCLUSION :
+[Conclusion synthétique]
 ACR 4 à droite.
 ACR 2 à gauche.

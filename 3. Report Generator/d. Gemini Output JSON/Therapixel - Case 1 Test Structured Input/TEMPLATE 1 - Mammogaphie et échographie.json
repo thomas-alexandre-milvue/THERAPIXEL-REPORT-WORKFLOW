@@ -1,3 +1,32 @@
 {
-  "final_report": "## [MAMMOGRAPHIE ET ÉCHOGRAPHIE MAMMAIRE BILATÉRALE :]{.underline}\n\n## Indication :\nExamen systématique.\\\nATCD familiaux : [\\\\]\\\nATCD personnels : [\\\\]\\\nStatut hormonal : [ménopausée / THS / non ménopausée]\\\nExamen clinique : [\\\\]\n\n## Technique :\nMammographie : 4 clichés numérisés. Clichés réalisés avec un mammographe numérique plein champ haute définition « PLANMED NUANCE » mis en service en juillet 2013.\\\nÉchographie : Examen réalisé avec une sonde multifréquence de 5 à 13 MHz, échographe HITACHI AVIUS mis en service en juin 2013.\n\n## Résultats :\nPas d'antécédents\n\n## Mammographie :\nDensité mammaire ACR : [\\\\]\\\nSein droit : Présence d'une masse de 21 mm dans le quadrant supéro-externe, d'allure hautement suspecte. On note également une autre masse d'aspect bénin de 23 mm dans le quadrant supérieur.\\\nSein gauche : Présence d'une masse d'aspect bénin de 30 mm dans le quadrant supéro-externe.\\\nSein droit : [\\\\] mGy. Sein gauche : [\\\\] mGy.\n\n## Échographie :\nExamen échographique non réalisé.\n\n## CONCLUSION :\nMasse hautement suspecte du sein droit (quadrant supéro-externe).\\\nLésions d'allure bénigne dans le sein gauche et le sein droit.\\\nACR 5 à droite.\\\nACR 2 à gauche."
+  "report": [
+    "## MAMMOGRAPHIE ET ÉCHOGRAPHIE MAMMAIRE BILATÉRALE :",
+    "",
+    "## Indication :",
+    "Examen systématique.",
+    "ATCD familiaux : []",
+    "ATCD personnels : []",
+    "Statut hormonal : [ménopausée / THS / non ménopausée]",
+    "Examen clinique : []",
+    "",
+    "## Technique :",
+    "Mammographie : [] clichés numérisés. Clichés réalisés avec un mammographe numérique plein champ haute définition « PLANMED NUANCE » mis en service en juillet 2013.",
+    "Échographie : Examen réalisé avec une sonde multifréquence de 5 à 13 MHz, échographe HITACHI AVIUS mis en service en juin 2013.",
+    "",
+    "## Résultats :",
+    "Pas d'antécédents",
+    "",
+    "## Mammographie :",
+    "Densité mammaire ACR : []",
+    "Sein droit : Masse de 21 mm de diamètre au niveau du quadrant supéro-externe. Masse de 23 mm de diamètre au niveau du quadrant supérieur. Sein gauche : Masse de 30 mm de diamètre au niveau du quadrant supéro-externe.",
+    "Sein droit : [] mGy. Sein gauche : [] mGy.",
+    "",
+    "## Échographie :",
+    "[Description échographique complète]",
+    "",
+    "## CONCLUSION :",
+    "[Conclusion synthétique]",
+    "ACR 4 à droite.",
+    "ACR 2 à gauche."
+  ]
 }

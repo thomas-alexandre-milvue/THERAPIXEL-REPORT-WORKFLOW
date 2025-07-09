@@ -7,13 +7,13 @@
     "",
     "## Examen clinique :",
     "Seins souples / pas de nodule palpable / autre",
-    "Incidences",
-    "Seins de densité ACR : [ACR densité]",
-    "Description complète : Nodule au sein gauche, quadrant supéro-interne, mesurant 15 mm. Nodule au sein droit, quadrant externe, mesurant 25 mm. Nodule au sein gauche, quadrant supéro-externe, mesurant 22 mm. Nodule au sein droit, quadrant externe, mesurant 15 mm et contenant des calcifications.",
+    "Incidences CC et MLO bilatérales",
+    "Seins de densité ACR : []",
+    "Sein gauche : Présence de deux nodules, l'un en quadrant supero-interne mesurant 15 mm, classé ACR 4, et l'autre en quadrant supero-externe mesurant 22 mm, classé ACR 2. ",
+    "Sein droit : Présence de deux nodules, l'un périphérique mesurant 15 mm, contenant des calcifications et classé ACR 2, et l'autre périphérique mesurant 25 mm, classé ACR 3.",
     "Échographie : « Non réalisée »",
     "",
     "## CONCLUSION :",
-    "Bilan non satisfaisant, classé ACR 4 à gauche et ACR 5 à droite.",
-    "En l'absence d'évènement clinique, prochain contrôle recommandé dans [] ans."
+    "Bilan non satisfaisant compte tenu d'un nodule classé ACR 4 à gauche et d'un nodule classé ACR 3 à droite. En l'absence d'évènement clinique, prochain contrôle recommandé dans [] ans."
   ]
 }

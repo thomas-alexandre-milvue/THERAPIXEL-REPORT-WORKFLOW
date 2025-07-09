@@ -8,11 +8,11 @@ Seins à la fois lipomateux et mastosiques.
 Les éléments sécrétoires, nombreux, de moyennes dimensions, et altérés par la fibrose, confèrent aux aires mammaires une forte densité hétérogène à prédominance externe.
 Présence éparse dans les aires mammaires, de quelques surcroits d'opacité ovalaires, homogènes, aux contours pour la plupart nets et réguliers.
 SEIN DROIT :
-Masse de 25 mm de diamètre moyen dans le quadrant externe, de densité moyenne, aux contours réguliers, associée à des calcifications.
-Masse de 15 mm de diamètre moyen dans le quadrant externe, de faible densité, aux contours réguliers, sans calcification associée.
+Masse de 25 mm de diamètre dans le quadrant externe de profondeur moyenne, classée ACR 4 en raison de sa forme ronde et de contours circonscrits. Présence de microcalcifications associées.
+Masse de 15 mm de diamètre dans le quadrant externe de profondeur postérieure, classée ACR 2 en raison de sa forme ronde, de contours circonscrits et de la présence de microcalcifications associées.
 SEIN GAUCHE :
-Masse de 22 mm de diamètre moyen dans le quadrant supéro-externe, de faible densité, aux contours réguliers, sans calcification associée.
-Masse de 15 mm de diamètre moyen dans le quadrant supéro-interne, de densité moyenne, aux contours réguliers, sans calcification associée.
+Masse de 22 mm de diamètre dans le quadrant supéro-externe de profondeur postérieure, classée ACR 2 en raison de sa forme ronde et de contours circonscrits.
+Masse de 15 mm de diamètre dans le quadrant supéro-interne de profondeur postérieure, classée ACR 4 en raison de sa forme ronde et de contours circonscrits.
 
 ## ECHOGRAPHIE MAMMAIRE
 TOSHIBA XARIO200 - 2015 DESINFECTION PAR ANTIGERMIX S1 : RAYONNEMENT UVC (GERMITEC)
