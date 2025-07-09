@@ -145,6 +145,7 @@ def query_gemini(structured: Dict[str, Any], prompt: str, templates: List[str]) 
         "temperature": 0.4,
         "top_p": 0.8,
         "max_output_tokens": 2048,
+        "response_mime_type": "application/json",
     }
     gcfg = cfg.get("generationConfig") or cfg.get("generation_config") or {}
     gen_cfg = {
@@ -156,7 +157,17 @@ def query_gemini(structured: Dict[str, Any], prompt: str, templates: List[str]) 
         ),
         "max_output_tokens": gcfg.get(
             "maxOutputTokens",
-            gcfg.get("max_output_tokens", cfg.get("max_output_tokens", defaults["max_output_tokens"])),
+            gcfg.get(
+                "max_output_tokens",
+                cfg.get("max_output_tokens", defaults["max_output_tokens"]),
+            ),
+        ),
+        "response_mime_type": gcfg.get(
+            "responseMimeType",
+            gcfg.get(
+                "response_mime_type",
+                cfg.get("response_mime_type", defaults["response_mime_type"]),
+            ),
         ),
     }
 
