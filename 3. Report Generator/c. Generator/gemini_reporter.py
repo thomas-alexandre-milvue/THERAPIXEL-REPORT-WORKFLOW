@@ -146,10 +146,6 @@ def query_gemini(structured: Dict[str, Any], prompt: str, templates: List[str]) 
         "top_p": cfg.get("top_p", 0.8),
         "max_output_tokens": cfg.get("max_output_tokens", 2048),
     }
-    if "seed" in cfg:
-        gen_cfg["seed"] = cfg["seed"]
-    if "thinking_budget" in cfg:
-        gen_cfg["thinkingBudget"] = cfg["thinking_budget"]
 
     for attempt in range(retries + 1):
         resp = model.generate_content(

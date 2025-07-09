@@ -44,4 +44,3 @@ max_output_tokens: 6000
 prompt_file: 3. Report Generator/a. Prompts/Templator Prompt - Modified for Mammo.yaml
 include_thoughts: true
 thinking_budget: 3000
-seed: 0

@@ -114,7 +114,7 @@ def test_query_gemini_fail(monkeypatch):
 
 
 def test_generation_config(monkeypatch):
-    cfg = {"retries": 0, "seed": 123, "thinking_budget": 9}
+    cfg = {"retries": 0}
     monkeypatch.setattr(reporter, "_load_config", lambda: cfg)
     captured = {}
 
@@ -137,5 +137,8 @@ def test_generation_config(monkeypatch):
     )
     out = reporter.query_gemini({}, "p", ["t"])
     assert out == {"lines": ["x"]}
-    assert captured["seed"] == 123
-    assert captured["thinkingBudget"] == 9
+    assert captured == {
+        "temperature": 0.4,
+        "top_p": 0.8,
+        "max_output_tokens": 2048,
+    }
