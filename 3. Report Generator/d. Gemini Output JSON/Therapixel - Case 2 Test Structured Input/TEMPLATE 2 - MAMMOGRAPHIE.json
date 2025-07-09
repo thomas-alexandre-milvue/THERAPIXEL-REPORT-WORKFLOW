@@ -1,16 +1,18 @@
 {
   "report": [
     "## MAMMOGRAPHIE",
+    "",
     "Contexte clinique : []",
     "Examen clinique : []",
     "",
     "## Résultat :",
-    "Sein droit :Masse de 25 mm de diamètre moyen, de siège rétro-aréolaire externe, d'échostructure […]. Présence de calcifications associées. Masse de 15 mm de diamètre moyen, de siège externe, d'échostructure […], associée à des calcifications.",
-    "Sein gauche :Masse de 22 mm de diamètre moyen, de siège supéro-externe, d'échostructure […]. Masse de 15 mm de diamètre moyen, de siège supéro-interne, d'échostructure […].",
+    "Sein droit : présence d'une masse de 25 mm dans les quadrants externes en profondeur moyenne, d'aspect indéterminé. On note également une autre masse de 15 mm dans les quadrants externes en situation postérieure, d'aspect bénin, avec des calcifications.",
+    "Sein gauche : présence d'une masse de 15 mm dans le quadrant supéro-interne postérieur, d'aspect peu suspect. On note également une masse de 22 mm dans le quadrant supéro-externe postérieur, d'aspect bénin.",
     "",
     "## CONCLUSION :",
-    "ACR 4 à droite.",
+    "Présence d'une masse d'aspect indéterminé dans le sein droit et d'une masse de faible suspicion dans le sein gauche. Un bilan complémentaire est recommandé.",
+    "ACR 0 à droite.",
     "ACR 4 à gauche.",
-    "Comparaison à l'examen de [] : []"
+    "Comparaison non réalisée en l'absence d'examen antérieur."
   ]
 }

@@ -1,13 +1,14 @@
-## MAMMOGRAPHIE
+MAMMOGRAPHIE
+
 Contexte clinique : []
 Examen clinique : []
 
 ## Résultat :
-Sein droit : Masse suspecte du quadrant supéro-externe mesurant 21 mm. Masse bénigne du quadrant supérieur mesurant 23 mm, de localisation postérieure.
-Sein gauche : Masse bénigne du quadrant supéro-externe mesurant 30 mm, de localisation intermédiaire.
+Au niveau du sein gauche, présence d'une opacité de 30 mm du quadrant supéro-externe, d'allure bénigne.
+Au niveau du sein droit, présence d'une opacité de 21 mm du quadrant supéro-externe, d'aspect suspect. On note également une autre opacité d'allure bénigne de 23 mm du quadrant supérieur.
 
 ## CONCLUSION :
-Masse suspecte du sein droit.
+Opacité suspecte du sein droit.
 ACR 5 à droite.
 ACR 2 à gauche.
-Comparaison à l'examen de [] : []
+Comparaison à l'examen de [Année] : [stable / modifié]
