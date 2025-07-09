@@ -4,7 +4,11 @@ import sys
 from pathlib import Path
 
 # Dynamically import batch_cli
-GEN_DIR = Path(__file__).resolve().parents[1] / "3. Report Generator" / "c. Generator"
+GEN_DIR = (
+    Path(__file__).resolve().parents[1]
+    / "3. Report Generator"
+    / "c. Generator"
+)
 MOD_PATH = GEN_DIR / "batch_cli.py"
 spec = importlib.util.spec_from_file_location("batch_cli", MOD_PATH)
 batch_cli = importlib.util.module_from_spec(spec)
@@ -41,7 +45,11 @@ def test_batch_cli(monkeypatch, tmp_path):
     monkeypatch.setattr(batch_cli, "select_for_case", fake_select)
     monkeypatch.setattr(batch_cli, "generate_reports", fake_generate)
 
-    monkeypatch.setattr(sys, "argv", ["batch_cli", "-i", str(inp), "-o", str(out), "-j", str(jdir)])
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        ["batch_cli", "-i", str(inp), "-o", str(out), "-j", str(jdir)],
+    )
 
     batch_cli.main()
 
