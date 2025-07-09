@@ -141,10 +141,23 @@ def query_gemini(structured: Dict[str, Any], prompt: str, templates: List[str]) 
     )
     retries = cfg.get("retries", 2)
     last_reason = None
+    defaults = {
+        "temperature": 0.4,
+        "top_p": 0.8,
+        "max_output_tokens": 2048,
+    }
+    gcfg = cfg.get("generationConfig") or cfg.get("generation_config") or {}
     gen_cfg = {
-        "temperature": cfg.get("temperature", 0.4),
-        "top_p": cfg.get("top_p", 0.8),
-        "max_output_tokens": cfg.get("max_output_tokens", 2048),
+        "temperature": gcfg.get(
+            "temperature", cfg.get("temperature", defaults["temperature"])
+        ),
+        "top_p": gcfg.get(
+            "topP", gcfg.get("top_p", cfg.get("top_p", defaults["top_p"]))
+        ),
+        "max_output_tokens": gcfg.get(
+            "maxOutputTokens",
+            gcfg.get("max_output_tokens", cfg.get("max_output_tokens", defaults["max_output_tokens"])),
+        ),
     }
 
     for attempt in range(retries + 1):

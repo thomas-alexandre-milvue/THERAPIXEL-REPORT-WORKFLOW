@@ -142,3 +142,41 @@ def test_generation_config(monkeypatch):
         "top_p": 0.8,
         "max_output_tokens": 2048,
     }
+
+
+def test_generation_config_nested(monkeypatch):
+    cfg = {
+        "retries": 0,
+        "generationConfig": {
+            "temperature": 0.7,
+            "topP": 0.3,
+            "maxOutputTokens": 999,
+        },
+    }
+    monkeypatch.setattr(reporter, "_load_config", lambda: cfg)
+    captured = {}
+
+    class Model:
+        def generate_content(self, payload, generation_config=None):
+            captured.update(generation_config)
+            return fake_candidate([Part('{"lines": ["n"]}')], 0)
+
+    monkeypatch.setattr(
+        reporter,
+        "genai",
+        type(
+            "G",
+            (),
+            {
+                "configure": lambda *a, **k: None,
+                "GenerativeModel": lambda *a, **k: Model(),
+            },
+        ),
+    )
+    out = reporter.query_gemini({}, "p", ["t"])
+    assert out == {"lines": ["n"]}
+    assert captured == {
+        "temperature": 0.7,
+        "top_p": 0.3,
+        "max_output_tokens": 999,
+    }
