@@ -142,7 +142,7 @@ pandoc report.md -o report.docx   --reference-doc="3. Report Generator/b. Templa
 **Add a new template**
 
 1. Drop a DOCX in *DOCX Source*.
-2. Run `convert_docx_to_md.py` – this converts `[PLACEHOLDER]` tags to `{{ placeholder }}`.
+2. Run `convert_docx_to_md.py` – placeholders stay `[PLACEHOLDER]`; escape backslashes are removed.
 3. Review the generated `.md`, tweak placeholder names if needed, commit.
 
 ---
@@ -178,8 +178,8 @@ Only the fields shown above are currently consumed by the code. Other keys like
 ## Developer Guide
 
 ### Style & tooling
-* **Black** + **Ruff** enforced by pre‑commit.  
-* Absolute imports (`from report_generator.c.Generator import …`) keep paths explicit.
+* **Black** and **Ruff** optional; CI runs **flake8**.
+* Modules loaded directly from `3. Report Generator/c. Generator` using `importlib`.
 
 ### Secrets
 `.env` (git‑ignored):
