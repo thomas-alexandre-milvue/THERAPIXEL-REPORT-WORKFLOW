@@ -1,17 +1,13 @@
-**[BILAN SÉNOLOGIQUE]{.underline}**
-
+## [BILAN SÉNOLOGIQUE]{.underline}
 Compte rendu avant 2ᵉ lecture du dépistage organisé
 
-**Indication :**\
+## Indication :
 Patiente de [\] ans adressée pour [motif\].\
 Parité : [\]
-
 Allaitement : [Oui / Non\]\
 ATCD personnels : [\]\
 ATCD familiaux : [\]
-
 **Examen clinique** : [\]
-
 Mammographie bilatérale numérisée\
 Sein droit :
 [\]
@@ -24,8 +20,7 @@ Sein gauche :
 [\]
 Axillaires : [\]
 
-**CONCLUSION :**
-
+## CONCLUSION :
 [Conclusion détaillée\]\
 ACR [\] à droite.\
 ACR [\] à gauche.\
