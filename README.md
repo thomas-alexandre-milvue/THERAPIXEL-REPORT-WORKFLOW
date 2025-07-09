@@ -149,11 +149,10 @@ temperature: 0.4
 top_p: 0.1
 max_output_tokens: 6000
 prompt_file: 3. Report Generator/a. Prompts/Templator Prompt - Modified for Mammo.yaml
-seed: 0                # reproducible tokens
 thinking_budget: 3000  # cap hidden reasoning tokens
 include_thoughts: true # add a reasoning block after the JSON
 ```
-The optional fields `seed` and `thinking_budget` are forwarded to Gemini's `generation_config`.
+
 
 ---
 
