@@ -14,7 +14,7 @@ def setup_tmp(tmp_path):
     cfg_dir = root / "0. Config"
     cfg_dir.mkdir()
     (cfg_dir / "query_configs.yaml").write_text(
-        "model_name: test-model",
+        "model_name: models/test-model",
         encoding="utf-8",
     )
     (root / "1. Input").mkdir()
@@ -55,3 +55,10 @@ def test_export(tmp_path):
     assert (out / "Reports" / "Templates" / "t.md").exists()
     assert (out / "Reports" / "Gemini JSONs" / "r.json").exists()
     assert (out / "Reports" / "Final MD" / "f.md").exists()
+
+
+def test_model_name(tmp_path):
+    root = setup_tmp(tmp_path)
+    exp.ROOT = root
+    exp.CONFIG = root / "0. Config" / "query_configs.yaml"
+    assert exp._load_model_name() == "test-model"

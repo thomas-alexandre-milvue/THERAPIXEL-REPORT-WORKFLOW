@@ -19,9 +19,11 @@ FINAL_MD = ROOT / "3. Report Generator" / "e. Final Report"
 
 
 def _load_model_name() -> str:
+    """Return the model name without path prefixes."""
     if CONFIG.exists():
         cfg = yaml.safe_load(CONFIG.read_text())
-        return cfg.get("model_name", "unknown_model").replace("/", "-")
+        model = cfg.get("model_name", "unknown_model")
+        return Path(model).name.replace("/", "-")
     return "unknown_model"
 
 
