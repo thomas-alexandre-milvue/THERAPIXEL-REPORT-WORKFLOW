@@ -69,10 +69,16 @@ python "2. Structured Input/Structured Input Creator.py"        "1. Input/Therap
 # choose structured input and template interactively
 python "3. Report Generator/c. Generator/cli.py"
 # or specify paths directly
-python "3. Report Generator/c. Generator/cli.py"        -i "2. Structured Input/Therapixel - Case 1 Test Structured Input.json"        -o "4. Reports/Case1_report.md"
+# output folder defaults to `3. Report Generator/e. Final Report/<case>/`
+python "3. Report Generator/c. Generator/cli.py" \
+       -i "2. Structured Input/Therapixel - Case 1 Test Structured Input.json" \
+       -o "3. Report Generator/e. Final Report/Case1_report.md"
 #   Raw Gemini JSON is saved automatically under `3. Report Generator/d. Gemini Output JSON`
 #   Use -j to choose a different folder
-python "3. Report Generator/c. Generator/cli.py"        -i "2. Structured Input/Therapixel - Case 1 Test Structured Input.json"        -o "4. Reports/Case1_report.md"        -j "3. Report Generator/d. Gemini Output JSON"
+python "3. Report Generator/c. Generator/cli.py" \
+       -i "2. Structured Input/Therapixel - Case 1 Test Structured Input.json" \
+       -o "3. Report Generator/e. Final Report/Case1_report.md" \
+       -j "3. Report Generator/d. Gemini Output JSON"
 
 # 7  Generate reports for all test cases
 python "3. Report Generator/c. Generator/batch_cli.py"        -o "3. Report Generator/e. Final Report"
@@ -80,6 +86,10 @@ python "3. Report Generator/c. Generator/batch_cli.py"        -o "3. Report Gene
 #   Use -j to choose a different folder
 python "3. Report Generator/c. Generator/batch_cli.py"        -o "3. Report Generator/e. Final Report"        -j "3. Report Generator/d. Gemini Output JSON"
 # Windows users: run each line separately (don't paste two commands on one line).
+
+# 8  Collect all artifacts to Downloads
+python export_workflow.py
+#   Use -o to choose a different destination
 ```
 
 ---
@@ -109,6 +119,9 @@ If needed, Jinja or Pandoc can reformat the Markdown into a DOCX report:
 ```bash
 pandoc report.md -o report.docx   --reference-doc="3. Report Generator/b. Templates/DOCX Source/reference.docx"
 ```
+
+### 5️⃣  Export workflow artifacts
+`export_workflow.py` copies raw inputs, structured JSON, templates, Gemini JSONs and final Markdown to your Downloads folder. Use `-o` to pick a different destination.
 
 ---
 
