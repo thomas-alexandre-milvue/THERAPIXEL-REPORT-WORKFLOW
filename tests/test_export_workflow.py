@@ -29,9 +29,6 @@ def setup_tmp(tmp_path):
     json_dir = root / "3. Report Generator" / "d. Gemini Output MD"
     json_dir.mkdir(parents=True)
     (json_dir / "r.md").write_text("x", encoding="utf-8")
-    final_dir = root / "3. Report Generator" / "e. Final Report"
-    final_dir.mkdir(parents=True)
-    (final_dir / "f.md").write_text("F", encoding="utf-8")
     return root
 
 
@@ -45,7 +42,6 @@ def test_export(tmp_path):
     exp.STRUCTURED_INPUTS = root / "2. Structured Input"
     exp.TEMPLATES = root / "3. Report Generator" / "b. Templates" / "Text"
     exp.JSONS = root / "3. Report Generator" / "d. Gemini Output MD"
-    exp.FINAL_MD = root / "3. Report Generator" / "e. Final Report"
 
     exp.export(out)
 
@@ -53,7 +49,6 @@ def test_export(tmp_path):
     assert (out / "Structured Inputs" / "struct.json").exists()
     assert (out / "Reports" / "a. Templates" / "t.md").exists()
     assert (out / "Reports" / "b. Gemini MDs" / "r.md").exists()
-    assert (out / "Reports" / "c. Final MD" / "f.md").exists()
 
 
 def test_model_name(tmp_path):
