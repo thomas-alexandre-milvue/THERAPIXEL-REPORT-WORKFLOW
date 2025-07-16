@@ -5,7 +5,7 @@ convert_docx_to_md.py
 Batch-convert every Word template under
   3. Report Generator/b. Templates/DOCX Source/
 into UTF-8 Markdown files in
-  3. Report Generator/b. Templates/Text/
+  3. Report Generator/b. Templates/Markdown/
 """
 
 from __future__ import annotations
@@ -16,7 +16,7 @@ from pathlib import Path
 # ── Locate folders ────────────────────────────────────────────────────────────
 ROOT     = Path(__file__).resolve().parent
 DOCX_DIR = ROOT / "DOCX Source"
-MD_DIR  = ROOT / "Text"
+MD_DIR  = ROOT / "Markdown"
 
 # ── Find or download Pandoc ───────────────────────────────────────────────────
 def ensure_pandoc() -> str:
