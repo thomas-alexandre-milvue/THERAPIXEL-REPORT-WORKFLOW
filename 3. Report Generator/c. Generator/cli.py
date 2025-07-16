@@ -47,10 +47,10 @@ def main() -> None:
     )
     p.add_argument(
         "-j",
-        "--response-dir",
-        dest="response_dir",
+        "--md-dir",
+        dest="md_dir",
         type=Path,
-        default=ROOT / "3. Report Generator" / "d. Gemini Markdown Responses",
+        default=ROOT / "3. Report Generator" / "d. Gemini Output MD",
         help="Folder to store raw Gemini Markdown response",
     )
     args = p.parse_args()
@@ -95,16 +95,18 @@ def main() -> None:
         )
         args.out = out_dir / f"{Path(args.template).stem}.md"
 
-    json_dir = args.response_dir / args.inp.stem if args.response_dir else None
+    md_dir = args.md_dir / args.inp.stem if args.md_dir else None
     report = generate_report(
-        case, prompt_path, [args.template], json_dir=json_dir
+        case, prompt_path, [args.template]
     )
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(report, encoding="utf-8")
     print(f"✔ Saved report → {args.out}")
-    if json_dir:
-        json_path = json_dir / f"{Path(args.template).stem}.json"
-        print(f"✔ Saved JSON   → {json_path}")
+    if md_dir:
+        md_dir.mkdir(parents=True, exist_ok=True)
+        md_path = md_dir / f"{Path(args.template).stem}.md"
+        md_path.write_text(report, encoding="utf-8")
+        print(f"✔ Saved raw MD → {md_path}")
 
 
 if __name__ == "__main__":
