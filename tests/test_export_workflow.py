@@ -45,7 +45,7 @@ def test_export(tmp_path):
     exp.RAW_INPUTS = root / "1. Input"
     exp.STRUCTURED_INPUTS = root / "2. Structured Input"
     exp.TEMPLATES = root / "3. Report Generator" / "b. Templates" / "Text"
-    exp.JSONS = root / "3. Report Generator" / "d. Gemini Output JSON"
+    exp.JSONS = root / "3. Report Generator" / "d. Gemini Output MD"
     exp.FINAL_MD = root / "3. Report Generator" / "e. Final Report"
 
     exp.export(out)
