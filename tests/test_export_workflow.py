@@ -27,9 +27,9 @@ def setup_tmp(tmp_path):
     tmpl_dir = root / "3. Report Generator" / "b. Templates" / "Text"
     tmpl_dir.mkdir(parents=True)
     (tmpl_dir / "t.md").write_text("T", encoding="utf-8")
-    json_dir = root / "3. Report Generator" / "d. Gemini Output JSON"
+    json_dir = root / "3. Report Generator" / "d. Gemini Markdown Responses"
     json_dir.mkdir(parents=True)
-    (json_dir / "r.json").write_text(json.dumps({}), encoding="utf-8")
+    (json_dir / "r.md").write_text("R", encoding="utf-8")
     final_dir = root / "3. Report Generator" / "e. Final Report"
     final_dir.mkdir(parents=True)
     (final_dir / "f.md").write_text("F", encoding="utf-8")
@@ -45,16 +45,16 @@ def test_export(tmp_path):
     exp.RAW_INPUTS = root / "1. Input"
     exp.STRUCTURED_INPUTS = root / "2. Structured Input"
     exp.TEMPLATES = root / "3. Report Generator" / "b. Templates" / "Text"
-    exp.JSONS = root / "3. Report Generator" / "d. Gemini Output JSON"
+    exp.RESPONSES = root / "3. Report Generator" / "d. Gemini Markdown Responses"
     exp.FINAL_MD = root / "3. Report Generator" / "e. Final Report"
 
     exp.export(out)
 
-    assert (out / "Raw Therapixel Inputs" / "raw.json").exists()
-    assert (out / "Structured Inputs" / "struct.json").exists()
-    assert (out / "Reports" / "Templates" / "t.md").exists()
-    assert (out / "Reports" / "Gemini JSONs" / "r.json").exists()
-    assert (out / "Reports" / "Final MD" / "f.md").exists()
+    assert (out / "1. Raw Therapixel Inputs" / "raw.json").exists()
+    assert (out / "2. Structured Inputs" / "struct.json").exists()
+    assert (out / "3. Reports" / "a. Templates" / "t.md").exists()
+    assert (out / "3. Reports" / "b. Gemini Markdown" / "r.md").exists()
+    assert (out / "3. Reports" / "c. Final MD" / "f.md").exists()
 
 
 def test_model_name(tmp_path):

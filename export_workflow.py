@@ -14,7 +14,7 @@ CONFIG = ROOT / "0. Config" / "query_configs.yaml"
 RAW_INPUTS = ROOT / "1. Input"
 STRUCTURED_INPUTS = ROOT / "2. Structured Input"
 TEMPLATES = ROOT / "3. Report Generator" / "b. Templates" / "Text"
-JSONS = ROOT / "3. Report Generator" / "d. Gemini Output JSON"
+RESPONSES = ROOT / "3. Report Generator" / "d. Gemini Markdown Responses"
 FINAL_MD = ROOT / "3. Report Generator" / "e. Final Report"
 
 
@@ -44,7 +44,7 @@ def export(dest: Path) -> None:
     reports = dest / "3. Reports"
     reports.mkdir(exist_ok=True)
     _copy_tree(TEMPLATES, reports / "a. Templates")
-    _copy_tree(JSONS, reports / "b. Gemini JSONs")
+    _copy_tree(RESPONSES, reports / "b. Gemini Markdown")
     _copy_tree(FINAL_MD, reports / "c. Final MD")
 
 
