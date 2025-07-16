@@ -22,9 +22,9 @@ Présence d'une masse de 23 mm dans le quadrant supérieur du sein droit, d'aspe
 Sein droit : [] mGy. Sein gauche : [] mGy.
 
 ## Échographie :
-Examen non réalisé.
+[Description échographique complète]
 
 ## CONCLUSION :
-Masse très suspecte du quadrant supéro-externe droit. Présence de deux autres masses d'aspect bénin, une dans chaque sein.
+Masse d'aspect bénin du sein gauche. Multiples masses dans le sein droit, dont une d'aspect très suspect dans le quadrant supéro-externe.
 ACR 5 à droite.
 ACR 2 à gauche.

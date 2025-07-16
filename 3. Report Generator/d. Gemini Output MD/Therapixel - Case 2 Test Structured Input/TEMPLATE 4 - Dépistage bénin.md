@@ -1,18 +1,18 @@
 ## BILAN DE DÉPISTAGE INDIVIDUEL{.underline}
-Patiente âgée de [] ans
-Antécédents personnels : []
-Antécédents familiaux : []
+Patiente âgée de [\] ans
+Antécédents personnels : [\]
+Antécédents familiaux : [\]
 
 ## Examen clinique :
 [Seins souples / pas de nodule palpable / autre]
-Incidences de face et obliques bilatérales.
-Seins de densité ACR : []
-Mise en évidence d'un nodule de 25 mm du quadrant externe droit, de profondeur intermédiaire et de caractère indéterminé.
-Présence d'un autre nodule de 15 mm dans le quadrant externe droit, de profondeur postérieure, d'aspect bénin et contenant des calcifications.
-Dans le sein gauche, présence d'un nodule de 15 mm du quadrant supéro-interne, de profondeur postérieure et de faible suspicion.
-On note également un nodule de 22 mm du quadrant supéro-externe gauche, de profondeur postérieure et d'aspect bénin.
+Incidences de face et obliques sur les deux seins.
+Seins de densité ACR : [ACR densité]
+Dans le sein droit, présence d'un nodule de 25 mm dans le quadrant externe, de suspicion indéterminée.
+Il existe également un nodule de 15 mm dans le quadrant externe du sein droit, d'aspect bénin, avec des calcifications.
+Dans le sein gauche, présence d'un nodule de 22 mm dans le quadrant supéro-externe, d'aspect bénin.
+On note aussi un nodule de 15 mm dans le quadrant supéro-interne du sein gauche, de faible suspicion.
 Échographie : « Non réalisée »
 
 ## CONCLUSION :
-Mise en évidence de nodules bilatéraux dont un indéterminé à droite et un de faible suspicion à gauche, nécessitant un bilan complémentaire.
-Classification ACR 0.
+Mise en évidence de plusieurs nodules bilatéraux, dont un nodule de 25 mm dans le quadrant externe droit de suspicion indéterminée. Le bilan est classé ACR 0.
+Un complément par échographie mammaire bilatérale est indispensable.

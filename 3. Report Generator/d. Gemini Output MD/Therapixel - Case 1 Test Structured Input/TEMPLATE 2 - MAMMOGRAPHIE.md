@@ -3,12 +3,12 @@ Contexte clinique : [\]
 Examen clinique : [\]
 
 ## Résultat :
-Présence d'une opacité de 30 mm dans le quadrant supéro-externe du sein gauche, d'allure bénigne.
-Présence d'une opacité de 21 mm dans le quadrant supéro-externe du sein droit, d'allure très suspecte.
-Présence d'une autre opacité de 23 mm dans le quadrant supérieur du sein droit, d'allure bénigne.
+Présence d'une masse de 21 mm dans le quadrant supéro-externe du sein droit, d'aspect très suspect.
+Présence d'une masse de 23 mm dans le quadrant supérieur du sein droit, d'aspect bénin.
+Présence d'une masse de 30 mm dans le quadrant supéro-externe du sein gauche, d'aspect bénin.
 
 ## CONCLUSION :
-Opacité d'allure très suspecte du sein droit. Opacités d'allure bénigne des deux seins.
+Masse très suspecte du sein droit et lésions d'aspect bénin dans les deux seins.
 ACR 5 à droite.
 ACR 2 à gauche.
-Absence d'examen antérieur pour comparaison.
+Comparaison à l'examen de [Année] : [stable / modifié]
