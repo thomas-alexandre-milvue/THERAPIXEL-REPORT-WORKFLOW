@@ -39,13 +39,13 @@ def _copy_tree(src: Path, dst: Path) -> None:
 
 def export(dest: Path) -> None:
     dest.mkdir(parents=True, exist_ok=True)
-    _copy_tree(RAW_INPUTS, dest / "Raw Therapixel Inputs")
-    _copy_tree(STRUCTURED_INPUTS, dest / "Structured Inputs")
-    reports = dest / "Reports"
+    _copy_tree(RAW_INPUTS, dest / "1. Raw Therapixel Inputs")
+    _copy_tree(STRUCTURED_INPUTS, dest / "2. Structured Inputs")
+    reports = dest / "3. Reports"
     reports.mkdir(exist_ok=True)
-    _copy_tree(TEMPLATES, reports / "Templates")
-    _copy_tree(JSONS, reports / "Gemini JSONs")
-    _copy_tree(FINAL_MD, reports / "Final MD")
+    _copy_tree(TEMPLATES, reports / "a. Templates")
+    _copy_tree(JSONS, reports / "b. Gemini JSONs")
+    _copy_tree(FINAL_MD, reports / "c. Final MD")
 
 
 def main() -> None:
