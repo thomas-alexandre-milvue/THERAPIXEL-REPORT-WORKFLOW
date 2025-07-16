@@ -95,7 +95,7 @@ python export_workflow.py
 ### 2️⃣  Select assets  
 `select_assets.py` looks up **modality_map.yaml** to pair each case with:
 * a system prompt (`a. Prompts/…`)
-* a text template (`b. Templates/Text/…`)
+* a Markdown template (`b. Templates/Markdown/…`)
 
 This mapping file is required by the batch CLI; removing it will result in
 errors when generating reports.
@@ -121,7 +121,7 @@ pandoc report.md -o report.docx   --reference-doc="3. Report Generator/b. Templa
 | Asset | Edited by | Location |
 |-------|-----------|----------|
 | **Word master templates** | Radiologists | `b. Templates/DOCX Source/*.docx` |
-| **Text templates** | Devs + radiologists familiar with Git | `b. Templates/Text/*.md` |
+| **Markdown templates** | Devs + radiologists familiar with Git | `b. Templates/Markdown/*.md` |
 | **System prompts** | Prompt‑engineer | `a. Prompts/*.yaml` |
 
 **Add a new template**
@@ -144,7 +144,7 @@ Example `modality_map.yaml`
 ```yaml
 mammography:
   prompt: 3. Report Generator/a. Prompts/Templator Prompt.yaml  # overridden by query_configs.yaml
-  templates: 3. Report Generator/b. Templates/Text
+  templates: 3. Report Generator/b. Templates/Markdown
 ```
 
 Example `query_configs.yaml`

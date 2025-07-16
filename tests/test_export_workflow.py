@@ -23,7 +23,7 @@ def setup_tmp(tmp_path):
         "{}",
         encoding="utf-8",
     )
-    tmpl_dir = root / "3. Report Generator" / "b. Templates" / "Text"
+    tmpl_dir = root / "3. Report Generator" / "b. Templates" / "Markdown"
     tmpl_dir.mkdir(parents=True)
     (tmpl_dir / "t.md").write_text("T", encoding="utf-8")
     json_dir = root / "3. Report Generator" / "d. Gemini Output MD"
@@ -40,7 +40,7 @@ def test_export(tmp_path):
     exp.CONFIG = root / "0. Config" / "query_configs.yaml"
     exp.RAW_INPUTS = root / "1. Input"
     exp.STRUCTURED_INPUTS = root / "2. Structured Input"
-    exp.TEMPLATES = root / "3. Report Generator" / "b. Templates" / "Text"
+    exp.TEMPLATES = root / "3. Report Generator" / "b. Templates" / "Markdown"
     exp.JSONS = root / "3. Report Generator" / "d. Gemini Output MD"
 
     exp.export(out)

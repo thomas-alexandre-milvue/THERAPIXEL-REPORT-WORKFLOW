@@ -13,7 +13,7 @@ CONFIG = ROOT / "0. Config" / "query_configs.yaml"
 
 RAW_INPUTS = ROOT / "1. Input"
 STRUCTURED_INPUTS = ROOT / "2. Structured Input"
-TEMPLATES = ROOT / "3. Report Generator" / "b. Templates" / "Text"
+TEMPLATES = ROOT / "3. Report Generator" / "b. Templates" / "Markdown"
 JSONS = ROOT / "3. Report Generator" / "d. Gemini Output MD"
 
 
