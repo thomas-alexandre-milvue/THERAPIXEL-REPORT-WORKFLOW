@@ -73,7 +73,7 @@ python "3. Report Generator/c. Generator/cli.py"
 python "3. Report Generator/c. Generator/cli.py" \
        -i "2. Structured Input/Therapixel - Case 1 Test Structured Input.json" \
        -o "3. Report Generator/e. Final Report/Case1_report.md"
-#   Raw Gemini JSON is saved automatically under `3. Report Generator/d. Gemini Output JSON`
+#   Raw Gemini responses are saved under `3. Report Generator/d. Gemini Output JSON`
 #   Use -j to choose a different folder
 python "3. Report Generator/c. Generator/cli.py" \
        -i "2. Structured Input/Therapixel - Case 1 Test Structured Input.json" \
@@ -82,7 +82,7 @@ python "3. Report Generator/c. Generator/cli.py" \
 
 # 7  Generate reports for all test cases
 python "3. Report Generator/c. Generator/batch_cli.py"        -o "3. Report Generator/e. Final Report"
-#   JSON replies are stored in `3. Report Generator/d. Gemini Output JSON` by default
+#   Raw Gemini responses are stored in `3. Report Generator/d. Gemini Output JSON` by default
 #   Use -j to choose a different folder
 python "3. Report Generator/c. Generator/batch_cli.py"        -o "3. Report Generator/e. Final Report"        -j "3. Report Generator/d. Gemini Output JSON"
 # Windows users: run each line separately (don't paste two commands on one line).
@@ -109,9 +109,8 @@ errors when generating reports.
 
 ### 3️⃣  Call Gemini
 `gemini_reporter.py` sends the structured JSON and template snippets to Gemini.
-The model replies with a JSON block containing a list of Markdown lines:
-`{"lines": ["..."]}`.
-`gemini_reporter.py` joins these lines into the final Markdown report ready for clinicians.
+The model now returns Markdown text directly, which `gemini_reporter.py` writes
+to the output folder for clinicians.
 
 ### 4️⃣  (Optional) Convert to DOCX
 If needed, Jinja or Pandoc can reformat the Markdown into a DOCX report:
@@ -121,7 +120,8 @@ pandoc report.md -o report.docx   --reference-doc="3. Report Generator/b. Templa
 ```
 
 ### 5️⃣  Export workflow artifacts
-`export_workflow.py` copies raw inputs, structured JSON, templates, Gemini JSONs and final Markdown to your Downloads folder. Use `-o` to pick a different destination.
+`export_workflow.py` copies raw inputs, structured JSON, templates and the final
+Markdown to your Downloads folder. Use `-o` to pick a different destination.
 
 ---
 
@@ -162,11 +162,10 @@ generationConfig:
   temperature: 0.4
   topP: 0.1
   maxOutputTokens: 6000
-  response_mime_type: application/json
 prompt_file: 3. Report Generator/a. Prompts/Templator Prompt - Modified for Mammo.yaml
 thinkingConfig:
   thinkingBudget: 3000  # cap hidden reasoning tokens
-  includeThoughts: true # add a reasoning block after the JSON
+  includeThoughts: true # add a reasoning block after the report
 ```
 
 
@@ -208,7 +207,7 @@ pytest -q
 | `couldn't unpack docx container` | Source file isn’t real `.docx` – re‑save from Word or run the converter helper. |
 | Gemini `PermissionDenied` | Check API key and billing quota. |
 | Missing variables in output | Ensure prompt JSON names match Jinja placeholders. |
-| Gemini returns plain text instead of JSON | Add `response_mime_type: application/json` under `generationConfig` in `0. Config/query_configs.yaml`. |
+| Gemini output looks wrong or truncated | Check token limits and prompt formatting. |
 
 ---
 

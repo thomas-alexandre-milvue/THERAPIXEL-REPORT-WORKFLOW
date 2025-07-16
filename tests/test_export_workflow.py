@@ -50,11 +50,11 @@ def test_export(tmp_path):
 
     exp.export(out)
 
-    assert (out / "Raw Therapixel Inputs" / "raw.json").exists()
-    assert (out / "Structured Inputs" / "struct.json").exists()
-    assert (out / "Reports" / "Templates" / "t.md").exists()
-    assert (out / "Reports" / "Gemini JSONs" / "r.json").exists()
-    assert (out / "Reports" / "Final MD" / "f.md").exists()
+    assert (out / "1. Raw Therapixel Inputs" / "raw.json").exists()
+    assert (out / "2. Structured Inputs" / "struct.json").exists()
+    assert (out / "3. Reports" / "a. Templates" / "t.md").exists()
+    assert (out / "3. Reports" / "b. Gemini JSONs" / "r.json").exists()
+    assert (out / "3. Reports" / "c. Final MD" / "f.md").exists()
 
 
 def test_model_name(tmp_path):
