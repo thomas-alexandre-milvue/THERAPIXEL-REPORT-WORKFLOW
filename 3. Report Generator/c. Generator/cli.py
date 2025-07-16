@@ -47,11 +47,11 @@ def main() -> None:
     )
     p.add_argument(
         "-j",
-        "--json-dir",
-        dest="json_dir",
+        "--response-dir",
+        dest="response_dir",
         type=Path,
-        default=ROOT / "3. Report Generator" / "d. Gemini Output JSON",
-        help="Folder to store raw Gemini JSON response",
+        default=ROOT / "3. Report Generator" / "d. Gemini Markdown Responses",
+        help="Folder to store raw Gemini Markdown response",
     )
     args = p.parse_args()
 
@@ -95,7 +95,7 @@ def main() -> None:
         )
         args.out = out_dir / f"{Path(args.template).stem}.md"
 
-    json_dir = args.json_dir / args.inp.stem if args.json_dir else None
+    json_dir = args.response_dir / args.inp.stem if args.response_dir else None
     report = generate_report(
         case, prompt_path, [args.template], json_dir=json_dir
     )

@@ -73,18 +73,18 @@ python "3. Report Generator/c. Generator/cli.py"
 python "3. Report Generator/c. Generator/cli.py" \
        -i "2. Structured Input/Therapixel - Case 1 Test Structured Input.json" \
        -o "3. Report Generator/e. Final Report/Case1_report.md"
-#   Raw Gemini responses are saved under `3. Report Generator/d. Gemini Output JSON`
+#   Raw Gemini Markdown is saved automatically under `3. Report Generator/d. Gemini Markdown Responses`
 #   Use -j to choose a different folder
 python "3. Report Generator/c. Generator/cli.py" \
        -i "2. Structured Input/Therapixel - Case 1 Test Structured Input.json" \
        -o "3. Report Generator/e. Final Report/Case1_report.md" \
-       -j "3. Report Generator/d. Gemini Output JSON"
+       -j "3. Report Generator/d. Gemini Markdown Responses"
 
 # 7  Generate reports for all test cases
 python "3. Report Generator/c. Generator/batch_cli.py"        -o "3. Report Generator/e. Final Report"
-#   Raw Gemini responses are stored in `3. Report Generator/d. Gemini Output JSON` by default
+#   Markdown replies are stored in `3. Report Generator/d. Gemini Markdown Responses` by default
 #   Use -j to choose a different folder
-python "3. Report Generator/c. Generator/batch_cli.py"        -o "3. Report Generator/e. Final Report"        -j "3. Report Generator/d. Gemini Output JSON"
+python "3. Report Generator/c. Generator/batch_cli.py"        -o "3. Report Generator/e. Final Report"        -j "3. Report Generator/d. Gemini Markdown Responses"
 # Windows users: run each line separately (don't paste two commands on one line).
 
 # 8  Collect all artifacts to Downloads
