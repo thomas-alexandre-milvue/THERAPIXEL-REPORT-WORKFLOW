@@ -8,7 +8,7 @@ MODULE = (
     Path(__file__).resolve().parents[1]
     / "3. Report Generator"
     / "b. Templates"
-    / "convert_docx_to_txt.py"
+    / "convert_docx_to_md.py"
 )
 source = MODULE.read_text(encoding="utf-8")
 
@@ -32,12 +32,12 @@ convert = namespace["convert"]
 
 
 def test_convert_writes_file(monkeypatch, tmp_path):
-    cp = subprocess.CompletedProcess(["pandoc"], 0, stdout="Age: [Age]\n")
+    cp = subprocess.CompletedProcess(["pandoc"], 0, stdout="Age: **[Age]**\n")
     monkeypatch.setattr(subprocess, "run", lambda *a, **k: cp)
     namespace["ROOT"] = tmp_path
     docx = tmp_path / "input.docx"
     docx.write_text("dummy")
-    txt = tmp_path / "out.txt"
-    convert(docx, txt)
-    assert txt.exists()
-    assert txt.read_text(encoding="utf-8") == "Age: [Age]\n"
+    out = tmp_path / "out.md"
+    convert(docx, out)
+    assert out.exists()
+    assert out.read_text(encoding="utf-8") == "Age: **[Age]**\n"

@@ -38,9 +38,9 @@ def test_generate_reports(monkeypatch, tmp_path):
     )
     prompt = tmp_path / "p.txt"
     prompt.write_text("prompt")
-    t1 = tmp_path / "a.txt"
+    t1 = tmp_path / "a.md"
     t1.write_text("A {name}")
-    t2 = tmp_path / "b.txt"
+    t2 = tmp_path / "b.md"
     t2.write_text("B {name}")
 
     result = renderer.generate_reports({}, prompt, [t1, t2])
@@ -57,7 +57,7 @@ def test_generate_reports_json_dir(monkeypatch, tmp_path):
 
     prompt = tmp_path / "p.txt"
     prompt.write_text("prompt")
-    t1 = tmp_path / "a.txt"
+    t1 = tmp_path / "a.md"
     t1.write_text("T")
     jdir = tmp_path / "json"
 

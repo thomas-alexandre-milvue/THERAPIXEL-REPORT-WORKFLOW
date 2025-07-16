@@ -31,36 +31,16 @@
 ## Folder Layout
 ```
 repo-root/
-│ README.md
-├── project_meta/
-│   ├── AGENTS.md
-│   ├── requirements.txt
-│   ├── .flake8
-│   ├── .gitignore
-│   └── pandoc-3.7.0.2-windows-x86_64.msi
+├── .github/
+├── .flake8
+├── .gitignore
 ├── 0. Config/
-│   ├── Structured_Input_scheme.json
-│   ├── modality_map.yaml
-│   └── query_configs.yaml
 ├── 1. Input/
-│   └── <vendor>.json
 ├── 2. Structured Input/
-│   ├── Structured Input Creator.py
-│   └── *.json
-└── 3. Report Generator/
-    ├── a. Prompts/
-    │   └── Templator Prompt.yaml
-    ├── b. Templates/
-    │   ├── convert_docx_to_txt.py
-    │   ├── DOCX Source/
-    │   │   └── TEMPLATE *.docx
-    │   └── Text/
-    │       └── TEMPLATE *.txt
-    ├── c. Generator/
-    │   ├── __init__.py
-    │   ├── cli.py
-    │   ├── gemini_reporter.py
-    │   └── select_assets.py
+├── 3. Report Generator/
+├── project_meta/
+├── tests/
+└── README.md
 ```
 
 ---
@@ -80,7 +60,7 @@ pip install -r project_meta/requirements.txt
 export GOOGLE_API_KEY=AIzaSyDZ6Z6xaRLpQDY-lucjfp8f8Z45mEbn1cs
 
 # 4  Convert Word templates → plain text (one‑off)
-python "3. Report Generator/b. Templates/convert_docx_to_txt.py"
+python "3. Report Generator/b. Templates/convert_docx_to_md.py"
 
 # 5  Create structured input from raw case
 python "2. Structured Input/Structured Input Creator.py"        "1. Input/Therapixel - Case 1 Test.json"        -o "2. Structured Input/"
@@ -89,10 +69,16 @@ python "2. Structured Input/Structured Input Creator.py"        "1. Input/Therap
 # choose structured input and template interactively
 python "3. Report Generator/c. Generator/cli.py"
 # or specify paths directly
-python "3. Report Generator/c. Generator/cli.py"        -i "2. Structured Input/Therapixel - Case 1 Test Structured Input.json"        -o "4. Reports/Case1_report.md"
+# output folder defaults to `3. Report Generator/e. Final Report/<case>/`
+python "3. Report Generator/c. Generator/cli.py" \
+       -i "2. Structured Input/Therapixel - Case 1 Test Structured Input.json" \
+       -o "3. Report Generator/e. Final Report/Case1_report.md"
 #   Raw Gemini JSON is saved automatically under `3. Report Generator/d. Gemini Output JSON`
 #   Use -j to choose a different folder
-python "3. Report Generator/c. Generator/cli.py"        -i "2. Structured Input/Therapixel - Case 1 Test Structured Input.json"        -o "4. Reports/Case1_report.md"        -j "3. Report Generator/d. Gemini Output JSON"
+python "3. Report Generator/c. Generator/cli.py" \
+       -i "2. Structured Input/Therapixel - Case 1 Test Structured Input.json" \
+       -o "3. Report Generator/e. Final Report/Case1_report.md" \
+       -j "3. Report Generator/d. Gemini Output JSON"
 
 # 7  Generate reports for all test cases
 python "3. Report Generator/c. Generator/batch_cli.py"        -o "3. Report Generator/e. Final Report"
@@ -100,6 +86,10 @@ python "3. Report Generator/c. Generator/batch_cli.py"        -o "3. Report Gene
 #   Use -j to choose a different folder
 python "3. Report Generator/c. Generator/batch_cli.py"        -o "3. Report Generator/e. Final Report"        -j "3. Report Generator/d. Gemini Output JSON"
 # Windows users: run each line separately (don't paste two commands on one line).
+
+# 8  Collect all artifacts to Downloads
+python export_workflow.py
+#   Use -o to choose a different destination
 ```
 
 ---
@@ -130,20 +120,23 @@ If needed, Jinja or Pandoc can reformat the Markdown into a DOCX report:
 pandoc report.md -o report.docx   --reference-doc="3. Report Generator/b. Templates/DOCX Source/reference.docx"
 ```
 
+### 5️⃣  Export workflow artifacts
+`export_workflow.py` copies raw inputs, structured JSON, templates, Gemini JSONs and final Markdown to your Downloads folder. Use `-o` to pick a different destination.
+
 ---
 
 ## Templates & Prompts
 | Asset | Edited by | Location |
 |-------|-----------|----------|
 | **Word master templates** | Radiologists | `b. Templates/DOCX Source/*.docx` |
-| **Text templates** | Devs + radiologists familiar with Git | `b. Templates/Text/*.txt` |
+| **Text templates** | Devs + radiologists familiar with Git | `b. Templates/Text/*.md` |
 | **System prompts** | Prompt‑engineer | `a. Prompts/*.yaml` |
 
 **Add a new template**
 
 1. Drop a DOCX in *DOCX Source*.
-2. Run `convert_docx_to_txt.py` – this converts `[PLACEHOLDER]` tags to `{{ placeholder }}`.
-3. Review the generated `.txt`, tweak placeholder names if needed, commit.
+2. Run `convert_docx_to_md.py` – placeholders stay `[PLACEHOLDER]`; escape backslashes are removed.
+3. Review the generated `.md`, tweak placeholder names if needed, commit.
 
 ---
 
@@ -153,7 +146,7 @@ pandoc report.md -o report.docx   --reference-doc="3. Report Generator/b. Templa
 |------|---------|
 | **Structured_Input_scheme.json** | JSON schema enforced by step 2. |
 | **modality_map.yaml** | Maps `modality` → `{prompt, templates}`. |
-| **query_configs.yaml** | Model, temperature, prompt file, max‑tokens, etc. |
+| **query_configs.yaml** | Model, temperature, prompt file, max‑tokens, response type, etc. |
 
 Example `modality_map.yaml`
 ```yaml
@@ -164,22 +157,26 @@ mammography:
 
 Example `query_configs.yaml`
 ```yaml
-model_name: models/gemini-1.5-pro-latest
-temperature: 0.4
-top_p: 0.1
-max_output_tokens: 6000
+model_name: models/gemini-2.5-pro
+generationConfig:
+  temperature: 0.4
+  topP: 0.1
+  maxOutputTokens: 6000
+  response_mime_type: application/json
 prompt_file: 3. Report Generator/a. Prompts/Templator Prompt - Modified for Mammo.yaml
+thinkingConfig:
+  thinkingBudget: 3000  # cap hidden reasoning tokens
+  includeThoughts: true # add a reasoning block after the JSON
 ```
-Only the fields shown above are currently consumed by the code. Other keys like
-`include_thoughts`, `thinking_budget` and `seed` are legacy and can be ignored.
+
 
 ---
 
 ## Developer Guide
 
 ### Style & tooling
-* **Black** + **Ruff** enforced by pre‑commit.  
-* Absolute imports (`from report_generator.c.Generator import …`) keep paths explicit.
+* **Black** and **Ruff** optional; CI runs **flake8**.
+* Modules loaded directly from `3. Report Generator/c. Generator` using `importlib`.
 
 ### Secrets
 `.env` (git‑ignored):
@@ -211,6 +208,7 @@ pytest -q
 | `couldn't unpack docx container` | Source file isn’t real `.docx` – re‑save from Word or run the converter helper. |
 | Gemini `PermissionDenied` | Check API key and billing quota. |
 | Missing variables in output | Ensure prompt JSON names match Jinja placeholders. |
+| Gemini returns plain text instead of JSON | Add `response_mime_type: application/json` under `generationConfig` in `0. Config/query_configs.yaml`. |
 
 ---
 

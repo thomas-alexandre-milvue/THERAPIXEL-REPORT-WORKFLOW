@@ -1,30 +1,27 @@
-BILAN SENOLOGIQUE
+## BILAN SENOLOGIQUE
 Examen de contrôle chez une patiente âgée de [] ans.
 Examen clinique : seins granuleux.
-Exérèse d’adénofibromes bilatéraux en [].
+Exérèse d'adénofibromes bilatéraux en [].
 
-MAMMOGRAPHIE NUMERIQUE BILATERALE AVEC TOMOSYNHESE 3D
+## MAMMOGRAPHIE NUMERIQUE BILATERALE AVEC TOMOSYNHESE 3D
 Seins à la fois lipomateux et mastosiques.
 Les éléments sécrétoires, nombreux, de moyennes dimensions, et altérés par la fibrose, confèrent aux aires mammaires une forte densité hétérogène à prédominance externe.
-Présence épars dans les aires mammaires, de quelques surcroits d’opacité ovalaires, homogènes, aux contours pour la plupart nets et réguliers.
+Présence éparse dans les aires mammaires, de quelques surcroits d'opacité ovalaires, homogènes, aux contours pour la plupart nets et réguliers.
 SEIN DROIT :
-Masse de 21 mm de diamètre au niveau du quadrant supéro-externe, classée ACR 5 compte tenu de sa forme ronde, de contours spiculés et de sa densité élevée. Deux autres masses bénignes au niveau du quadrant supéro-externe et supérieur, mesurant respectivement 30 mm et 23 mm.
+Présence dans le quadrant supéro-externe d'une masse suspecte de 21 mm et d'une opacité d'allure bénigne de 23 mm dans les quadrants supérieurs.
 SEIN GAUCHE :
-Masse bénigne de 30 mm de diamètre au niveau du quadrant supéro-externe.
+Présence dans le quadrant supéro-externe d'une opacité d'allure bénigne de 30 mm.
 
-ECHOGRAPHIE MAMMAIRE
+## ECHOGRAPHIE MAMMAIRE
 TOSHIBA XARIO200 - 2015 DESINFECTION PAR ANTIGERMIX S1 : RAYONNEMENT UVC (GERMITEC)
 SONDE SUPERFICIELLE A FOCALISATION ELECTRONIQUE & MODE HARMONIQUE, DE 5 A 12 MHZ
-Nodules hypoéchogènes homogènes, aux contours nets, anciennement connus, correspondant aux surcroits d’opacité observes en mammographie, mesurant :
+Nodules hypoéchogènes homogènes, aux contours nets, anciennement connus, correspondant aux surcroits d'opacité observes en mammographie, mesurant :
 A droite :
-
 []
-
 A gauche :
 []
 
-CONCLUSION
-A droite, une masse suspecte est présente. A gauche, pas de masse suspecte.
-
+## CONCLUSION
+Masse suspecte du sein droit. Multiples opacités d'allure bénigne bilatérales.
 Droit ACR 5 Gauche ACR 2
-Densité glandulaire BIRADS []
+Densité glandulaire BIRADS C

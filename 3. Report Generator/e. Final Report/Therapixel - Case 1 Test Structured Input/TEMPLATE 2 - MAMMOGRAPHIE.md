@@ -1,14 +1,16 @@
-MAMMOGRAPHIE
-
+## MAMMOGRAPHIE
 Contexte clinique : []
 Examen clinique : []
 
-Résultat :
-Sein droit : Masse de 21 mm de diamètre dans le quadrant supéro-externe, classée ACR 5. Masse de 23 mm de diamètre dans le quadrant supérieur, classée ACR 2.
-Sein gauche : Masse de 30 mm de diamètre dans le quadrant supéro-externe, classée ACR 2.
+## Résultat :
+Au niveau du sein droit :
+- Présence d'une masse de 21 mm dans le quadrant supéro-externe, d'aspect fortement suspect.
+- Présence d'une seconde masse de 23 mm dans les quadrants supérieurs, d'allure bénigne.
+Au niveau du sein gauche :
+- Présence d'une masse de 30 mm dans le quadrant supéro-externe, d'allure bénigne.
 
-CONCLUSION :
-
+## CONCLUSION :
+Masse fortement suspecte du sein droit nécessitant une prise en charge diagnostique. Opacités d'allure bénigne par ailleurs.
 ACR 5 à droite.
 ACR 2 à gauche.
-Comparaison à l’examen de [] : []
+Comparaison à l'examen de [Année] : [stable / modifié]

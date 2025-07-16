@@ -22,11 +22,11 @@ def test_parse_response_json():
     assert renderer._parse_response(text) == {"lines": ["a", "b"]}
 
 
-def test_parse_response_no_json_logs(caplog):
-    with caplog.at_level(logging.WARNING):
-        with pytest.raises(ValueError):
-            renderer._parse_response("error message")
-    assert "error message" in caplog.text
+def test_parse_response_last_json_block():
+    text = (
+        "prefix {\"lines\": [\"x\"]} middle {\"lines\": [\"y\"]}\nReasoning"
+    )
+    assert renderer._parse_response(text) == {"lines": ["y"]}
 
 
 def test_render_json_to_md():

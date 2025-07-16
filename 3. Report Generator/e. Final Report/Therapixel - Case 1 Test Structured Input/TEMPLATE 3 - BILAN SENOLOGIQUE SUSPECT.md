@@ -1,37 +1,28 @@
-BILAN SÉNOLOGIQUE
-
+## BILAN SÉNOLOGIQUE
 Compte rendu avant 2ᵉ lecture du dépistage organisé
 
-Indication :
-Patiente de [] ans adressée pour [motif].
+## Indication :
+Patiente de [] ans adressée pour dépistage.
 Parité : []
-
 Allaitement : [Oui / Non]
 ATCD personnels : []
 ATCD familiaux : []
-Examen clinique : []
-
+**Examen clinique** : []
 Mammographie bilatérale numérisée
 Sein droit :
-
-Masse de 21 mm de diamètre en quadrant supéro-externe, classée ACR 5.
-Masse de 23 mm de diamètre en quadrant supérieur, classée ACR 2.
+Masse suspecte de 21 mm du quadrant supéro-externe.
+Masse d'allure bénigne de 23 mm du quadrant supérieur.
 Sein gauche :
-
-Masse de 30 mm de diamètre en quadrant supéro-externe, classée ACR 2.
-
+Masse d'allure bénigne de 30 mm du quadrant supéro-externe.
 Échographie mammaire
 Sein droit :
-
 []
 Sein gauche :
-
 []
 Axillaires : []
 
-CONCLUSION :
-
-[Conclusion détaillée]
+## CONCLUSION :
+Masse hautement suspecte du sein droit. Lésions d'allure bénigne dans les deux seins.
 ACR 5 à droite.
 ACR 2 à gauche.
-Recommandation : [biopsie / contrôle / autre]
+Recommandation : biopsie

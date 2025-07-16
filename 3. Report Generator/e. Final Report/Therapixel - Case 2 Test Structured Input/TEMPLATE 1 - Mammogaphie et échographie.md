@@ -1,28 +1,30 @@
-MAMMOGRAPHIE ET ÉCHOGRAPHIE MAMMAIRE BILATÉRALE :
+## MAMMOGRAPHIE ET ÉCHOGRAPHIE MAMMAIRE BILATÉRALE :
 
-Indication :
+## Indication :
 Examen systématique.
-ATCD familiaux : []
-ATCD personnels : []
-Statut hormonal : [ménopausée / THS / non ménopausée]
-Examen clinique : []
+ATCD familiaux : [\].
+ATCD personnels : [\].
+Statut hormonal : [ménopausée / THS / non ménopausée].
+Examen clinique : [\].
 
-Technique :
-Mammographie : [] clichés numérisés. Clichés réalisés avec un mammographe numérique plein champ haute définition « PLANMED NUANCE » mis en service en juillet 2013.
+## Technique :
+Mammographie : 4 clichés numérisés. Clichés réalisés avec un mammographe numérique plein champ haute définition « PLANMED NUANCE » mis en service en juillet 2013.
 Échographie : Examen réalisé avec une sonde multifréquence de 5 à 13 MHz, échographe HITACHI AVIUS mis en service en juin 2013.
 
-Résultats :
-Pas d’antécédents
+## Résultats :
+Pas d'antécédents.
 
-Mammographie :
-Densité mammaire ACR : []
-Sein droit : Masse de 25 mm de diamètre moyen, de localisation rétro-aréolaire externe, se projetant sur les clichés de face en regard du quadrant supéro-externe.  Masse de 15 mm de diamètre moyen, calcifiée, de localisation supéro-externe. Sein gauche : Masse de 22 mm de diamètre moyen de localisation supéro-externe. Masse de 15 mm de diamètre moyen de localisation supéro-interne.
-Sein droit : [] mGy. Sein gauche : [] mGy.
+## Mammographie :
+Densité mammaire ACR : [\].
+Au niveau du sein droit, on individualise une masse de 25 mm dans les quadrants externes, de topographie moyenne, de suspicion indéterminée. On note également une autre masse de 15 mm dans les quadrants externes, d'aspect bénin, contenant des calcifications.
+Au niveau du sein gauche, mise en évidence d'une masse de 15 mm dans le quadrant supéro-interne, de faible suspicion. Il existe par ailleurs une autre masse de 22 mm dans le quadrant supéro-externe, d'aspect bénin.
+Sein droit : [\\] mGy. Sein gauche : [\\] mGy.
 
-Échographie :
-[Description échographique complète]
+## Échographie :
+[Description échographique complète\]
 
-CONCLUSION :
-
+## CONCLUSION :
+Masse de 25 mm de suspicion indéterminée dans les quadrants externes du sein droit et masse de 15 mm de faible suspicion dans le quadrant supéro-interne du sein gauche.
+Un complément d'imagerie par échographie est indiqué pour une meilleure caractérisation.
 ACR 0 à droite.
 ACR 0 à gauche.

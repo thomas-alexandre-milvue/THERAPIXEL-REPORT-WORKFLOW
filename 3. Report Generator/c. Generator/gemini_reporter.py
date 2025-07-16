@@ -36,14 +36,22 @@ def _load_config() -> Dict[str, Any]:
 def _parse_response(text: str) -> Dict[str, Any]:
     """Return JSON payload extracted from Gemini output."""
     text = re.split(r"\n+Reasoning", text, 1)[0]
-    fence = re.search(r"```(?:json)?\s*(.*?)```", text, re.S | re.I)
-    if fence:
-        text = fence.group(1)
-    match = re.search(r"\{.*\}", text, re.S)
-    if not match:
-        LOGGER.warning("Could not find JSON in response: %s", text)
+    decoder = json.JSONDecoder()
+    idx = 0
+    last_obj = None
+    while True:
+        try:
+            start = text.index("{", idx)
+        except ValueError:
+            break
+        try:
+            last_obj, end = decoder.raw_decode(text, start)
+            idx = end
+        except json.JSONDecodeError:
+            idx = start + 1
+    if last_obj is None:
         raise ValueError("No JSON object found in response")
-    return json.loads(match.group(0))
+    return last_obj
 
 
 def render_json_to_md(data: Dict[str, Any]) -> str:
@@ -146,25 +154,66 @@ def query_gemini(structured: Dict[str, Any], prompt: str, templates: List[str]) 
         {"pre_report": structured, "templates": templates},
         ensure_ascii=False,
     )
-    resp = model.generate_content(
-        user_payload,
-        generation_config={
-            "temperature": cfg.get("temperature", 0.4),
-            "top_p": cfg.get("top_p", 0.8),
-            "max_output_tokens": cfg.get("max_output_tokens", 2048),
-        },
+    retries = cfg.get("retries", 2)
+    last_reason = None
+    defaults = {
+        "temperature": 0.4,
+        "top_p": 0.8,
+        "max_output_tokens": 2048,
+        "response_mime_type": "application/json",
+    }
+    gcfg = cfg.get("generationConfig") or cfg.get("generation_config") or {}
+    gen_cfg = {
+        "temperature": gcfg.get(
+            "temperature", cfg.get("temperature", defaults["temperature"])
+        ),
+        "top_p": gcfg.get(
+            "topP", gcfg.get("top_p", cfg.get("top_p", defaults["top_p"]))
+        ),
+        "max_output_tokens": gcfg.get(
+            "maxOutputTokens",
+            gcfg.get(
+                "max_output_tokens",
+                cfg.get("max_output_tokens", defaults["max_output_tokens"]),
+            ),
+        ),
+        "response_mime_type": gcfg.get(
+            "responseMimeType",
+            gcfg.get(
+                "response_mime_type",
+                cfg.get("response_mime_type", defaults["response_mime_type"]),
+            ),
+        ),
+    }
+    gen_cfg["response_mime_type"] = gcfg.get(
+        "response_mime_type",
+        cfg.get("response_mime_type", "application/json"),
     )
 
-    feedback = getattr(resp, "prompt_feedback", None)
-    if feedback and getattr(feedback, "block_reason", 0):
-        raise RuntimeError(str(feedback))
+    for attempt in range(retries + 1):
+        resp = model.generate_content(
+            user_payload,
+            generation_config=gen_cfg,
+        )
+        candidate = resp.candidates[0]
+        parts = getattr(candidate.content, "parts", [])
+        if parts:
+            text = "".join(getattr(p, "text", str(p)) for p in parts)
+            try:
+                return _parse_response(text)
+            except ValueError:
+                print(
+                    "[query_gemini] Unparsable response from Gemini:\n" + text,
+                    flush=True,
+                )
+                raise
+        last_reason = candidate.finish_reason
+        print(
+            f"[query_gemini] Empty response (finish_reason={last_reason}), retrying {attempt + 1}/{retries}",
+            flush=True,
+        )
 
-    try:
-        text = resp.text
-    except Exception as exc:  # pragma: no cover - network errors
-        raise RuntimeError(str(exc))
-
-    return _parse_response(text)
+    raise RuntimeError(f"Gemini returned no content (finish_reason={last_reason})")
 
 
 def generate_reports(

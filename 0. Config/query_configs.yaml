@@ -1,8 +1,50 @@
-model_name: models/gemini-1.5-pro-latest
-temperature: 0.4
-top_p: 0.1
-max_output_tokens: 6000
-prompt_file: 3. Report Generator/a. Prompts/Templator Prompt - Modified for Mammo.yaml
-include_thoughts: true
-thinking_budget: 3000
-seed: 0
+model_name: models/gemini-2.5-pro
+# Available Gemini API models (updated 2025-07-07):
+#   gemini-2.5-pro
+#   gemini-2.5-pro-preview-06-05
+#   gemini-2.5-pro-preview-05-06
+#   gemini-2.5-pro-preview-03-25
+#   gemini-2.5-flash
+#   gemini-2.5-flash-preview-05-20
+#   gemini-2.5-flash-lite-preview-06-17
+#   gemini-2.5-flash-preview-native-audio-dialog
+#   gemini-2.5-flash-exp-native-audio-thinking-dialog
+#   gemini-2.5-flash-preview-tts
+#   gemini-2.5-pro-preview-tts
+#   gemini-live-2.5-flash-preview
+#   gemini-2.0-flash
+#   gemini-2.0-flash-001
+#   gemini-2.0-flash-exp
+#   gemini-2.0-flash-preview-image-generation
+#   gemini-2.0-flash-lite
+#   gemini-2.0-flash-lite-001
+#   gemini-2.0-flash-live-001
+#   gemini-1.5-flash-latest
+#   gemini-1.5-flash
+#   gemini-1.5-flash-001
+#   gemini-1.5-flash-002
+#   gemini-1.5-flash-8b-latest
+#   gemini-1.5-flash-8b
+#   gemini-1.5-flash-8b-001
+#   gemini-1.5-pro-latest
+#   gemini-1.5-pro
+#   gemini-1.5-pro-001
+#   gemini-1.5-pro-002
+#   gemini-embedding-exp-03-07
+#   text-embedding-004
+#   embedding-001
+#   aqa
+#   imagen-4.0-generate-preview-06-06
+#   imagen-4.0-ultra-generate-preview-06-06
+#   imagen-3.0-generate-002
+#   veo-2.0-generate-001
+# query_configs.yaml
+generationConfig:
+  temperature: 0.4
+  topP: 0.1
+  maxOutputTokens: 6000
+  response_mime_type: application/json
+thinkingConfig:
+  includeThoughts: true           # summaries only
+  thinkingBudget: 3000
+
