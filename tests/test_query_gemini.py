@@ -64,7 +64,7 @@ def test_query_gemini_retries(monkeypatch):
     responses = [
         fake_candidate([], 2),
         fake_candidate([], 2),
-        fake_candidate([Part('{"lines": ["ok"]}')], 0),
+        fake_candidate([Part('ok')], 0),
     ]
     model = FakeModel(responses)
     monkeypatch.setattr(
@@ -80,7 +80,7 @@ def test_query_gemini_retries(monkeypatch):
         ),
     )
     out = reporter.query_gemini({}, 'p', ['t'])
-    assert out == {'lines': ['ok']}
+    assert out == 'ok'
     assert model.calls == 3
 
 
@@ -121,7 +121,7 @@ def test_generation_config(monkeypatch):
     class Model:
         def generate_content(self, payload, generation_config=None):
             captured.update(generation_config)
-            return fake_candidate([Part('{"lines": ["x"]}')], 0)
+            return fake_candidate([Part('x')], 0)
 
     monkeypatch.setattr(
         reporter,
@@ -136,7 +136,7 @@ def test_generation_config(monkeypatch):
         ),
     )
     out = reporter.query_gemini({}, "p", ["t"])
-    assert out == {"lines": ["x"]}
+    assert out == "x"
     assert captured == {
         "temperature": 0.4,
         "top_p": 0.8,
@@ -160,7 +160,7 @@ def test_generation_config_nested(monkeypatch):
     class Model:
         def generate_content(self, payload, generation_config=None):
             captured.update(generation_config)
-            return fake_candidate([Part('{"lines": ["n"]}')], 0)
+            return fake_candidate([Part('n')], 0)
 
     monkeypatch.setattr(
         reporter,
@@ -175,7 +175,7 @@ def test_generation_config_nested(monkeypatch):
         ),
     )
     out = reporter.query_gemini({}, "p", ["t"])
-    assert out == {"lines": ["n"]}
+    assert out == "n"
     assert captured == {
         "temperature": 0.7,
         "top_p": 0.3,
