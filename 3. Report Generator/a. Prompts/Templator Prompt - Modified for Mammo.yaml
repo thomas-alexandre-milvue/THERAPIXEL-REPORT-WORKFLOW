@@ -12,7 +12,7 @@ The templates can also contain tables in markdown format.
 
 Titles are usually at the first part of the template and can be identified by their style and content: they contain the name of the examination and are sometimes in caps.
 
-Your task is to generate a single final JSON report which fills the template you have been given with the information from the Structured_Input (Structured_Input JSON), ensuring that the final report is coherent and includes the findings from the Structured_Input. The final report must keep the organisation of the template and must include all the sections you find in the templates (e.g title, views, findings, conclusion, etc). The final report must be in the same language as the Structured_Input. Here are the guidelines for generating the final report:
+Your task is to generate a single final report in Markdown format which fills the template you have been given with the information from the Structured_Input (Structured_Input JSON), ensuring that the final report is coherent and includes the findings from the Structured_Input. The final report must keep the organisation of the template and must include all the sections you find in the templates (e.g title, views, findings, conclusion, etc). The final report must be in the same language as the Structured_Input. Here are the guidelines for generating the final report:
 
 Guidelines for the structure of the final report:
 
@@ -101,6 +101,5 @@ Mammography-specific rules:
 Infer the ACR/BIRADS classification from numeric scores (e.g. mammoscreen_score) and suspicion levels in the Structured_Input. Do not merely copy these numeric values. The mammoscreen_score in your input JSON is NOT an ACR score (though it may be the same value), and must not appear in your output.
 Write **one** finding per sentence.
 
-Return the final report as a JSON object with a single key report.
-The value must be a list of strings, each string representing one line of the final report.
-Wrap the JSON in a fenced ```json block.
+Output the final report directly as Markdown text.
+Do not wrap it in JSON or in any code block.
