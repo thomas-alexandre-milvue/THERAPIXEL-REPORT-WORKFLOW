@@ -1,5 +1,4 @@
 import importlib.util
-import json
 from pathlib import Path
 
 # Dynamically import gemini_reporter
@@ -21,8 +20,8 @@ def common_setup(monkeypatch):
 def test_generate_reports(monkeypatch, tmp_path):
     common_setup(monkeypatch)
     outputs = iter([
-        {"lines": ["one"]},
-        {"lines": ["two"]},
+        "one",
+        "two",
     ])
     calls = []
 
@@ -31,11 +30,6 @@ def test_generate_reports(monkeypatch, tmp_path):
         return next(outputs)
 
     monkeypatch.setattr(renderer, "query_gemini", fake_query)
-    monkeypatch.setattr(
-        renderer,
-        "render_json_to_md",
-        lambda d: " ".join(d["lines"]),
-    )
     prompt = tmp_path / "p.txt"
     prompt.write_text("prompt")
     t1 = tmp_path / "a.md"
@@ -50,10 +44,9 @@ def test_generate_reports(monkeypatch, tmp_path):
 
 def test_generate_reports_json_dir(monkeypatch, tmp_path):
     common_setup(monkeypatch)
-    output = {"lines": ["x"]}
+    output = "res"
 
     monkeypatch.setattr(renderer, "query_gemini", lambda *a: output)
-    monkeypatch.setattr(renderer, "render_json_to_md", lambda d: "res")
 
     prompt = tmp_path / "p.txt"
     prompt.write_text("prompt")
@@ -64,5 +57,5 @@ def test_generate_reports_json_dir(monkeypatch, tmp_path):
     result = renderer.generate_reports({}, prompt, [t1], json_dir=jdir)
 
     assert result == {"a": "res"}
-    saved = json.loads((jdir / "a.json").read_text())
+    saved = (jdir / "a.json").read_text()
     assert saved == output

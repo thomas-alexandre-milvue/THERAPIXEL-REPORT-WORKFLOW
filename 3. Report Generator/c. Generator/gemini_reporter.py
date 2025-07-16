@@ -33,114 +33,13 @@ def _load_config() -> Dict[str, Any]:
     return {}
 
 
-def _parse_response(text: str) -> Dict[str, Any]:
-    """Return JSON payload extracted from Gemini output."""
-    text = re.split(r"\n+Reasoning", text, 1)[0]
-    decoder = json.JSONDecoder()
-    idx = 0
-    last_obj = None
-    while True:
-        try:
-            start = text.index("{", idx)
-        except ValueError:
-            break
-        try:
-            last_obj, end = decoder.raw_decode(text, start)
-            idx = end
-        except json.JSONDecodeError:
-            idx = start + 1
-    if last_obj is None:
-        raise ValueError("No JSON object found in response")
-    return last_obj
+
+def _strip_reasoning(text: str) -> str:
+    """Return the text without any trailing reasoning section."""
+    return re.split(r"\n+Reasoning", text, 1)[0].rstrip()
 
 
-def render_json_to_md(data: Dict[str, Any]) -> str:
-    """Return Markdown string from Gemini JSON output."""
-    # Direct Markdown via list of lines
-    lines = data.get("lines")
-    if isinstance(lines, list):
-        return "\n".join(str(l).strip() for l in lines).strip() + "\n"
-    if isinstance(lines, str):
-        return lines.strip() + ("\n" if not lines.endswith("\n") else "")
-
-    # Support alternate key names or nested dicts
-    for key in ("markdown", "text", "report", "final_report", "content"):
-        if key in data:
-            value = data[key]
-            if isinstance(value, dict):
-                try:
-                    return render_json_to_md(value)
-                except ValueError:
-                    pass
-            if isinstance(value, list):
-                return "\n".join(str(v).strip() for v in value).strip() + "\n"
-            if isinstance(value, str):
-                return value.strip() + ("\n" if not value.endswith("\n") else "")
-
-    # Handle typical sectioned structures
-    sections = []
-    for key in (
-        "title",
-        "views",
-        "technique",
-        "findings",
-        "conclusion",
-        "birads",
-        "impression",
-    ):
-        if key in data:
-            value = data[key]
-            if isinstance(value, list):
-                value = "\n".join(str(v).strip() for v in value)
-            elif isinstance(value, dict):
-                try:
-                    value = render_json_to_md(value).strip()
-                except ValueError:
-                    continue
-            elif not isinstance(value, str):
-                continue
-            sections.append(str(value).strip())
-    if sections:
-        return "\n".join(s for s in sections if s).strip() + "\n"
-
-    # Nested sections container
-    for key in ("sections", "section", "parts"):
-        if key in data:
-            value = data[key]
-            if isinstance(value, dict):
-                try:
-                    return render_json_to_md(value)
-                except ValueError:
-                    pass
-            if isinstance(value, list):
-                out = []
-                for item in value:
-                    if isinstance(item, dict):
-                        try:
-                            out.append(render_json_to_md(item).strip())
-                        except ValueError:
-                            continue
-                    else:
-                        out.append(str(item).strip())
-                if out:
-                    return "\n".join(out).strip() + "\n"
-
-    # Fallback: first string value in dict
-    for value in data.values():
-        if isinstance(value, str):
-            return value.strip() + ("\n" if not value.endswith("\n") else "")
-        if isinstance(value, list):
-            return "\n".join(str(v).strip() for v in value).strip() + "\n"
-        if isinstance(value, dict):
-            try:
-                return render_json_to_md(value)
-            except ValueError:
-                continue
-
-    raise ValueError("Unsupported JSON structure")
-
-
-def query_gemini(structured: Dict[str, Any], prompt: str, templates: List[str]) -> Dict[str, Any]:
+def query_gemini(structured: Dict[str, Any], prompt: str, templates: List[str]) -> str:
     if genai is None:
         raise ImportError("google-generativeai package is required")
     cfg = _load_config()
@@ -199,14 +98,7 @@ def query_gemini(structured: Dict[str, Any], prompt: str, templates: List[str]) 
         parts = getattr(candidate.content, "parts", [])
         if parts:
             text = "".join(getattr(p, "text", str(p)) for p in parts)
-            try:
-                return _parse_response(text)
-            except ValueError:
-                print(
-                    "[query_gemini] Unparsable response from Gemini:\n" + text,
-                    flush=True,
-                )
-                raise
+            return _strip_reasoning(text)
         last_reason = candidate.finish_reason
         print(
             f"[query_gemini] Empty response (finish_reason={last_reason}), retrying {attempt + 1}/{retries}",
@@ -234,7 +126,7 @@ def generate_reports(
     template_paths : List[Path]
         Report templates to feed Gemini.
     json_dir : Path | None, optional
-        If provided, raw JSON responses from Gemini are written here with one
+        If provided, raw responses from Gemini are written here with one
         file per template name.
     """
     cfg = _load_config()
@@ -245,12 +137,11 @@ def generate_reports(
     reports: Dict[str, str] = {}
     for path in template_paths:
         template_text = path.read_text(encoding="utf-8")
-        data = query_gemini(structured, prompt, [template_text])
+        text = query_gemini(structured, prompt, [template_text])
         if json_dir is not None:
             json_dir.mkdir(parents=True, exist_ok=True)
-            out = json.dumps(data, ensure_ascii=False, indent=2)
-            (json_dir / f"{path.stem}.json").write_text(out, encoding="utf-8")
-        reports[path.stem] = render_json_to_md(data)
+            (json_dir / f"{path.stem}.json").write_text(text, encoding="utf-8")
+        reports[path.stem] = text
 
     return reports
 
