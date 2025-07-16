@@ -25,4 +25,4 @@ A gauche :
 
 ## CONCLUSION
 Droit ACR 4 Gauche ACR 4
-Densité glandulaire BIRADS C
+Densité glandulaire BIRADS []

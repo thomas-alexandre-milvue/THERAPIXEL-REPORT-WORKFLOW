@@ -25,4 +25,4 @@ A gauche :
 ## CONCLUSION
 Masse d'aspect très suspect du sein droit.
 Droit ACR 5 Gauche ACR 2
-Densité glandulaire BIRADS C
+Densité glandulaire BIRADS []
