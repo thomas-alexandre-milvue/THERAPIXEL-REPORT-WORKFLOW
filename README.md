@@ -69,22 +69,15 @@ python "2. Structured Input/Structured Input Creator.py"        "1. Input/Therap
 # choose structured input and template interactively
 python "3. Report Generator/c. Generator/cli.py"
 # or specify paths directly
-# output folder defaults to `3. Report Generator/e. Final Report/<case>/`
+# output folder defaults to `3. Report Generator/d. Gemini Output MD/<case>/`
 python "3. Report Generator/c. Generator/cli.py" \
        -i "2. Structured Input/Therapixel - Case 1 Test Structured Input.json" \
-       -o "3. Report Generator/e. Final Report/Case1_report.md"
-#   Raw Gemini Markdown is saved automatically under `3. Report Generator/d. Gemini Output MD`
-#   Use -j to choose a different folder
-python "3. Report Generator/c. Generator/cli.py" \
-       -i "2. Structured Input/Therapixel - Case 1 Test Structured Input.json" \
-       -o "3. Report Generator/e. Final Report/Case1_report.md" \
-       -j "3. Report Generator/d. Gemini Output MD"
+       -o "3. Report Generator/d. Gemini Output MD/Case1_report.md"
 
 # 7  Generate reports for all test cases
-python "3. Report Generator/c. Generator/batch_cli.py"        -o "3. Report Generator/e. Final Report"
+python "3. Report Generator/c. Generator/batch_cli.py"
 #   Markdown replies are stored in `3. Report Generator/d. Gemini Output MD` by default
-#   Use -j to choose a different folder
-python "3. Report Generator/c. Generator/batch_cli.py"        -o "3. Report Generator/e. Final Report"        -j "3. Report Generator/d. Gemini Output MD"
+python "3. Report Generator/c. Generator/batch_cli.py"        -o "3. Report Generator/d. Gemini Output MD"
 # Windows users: run each line separately (don't paste two commands on one line).
 
 # 8  Collect all artifacts to Downloads
@@ -120,7 +113,7 @@ pandoc report.md -o report.docx   --reference-doc="3. Report Generator/b. Templa
 ```
 
 ### 5️⃣  Export workflow artifacts
-`export_workflow.py` copies raw inputs, structured JSON, templates, Gemini MDs and final Markdown to your Downloads folder. Use `-o` to pick a different destination.
+`export_workflow.py` copies raw inputs, structured JSON, templates and Gemini MDs to your Downloads folder. Use `-o` to pick a different destination.
 
 ---
 

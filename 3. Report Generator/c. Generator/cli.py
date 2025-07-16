@@ -45,14 +45,6 @@ def main() -> None:
         type=Path,
         help="Template text file",
     )
-    p.add_argument(
-        "-j",
-        "--md-dir",
-        dest="md_dir",
-        type=Path,
-        default=ROOT / "3. Report Generator" / "d. Gemini Output MD",
-        help="Folder to store raw Gemini Markdown response",
-    )
     args = p.parse_args()
 
     if args.inp is None:
@@ -90,23 +82,17 @@ def main() -> None:
         out_dir = (
             ROOT
             / "3. Report Generator"
-            / "e. Final Report"
+            / "d. Gemini Output MD"
             / args.inp.stem
         )
         args.out = out_dir / f"{Path(args.template).stem}.md"
 
-    md_dir = args.md_dir / args.inp.stem if args.md_dir else None
     report = generate_report(
         case, prompt_path, [args.template]
     )
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(report, encoding="utf-8")
     print(f"✔ Saved report → {args.out}")
-    if md_dir:
-        md_dir.mkdir(parents=True, exist_ok=True)
-        md_path = md_dir / f"{Path(args.template).stem}.md"
-        md_path.write_text(report, encoding="utf-8")
-        print(f"✔ Saved raw MD → {md_path}")
 
 
 if __name__ == "__main__":

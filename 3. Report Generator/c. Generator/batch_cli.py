@@ -37,16 +37,8 @@ def main() -> None:
         "--out",
         dest="out",
         type=Path,
-        default=ROOT / "3. Report Generator" / "e. Final Report",
-        help="Destination folder for generated Markdown reports",
-    )
-    p.add_argument(
-        "-j",
-        "--md-dir",
-        dest="md_dir",
-        type=Path,
         default=ROOT / "3. Report Generator" / "d. Gemini Output MD",
-        help="Folder to store raw Gemini Markdown responses",
+        help="Destination folder for Markdown reports",
     )
     args = p.parse_args()
 
@@ -60,7 +52,6 @@ def main() -> None:
         prompt_path, templates = select_for_case(case)
         case_dir = args.out / src.stem
         case_dir.mkdir(parents=True, exist_ok=True)
-        md_dir = args.md_dir / src.stem if args.md_dir else None
         reports = generate_reports(
             case, prompt_path, templates
         )
@@ -68,12 +59,6 @@ def main() -> None:
             out_path = case_dir / f"{t.stem}.md"
             out_path.write_text(reports[t.stem], encoding="utf-8")
             print(f"  ✔ saved {out_path.relative_to(args.out)}")
-            if md_dir:
-                md_dir.mkdir(parents=True, exist_ok=True)
-                raw_path = md_dir / f"{t.stem}.md"
-                raw_path.write_text(reports[t.stem], encoding="utf-8")
-        if md_dir:
-            print(f"✔ Saved raw MD → {md_dir}")
         print(f"✔ Completed {src.name}\n")
 
 
