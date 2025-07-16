@@ -98,7 +98,8 @@ Include the sentence containing the options in the final report, even if you do 
 
 Mammography-specific rules:
 
-Infer the ACR/BIRADS classification from numeric scores (e.g. mammoscreen_score) and suspicion levels in the Structured_Input. Do not merely copy these numeric values. The mammoscreen_score in your input JSON is NOT an ACR score (though it may be the same value), and must not appear in your output.
+Infer the ACR classification from numeric scores (e.g. mammoscreen_score) and suspicion levels in the Structured_Input. Do not merely copy these numeric values. The mammoscreen_score in your input JSON is NOT an ACR score (though it may be the same value), and must not appear in your output.
+As opposed to the ACR classification, do NOT infer BIRADS score.
 Write **one** finding per sentence.
 
 Output the final report directly as Markdown text.
