@@ -1,6 +1,5 @@
 import importlib.util
 from pathlib import Path
-import json
 
 MODULE_PATH = Path(__file__).resolve().parents[1] / "export_workflow.py"
 spec = importlib.util.spec_from_file_location("exp", MODULE_PATH)
@@ -50,11 +49,11 @@ def test_export(tmp_path):
 
     exp.export(out)
 
-    assert (out / "1. Raw Therapixel Inputs" / "raw.json").exists()
-    assert (out / "2. Structured Inputs" / "struct.json").exists()
-    assert (out / "3. Reports" / "a. Templates" / "t.md").exists()
-    assert (out / "3. Reports" / "b. Gemini MDs" / "r.md").exists()
-    assert (out / "3. Reports" / "c. Final MD" / "f.md").exists()
+    assert (out / "Raw Therapixel Inputs" / "raw.json").exists()
+    assert (out / "Structured Inputs" / "struct.json").exists()
+    assert (out / "Reports" / "a. Templates" / "t.md").exists()
+    assert (out / "Reports" / "b. Gemini MDs" / "r.md").exists()
+    assert (out / "Reports" / "c. Final MD" / "f.md").exists()
 
 
 def test_model_name(tmp_path):
