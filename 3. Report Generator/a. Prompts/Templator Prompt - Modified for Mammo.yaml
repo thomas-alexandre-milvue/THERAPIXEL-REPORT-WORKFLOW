@@ -99,6 +99,7 @@ Include the sentence containing the options in the final report, even if you do 
 Mammography-specific rules:
 
 Infer the ACR/BIRADS classification from numeric scores (e.g. mammoscreen_score) and suspicion levels in the Structured_Input. Do not merely copy these numeric values. The mammoscreen_score in your input JSON is NOT an ACR score (though it may be the same value), and must not appear in your output.
+Write **one** finding per sentence.
 
 Return the final report as a JSON object with a single key report.
 The value must be a list of strings, each string representing one line of the final report.
