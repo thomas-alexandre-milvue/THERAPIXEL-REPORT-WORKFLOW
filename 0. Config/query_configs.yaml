@@ -43,7 +43,6 @@ generationConfig:
   temperature: 0.4
   topP: 0.1
   maxOutputTokens: 6000
-  response_mime_type: application/json
 thinkingConfig:
   includeThoughts: true           # summaries only
   thinkingBudget: 3000
