@@ -52,10 +52,10 @@ def test_generate_reports_json_dir(monkeypatch, tmp_path):
     prompt.write_text("prompt")
     t1 = tmp_path / "a.md"
     t1.write_text("T")
-    jdir = tmp_path / "json"
+    jdir = tmp_path / "md"
 
     result = renderer.generate_reports({}, prompt, [t1], json_dir=jdir)
 
     assert result == {"a": "res"}
-    saved = (jdir / "a.json").read_text()
+    saved = (jdir / "a.md").read_text()
     assert saved == output

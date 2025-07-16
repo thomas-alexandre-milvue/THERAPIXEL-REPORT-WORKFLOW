@@ -59,7 +59,7 @@ def query_gemini(structured: Dict[str, Any], prompt: str, templates: List[str]) 
         "temperature": 0.4,
         "top_p": 0.8,
         "max_output_tokens": 2048,
-        "response_mime_type": "application/json",
+        "response_mime_type": "text/plain",
     }
     gcfg = cfg.get("generationConfig") or cfg.get("generation_config") or {}
     gen_cfg = {
@@ -86,7 +86,7 @@ def query_gemini(structured: Dict[str, Any], prompt: str, templates: List[str]) 
     }
     gen_cfg["response_mime_type"] = gcfg.get(
         "response_mime_type",
-        cfg.get("response_mime_type", "application/json"),
+        cfg.get("response_mime_type", defaults["response_mime_type"]),
     )
 
     for attempt in range(retries + 1):
@@ -140,7 +140,7 @@ def generate_reports(
         text = query_gemini(structured, prompt, [template_text])
         if json_dir is not None:
             json_dir.mkdir(parents=True, exist_ok=True)
-            (json_dir / f"{path.stem}.json").write_text(text, encoding="utf-8")
+            (json_dir / f"{path.stem}.md").write_text(text, encoding="utf-8")
         reports[path.stem] = text
 
     return reports
