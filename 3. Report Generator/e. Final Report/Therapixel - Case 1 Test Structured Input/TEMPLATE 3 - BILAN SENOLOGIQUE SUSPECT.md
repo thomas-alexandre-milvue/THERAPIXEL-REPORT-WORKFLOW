@@ -1,7 +1,7 @@
-BILAN SÉNOLOGIQUE
+## BILAN SÉNOLOGIQUE
 Compte rendu avant 2ᵉ lecture du dépistage organisé
 
-Indication :
+## Indication :
 Patiente de [] ans adressée pour dépistage.
 Parité : []
 Allaitement : [Oui / Non]
@@ -21,7 +21,7 @@ Sein gauche :
 []
 Axillaires : []
 
-CONCLUSION :
+## CONCLUSION :
 Masse très suspecte dans le quadrant supéro-externe du sein droit. Multiples autres masses d'allure bénigne dans les deux seins.
 ACR 5 à droite.
 ACR 2 à gauche.
