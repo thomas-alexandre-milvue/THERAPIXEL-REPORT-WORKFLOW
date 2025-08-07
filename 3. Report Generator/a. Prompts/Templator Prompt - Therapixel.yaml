@@ -14,7 +14,7 @@ prompt: |-
   Titles are usually at the first part of the template and can be identified by their style and content: they contain the name of the examination and are sometimes in caps.
 
   =====================================================================
-  Milvue JSON → French wording dictionary
+  When using information within the Structured_Input to generate the final report, you must follow these additional rules:
   *Always use these exact French renderings when you convert JSON fields into narrative text.*
 
   | # | JSON descriptor | JSON path & allowed values | French wording to insert in report |
@@ -26,7 +26,7 @@ prompt: |-
   | 5 | Depth | `findings[].depth`:<br>`"anterior"` → `Antérieur`<br>`"middle"` → `Moyen`<br>`"posterior"` → `Postérieur`<br>`"unknown"` → `Inconnu` | *(use mapping at left)* |
   | 6 | Prior study date | `prior.study_date` = `YYYYMMDD` | render as **month year** in French, e.g. `janvier 2019` |
   | 7 | Mammoscreen score per finding | `findings[].mammoscreen_score` = `1–10` | *never print the numeric value; only use it to decide if the finding is reported* |
-  | 8 | Global Mammoscreen score | `study_mammoscreen_score` = `1–10` | choose **Benign** template if `< threshold` (centre configurable, default 7) else **Suspicious** template; *never print the numeric value* |
+  | 8 | Global Mammoscreen score | `study_mammoscreen_score` = `1–10` | choose **Benign** template if < 7 else **Suspicious** template; *never print the numeric value* |
 
   =====================================================================
 
